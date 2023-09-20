@@ -30,7 +30,7 @@
     "typescript": "5.0.4"
   },
   "devDependencies": {
-    "@netlify/plugin-nextjs": "^4.40.1",
+    "@netlify/plugin-nextjs": "^4.36.1",
     "@rocketseat/eslint-config": "^2.1.0",
     "@types/js-cookie": "^3.0.4"
   }
