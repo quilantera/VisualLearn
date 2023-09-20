@@ -1,4 +1,4 @@
-import { Pergunta } from "@/app/(activities)/[activityId]/page";
+import { Pergunta } from "@/app/(activities)/atividade/[activityId]/page";
 
 interface PerguntaAreaPerimetro {
   pergunta: string;

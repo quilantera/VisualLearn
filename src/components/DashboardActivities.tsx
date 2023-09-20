@@ -1,5 +1,5 @@
 "use client";
-import { Pergunta } from "@/app/(activities)/[activityId]/page";
+import { Pergunta } from "@/app/(activities)/atividade/[activityId]/page";
 import { useState } from "react";
 import { AtividadeHeader } from "./AtividadeHeader";
 import { AtividadeBody } from "./AtividadeBody";
@@ -15,8 +15,9 @@ export function DashboardActivities({
   const letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
   const [perguntaAtual, setPerguntaAtual] = useState<number>(0);
 
+
   const [respostas, setRespostas] = useState<(number | null)[]>(
-    Array(perguntas.length).fill(null),
+    Array(perguntas.length).fill(null)
   );
   const handleRespostaChange = (resposta: number) => {
     const novasRespostas = [...respostas];
@@ -37,11 +38,11 @@ export function DashboardActivities({
   };
 
   const todasPerguntasRespondidas = respostas.every(
-    (resposta) => resposta !== null,
+    (resposta) => resposta !== null
   );
 
   return (
-    <section className="mt-6 flex w-full flex-col items-center justify-center pt-10 dark:bg-gray-800 dark:text-white ">
+    <section className="flex flex-col w-full pt-10 mt-6 justify-center items-center dark:bg-gray-800 dark:text-white ">
       <AtividadeHeader
         nomeAtividade={nomeAtividade}
         perguntaAtual={perguntaAtual}
@@ -58,6 +59,7 @@ export function DashboardActivities({
         imagem={perguntas[perguntaAtual].urlImage || ""}
         imagemDescricao={perguntas[perguntaAtual].descricaoImagem || ""}
       />
+
     </section>
   );
 }

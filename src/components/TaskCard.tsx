@@ -45,7 +45,7 @@ export function TaskCard({ task }: TaskCardProps) {
           {task.status}
         </h3>
         <Link
-          href={task.link}
+          href={`/atividade${task.link}`}
           title="Iniciar Exercício"
           className="rounded bg-primary-400 px-3 py-[0.425rem] font-medium  tracking-[1px] text-zinc-200 duration-300 ease-in-out  hover:bg-blue-900  dark:border-2 dark:border-white dark:bg-gray-800"
         >
