@@ -14,12 +14,12 @@ export interface Pergunta {
 export interface Perguntas {
   perguntas: Pergunta[];
 }
-export default function AtividadesPage({
+export  default async function AtividadesPage({
   params,
 }: {
   params: { activityId: string };
 }) {
-  const atividade = bancoDeTasks.find(
+  const  atividade = await bancoDeTasks.find(
     (atividade) => atividade.id === params.activityId,
   );
   return (
