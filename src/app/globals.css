@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+body {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  transition: all 200ms;
+}
+
+:focus:not(:focus-visible) {
+  outline: none; /* Remove o contorno padrão */
+  scale:none;
+}
+:focus {
+  outline-color: #dfb80c; 
+  outline-style:dashed; /* Você pode alterar o estilo do contorno (dotted, dashed, etc.) se desejar */
+  outline-width: 4px; /* A largura do contorno, ajuste conforme necessário */
+  transition: all 0s;
+  opacity: 1;
+  scale:1.01;
+}
+.scrollbar::-webkit-scrollbar {
+  width: 10px; /* Largura da barra de rolagem */
+  border-radius: 10px;
+}
+
+/* Cursor na barra de rolagem */
+.scrollbar::-webkit-scrollbar-thumb {
+  background-color: #2F2347; /* Cor da barra de rolagem */
+  border-radius: 10px; /* Raio das bordas da barra de rolagem */
+}
+
+/* Fundo da barra de rolagem */
+.scrollbar::-webkit-scrollbar-track {
+  background-color: #8E98A8; /* Cor de fundo da barra de rolagem */
+}
