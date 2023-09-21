@@ -1,12 +1,12 @@
 import { DashboardMateria } from "@/components/DashboardMateria";
 import { bancoDeMaterias } from "@/utils/bancoDeMaterias";
 
-export default async function MateriaPage({
+export default function MateriaPage({
   params,
 }: {
   params: { nomeURL: string };
 }) {
-  const materia = await bancoDeMaterias.find(
+  const materia =  bancoDeMaterias.find(
     (materia) => materia.nomeURL === params.nomeURL,
   );
   return (
