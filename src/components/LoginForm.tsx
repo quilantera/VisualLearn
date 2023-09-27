@@ -53,7 +53,7 @@ export function LoginForm() {
           </a>
         </Form.Field>
         <Form.Submit asChild>
-          <button className="mt-4 h-10 bg-blue-700 text-xl text-violet-50 duration-300 hover:bg-blue-800 dark:bg-gray-800 dark:border-2 dark:border-white">
+          <button className="mt-4 h-10 bg-blue-700 text-xl text-violet-50 duration-300 hover:bg-blue-800 dark:bg-gray-800 dark:border-2 dark:border-white  dark:hover:bg-white dark:hover:text-black">
             Enviar
           </button>
         </Form.Submit>

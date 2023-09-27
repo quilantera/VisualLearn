@@ -19,7 +19,7 @@ export function DashboardMateria({ subject }: DashboardMateriaProps) {
           Professor {subject.professor}
         </h3>
       </div>
-      <div className="scrollbar mt-10 h-[320px] w-11/12 overflow-y-scroll rounded bg-zinc-100 p-6 shadow-xl dark:border-2 dark:border-white dark:bg-gray-800">
+      <div className="scrollbar mt-10 h-[320px] w-full overflow-y-scroll rounded bg-zinc-100 p-6 shadow-xl dark:border-2 dark:border-white dark:bg-gray-800">
         <div className="flex flex-col gap-4">
           {tasks.map((task, index) => (
             <TaskCard key={index} task={task} />
