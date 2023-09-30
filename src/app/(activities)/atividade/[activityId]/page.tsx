@@ -22,6 +22,8 @@ export  default function AtividadesPage({
   const  atividade = bancoDeTasks.find(
     (atividade) => atividade.id === params.activityId,
   );
+  const colors= "bg-[#7f1d1d] bg-[#082f49] bg-[#ca8a04] bg-[#14532d] bg-[#134e4a] bg-[#c2410c]"
+  
   return (
     <>
       <ActivityHeader />

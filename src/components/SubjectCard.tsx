@@ -1,18 +1,25 @@
+
 import Link from "next/link";
 import { Subject } from "./ShowSubjects";
+
 
 interface SubjectCardProps {
   subject: Subject;
 }
 
 export function SubjectCard({ subject }: SubjectCardProps) {
+
+  const cor = subject.cor || 'bg-primary-500';
+  
   return (
     <div
       className=" grid min-h-[15.625rem] w-[20rem] overflow-hidden rounded-2xl bg-white shadow-lg duration-300 ease-in-out hover:scale-105 dark:border-2 dark:border-white dark:bg-gray-950"
       aria-label="Card Matéria"
       tabIndex={0}
     >
-      <div className="flex  flex-col justify-center  gap-3 bg-primary-500 px-3 py-2 dark:border-b-2 dark:border-white dark:bg-gray-950">
+      <div
+     
+       className={` ${cor} flex flex-col justify-center gap-3 px-3 py-2 dark:border-b-2 dark:border-white dark:bg-gray-950`}>
         <h2 className="w-fit break-words bg-black  bg-opacity-70 px-2 py-[2px] text-xl font-normal tracking-[1px] text-white">
           6º ano - {subject.nome}
         </h2>

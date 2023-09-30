@@ -4,6 +4,7 @@ import { ReactNode } from "react";
 import "../globals.css";
 import { Header } from "@/components/Header";
 import { NavBar } from "@/components/NavBar";
+import { AllColors } from "@/components/allColors";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -31,6 +32,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <main className="flex min-h-screen w-full flex-col items-center bg-background-500  pl-[10%]  dark:bg-gray-800 dark:text-white ">
           <Header />
           <NavBar />
+          <AllColors />
           {children}
         </main>
       </body>

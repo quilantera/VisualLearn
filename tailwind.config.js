@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+const colors = require('tailwindcss/colors')
 module.exports = {
   darkMode: 'class',
   content: [
@@ -19,6 +20,7 @@ module.exports = {
         },
       },
       colors: {
+        
         gray: {
           50: '#F1EAFF',
           100: '#D9D9D9',
@@ -44,18 +46,6 @@ module.exports = {
         },
         purple: {
           100: '#371A46',
-        },
-        green: {
-          50: '#e6fbef',
-          100: '#b1f1ce',
-          200: '#8cebb6',
-          300: '#57e295',
-          400: '#36dc81',
-          500: '#04d361',
-          600: '#04c058',
-          700: '#039645',
-          800: '#027435',
-          900: '#025929',
         },
         primary: {
           400: '#0A65A5',
