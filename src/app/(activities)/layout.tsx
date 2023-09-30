@@ -21,6 +21,7 @@ export const metadata = {
   colorScheme: 'light',
   creator: 'Gustavo Quilante Azevedo',
 }
+
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="pt-br">
