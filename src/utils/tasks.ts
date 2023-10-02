@@ -6,7 +6,7 @@ export interface Task {
   status: "atraso" | "pendente" | "entregue";
   link: string;
   foto: string;
-  cor: string;
+  cor?: string;
 }
 
 export const bancoDeTasks: Task[] = [

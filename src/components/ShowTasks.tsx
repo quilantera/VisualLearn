@@ -8,6 +8,7 @@ interface Task {
   status: "atraso" | "pendente" | "entregue";
   link: string;
   foto: string;
+  cor?: string;
 }
 
 interface ShowTasksProps {
