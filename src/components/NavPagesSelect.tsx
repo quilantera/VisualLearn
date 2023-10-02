@@ -4,7 +4,7 @@ import Link from "next/link";
 export function NavPagesSelect() {
   return (
     <ul className="w-full">
-      <li className=" dark:font-w flex flex-col items-center border-b-2 text-white duration-200 ease-in-out hover:bg-primary-600 focus:bg-primary-600 focus:text-white dark:hover:bg-white dark:hover:text-gray-800 dark:focus:text-gray-800 ">
+      <li className=" flex flex-col items-center border-b-2 text-white duration-200 ease-in-out hover:bg-primary-600 focus:bg-primary-600 focus:text-white dark:hover:bg-white dark:hover:text-gray-800 dark:focus:text-gray-800 ">
         <Link
           href="/"
           title=" Selecione Painel"
@@ -13,7 +13,7 @@ export function NavPagesSelect() {
           <Home className="h-6 w-6" /> Painel
         </Link>
       </li>
-      <li className="dark:font-w flex flex-col items-center border-b-2 text-white duration-200 ease-in-out hover:bg-primary-600 focus:bg-primary-600 focus:text-white dark:hover:bg-white dark:hover:text-gray-800 dark:focus:text-gray-800 ">
+      <li className="flex flex-col items-center border-b-2 text-white duration-200 ease-in-out hover:bg-primary-600 focus:bg-primary-600 focus:text-white dark:hover:bg-white dark:hover:text-gray-800 dark:focus:text-gray-800 ">
         <Link
           title=" Selecione Matérias"
           href="/materias"

@@ -15,7 +15,6 @@ export function DashboardActivities({
   const letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
   const [perguntaAtual, setPerguntaAtual] = useState<number>(0);
 
-
   const [respostas, setRespostas] = useState<(number | null)[]>(
     Array(perguntas.length).fill(null)
   );
@@ -36,6 +35,13 @@ export function DashboardActivities({
       setPerguntaAtual(perguntaAtual - 1);
     }
   };
+ function ultimaPergunta()
+ { 
+  if(perguntaAtual  == perguntas.length - 1){
+    return true
+  } else 
+    return false;
+ } 
 
   const todasPerguntasRespondidas = respostas.every(
     (resposta) => resposta !== null
@@ -58,6 +64,7 @@ export function DashboardActivities({
         letters={letters}
         imagem={perguntas[perguntaAtual].urlImage || ""}
         imagemDescricao={perguntas[perguntaAtual].descricaoImagem || ""}
+        isUltimaPergunta={ultimaPergunta}
       />
 
     </section>

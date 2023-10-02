@@ -4,9 +4,10 @@ import { ReactNode } from "react"
 import "../globals.css"
 import { ActivityHeader } from "@/components/ActivityHeader"
 
+
 const poppins = Poppins({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "700"],
+  weight: ["300", "400", "500","600","700"],
   style: "normal",
   variable: "--font-poppins",
 })
@@ -27,7 +28,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     <html lang="pt-br">
       <body className={`${poppins.variable}  bg-gray-50 font-san`}>
         <main className="w-full flex-col items-center min-h-screen  bg-background-500 pt-20  dark:bg-gray-800 ">
-          <ActivityHeader />
+          
           {children}
         </main>
       </body>

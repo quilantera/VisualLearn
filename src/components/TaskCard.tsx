@@ -5,6 +5,7 @@ interface TaskCardProps {
   task: Task;
 }
 export function TaskCard({ task }: TaskCardProps) {
+  const color = task.cor || 'bg-primary-500';
   const getStatusColor = () => {
     switch (task.status) {
       case "pendente":
@@ -23,7 +24,7 @@ export function TaskCard({ task }: TaskCardProps) {
       tabIndex={0}
       className="relative flex w-full items-center justify-between overflow-hidden rounded-lg bg-zinc-50 px-6 py-4 shadow-lg duration-300 hover:scale-[1.02] dark:border-2 dark:border-white dark:bg-gray-900"
     >
-      <div className="absolute left-0 h-full w-2 bg-violet-250 dark:bg-slate-300" />
+      <div className={`absolute left-0 h-full w-2 ${color} dark:bg-slate-300`} />
       <div className="flex gap-6">
         <img
           src={task.foto}
@@ -47,7 +48,7 @@ export function TaskCard({ task }: TaskCardProps) {
         <Link
           href={`/atividade${task.link}`}
           title="Iniciar Exercício"
-          className="rounded bg-primary-400 px-3 py-[0.425rem] font-medium  tracking-[1px] text-zinc-200 duration-300 ease-in-out  hover:bg-blue-900  dark:border-2 dark:border-white dark:bg-gray-800"
+          className="rounded bg-primary-400 px-3 py-[0.425rem] font-medium  tracking-[1px] text-zinc-200 duration-300 ease-in-out  hover:bg-blue-900  dark:border-2 dark:border-white dark:bg-gray-800 dark:hover:bg-slate-50 dark:hover:text-gray-800"
         >
           iniciar
         </Link>

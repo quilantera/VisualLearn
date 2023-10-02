@@ -5,7 +5,7 @@ export function AllColors(){
                  bg-red-900 
                  bg-orange-800
                  bg-amber-800 
-                 bg-yellow-700 
+                 bg-yellow-600 
                  bg-lime-800 
                  bg-green-800 
                  bg-emerald-800 
