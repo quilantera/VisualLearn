@@ -1,6 +1,7 @@
 import React from "react";
 import { RespostasRadioGroup } from "./RespostasRadioGroup";
 import Image from "next/image";
+import { ModalEnviarResposta } from "./ModalEnviarResposta";
 
 interface AtividadeBodyProps {
   pergunta: string;
@@ -8,10 +9,12 @@ interface AtividadeBodyProps {
   imagemDescricao: string;
   respostas: string[];
   selectedOption: number | null;
+  isUltimaPergunta:() =>  boolean;
   handleRadioChange: (index: number) => void;
   proximaPergunta: () => void;
   perguntaAnterior: () => void;
   letters: string[];
+
 }
 
 export function AtividadeBody({
@@ -20,10 +23,12 @@ export function AtividadeBody({
   imagemDescricao,
   respostas,
   selectedOption,
+  isUltimaPergunta,
   handleRadioChange,
   proximaPergunta,
   perguntaAnterior,
   letters,
+ 
 }: AtividadeBodyProps) {
   return (
     <div className="mt-5 flex w-10/12 flex-col gap-3 rounded-xl bg-white p-10 shadow-2xl drop-shadow-lg dark:bg-gray-600">
@@ -51,13 +56,17 @@ export function AtividadeBody({
           {" "}
           voltar
         </button>
-        <button
+        { !isUltimaPergunta() ? <button
           className="w-[6rem] bg-green-700 p-2 text-white duration-300 hover:scale-105 hover:bg-green-800"
           onClick={proximaPergunta}
         >
           {" "}
           Próxima
         </button>
+        : <ModalEnviarResposta/>
+
+        }
+        
       </div>
     </div>
   );

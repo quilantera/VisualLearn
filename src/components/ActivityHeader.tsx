@@ -1,14 +1,23 @@
 "use client";
 import * as Toggle from "@radix-ui/react-toggle";
-import { ChevronLeft, ChevronRight, Eye, Volume2, ZoomIn } from "lucide-react";
-import Link from "next/link";
+import {  ChevronLeft, ChevronRight, Eye, Volume2, ZoomIn } from "lucide-react";
+
 
 import { useState } from "react";
+import { VoltarBtn } from "./VoltarBtn";
 
-export function ActivityHeader() {
+interface ActivityHeaderProps {
+  handleConfirmar: ()=>void
+}
+
+export function ActivityHeader({handleConfirmar}: ActivityHeaderProps) {
+ 
+
   const [contrast, setContrast] = useState<boolean>(false);
   const [zoom, setZoom] = useState<boolean>(false);
   const [sound, setSound] = useState<boolean>(false);
+
+  
   function handleChangeContrast() {
     setContrast(!contrast);
     if (!contrast) {
@@ -33,13 +42,8 @@ export function ActivityHeader() {
     <header
       className={`fixed right-0 top-0 z-20 flex w-full items-center justify-between gap-2 bg-primary-500 px-3 py-2 dark:bg-gray-600`}
     >
-      <Link
-        href={process.env.NEXT_PUBLIC_VER_URL || "/"}
-        className="flex items-center text-lg font-semibold tracking-wide text-zinc-50 decoration-2 underline-offset-4 hover:underline "
-      >
-        <ChevronLeft className="h-7 w-7" />
-        Voltar
-      </Link>
+      <VoltarBtn voltar={handleConfirmar} />
+      
       <div className="flex h-full gap-2 rounded-full bg-zinc-300 px-8 py-2 shadow-md ">
         <Toggle.Root
           onPressedChange={() => handleChangeContrast()}

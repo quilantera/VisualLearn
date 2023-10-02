@@ -1,9 +1,13 @@
-"use client";
-import * as Form from "@radix-ui/react-form";
 
-export function LoginForm() {
+import * as Form from "@radix-ui/react-form";
+import { FormEvent } from "react";
+
+interface LoginFormProps{
+  handleSubmit: (event: FormEvent) => void;
+}
+export function LoginForm( {handleSubmit}: LoginFormProps){
   return (
-    <Form.Root className="flex h-auto w-[28rem] flex-col items-center gap-1 rounded-lg bg-gray-50 px-8 py-8 shadow-sm dark:bg-gray-700 dark:text-white ">
+    <Form.Root onSubmit={handleSubmit} className="flex h-auto w-[28rem] flex-col items-center gap-1 rounded-lg bg-gray-50 px-8 py-8 shadow-sm dark:bg-gray-700 dark:text-white ">
       <h2 className="py-5 text-4xl font-semibold text-purple-100 dark:text-white">Bem-Vindo</h2>
       <div className="flex w-4/5 flex-col gap-3 py-3">
         <Form.Field className="flex w-full flex-col gap-1" name="username">
@@ -53,7 +57,9 @@ export function LoginForm() {
           </a>
         </Form.Field>
         <Form.Submit asChild>
-          <button className="mt-4 h-10 bg-blue-700 text-xl text-violet-50 duration-300 hover:bg-blue-800 dark:bg-gray-800 dark:border-2 dark:border-white  dark:hover:bg-white dark:hover:text-black">
+          <button 
+              className="mt-4 h-10 bg-blue-700 text-xl text-violet-50 duration-300 hover:bg-blue-800 dark:bg-gray-800 dark:border-2 dark:border-white  dark:hover:bg-white dark:hover:text-black"
+              >
             Enviar
           </button>
         </Form.Submit>

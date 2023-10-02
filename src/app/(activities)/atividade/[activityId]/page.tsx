@@ -1,8 +1,9 @@
+"use client"
 import { ActivityHeader } from "@/components/ActivityHeader";
 import { DashboardActivities } from "@/components/DashboardActivities";
 import { perguntasAreasPerimetros } from "@/utils/perguntasAreasPerimetros";
 import { bancoDeTasks } from "@/utils/tasks";
-
+import { useRouter } from "next/navigation";
 export interface Pergunta {
   pergunta: string;
   urlImage?: string;
@@ -22,11 +23,13 @@ export  default function AtividadesPage({
   const  atividade = bancoDeTasks.find(
     (atividade) => atividade.id === params.activityId,
   );
-  const colors= "bg-[#7f1d1d] bg-[#082f49] bg-[#ca8a04] bg-[#14532d] bg-[#134e4a] bg-[#c2410c]"
-  
+  const router = useRouter();
+  const handleConfirmar = () => {
+    router.back();
+  };
   return (
     <>
-      <ActivityHeader />
+      <ActivityHeader handleConfirmar={handleConfirmar}/>
       <DashboardActivities
         nomeAtividade={atividade!.titulo}
         perguntas={perguntasAreasPerimetros}
