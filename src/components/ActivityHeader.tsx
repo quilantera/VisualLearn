@@ -2,40 +2,41 @@
 import * as Toggle from "@radix-ui/react-toggle";
 import {  ChevronLeft, ChevronRight, Eye, Volume2, ZoomIn } from "lucide-react";
 
-
-import { useState } from "react";
 import { VoltarBtn } from "./VoltarBtn";
+import { useAccessibility } from "@/app/Context/AccessibilityContext";
+import { isPressed } from "./SpeechReader";
 
 interface ActivityHeaderProps {
   handleConfirmar: ()=>void
 }
 
 export function ActivityHeader({handleConfirmar}: ActivityHeaderProps) {
- 
-
-  const [contrast, setContrast] = useState<boolean>(false);
-  const [zoom, setZoom] = useState<boolean>(false);
-  const [sound, setSound] = useState<boolean>(false);
+  const { contrast, setContrast, zoom, setZoom, sound, setSound } = useAccessibility();
 
   
   function handleChangeContrast() {
     setContrast(!contrast);
     if (!contrast) {
       document.documentElement.classList.add("dark"); // Adiciona a classe 'darkmode'
+      if(sound) isPressed(true);
     } else {
       document.documentElement.classList.remove("dark"); // Remove a classe 'darkmode'
+      if(sound) isPressed(false);
     }
   }
   function handleChangeZoom() {
     setZoom(!zoom);
     if (!zoom) {
       document.documentElement.style.fontSize = "120%"; // Ajuste o valor conforme necessário
+      if(sound) isPressed(true);
     } else {
       document.documentElement.style.fontSize = ""; // Reset para o tamanho padrão
+      if(sound) isPressed(false);
     }
   }
   function handleChangeSound() {
     setSound(!sound);
+    if(sound) isPressed(true);
     console.log(sound);
   }
   return (
@@ -44,7 +45,7 @@ export function ActivityHeader({handleConfirmar}: ActivityHeaderProps) {
     >
       <VoltarBtn voltar={handleConfirmar} />
       
-      <div className="flex h-full gap-2 rounded-full bg-zinc-300 px-8 py-2 shadow-md ">
+      <div aria-label="area de acessibilidade" tabIndex={0} className="flex h-full gap-2 rounded-full bg-zinc-300 px-8 py-2 shadow-md ">
         <Toggle.Root
           onPressedChange={() => handleChangeContrast()}
           className="flex  w-[4.15rem] flex-col items-center justify-center rounded-lg bg-white px-1 text-primary-500 shadow-md drop-shadow-md duration-300 hover:scale-105 data-[state=on]:bg-primary-500 data-[state=on]:text-zinc-50"

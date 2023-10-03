@@ -1,6 +1,6 @@
 "use client";
 import { Pergunta } from "@/app/(activities)/atividade/[activityId]/page";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { AtividadeHeader } from "./AtividadeHeader";
 import { AtividadeBody } from "./AtividadeBody";
 
@@ -12,6 +12,7 @@ export function DashboardActivities({
   nomeAtividade,
   perguntas,
 }: DashboardActivitiesProps) {
+  const perguntaRef = useRef<HTMLDivElement>(null);
   const letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
   const [perguntaAtual, setPerguntaAtual] = useState<number>(0);
 
@@ -27,12 +28,14 @@ export function DashboardActivities({
   const proximaPergunta = () => {
     if (perguntaAtual < perguntas.length - 1) {
       setPerguntaAtual(perguntaAtual + 1);
+      perguntaRef.current?.focus();
     }
   };
 
   const perguntaAnterior = () => {
     if (perguntaAtual > 0) {
       setPerguntaAtual(perguntaAtual - 1);
+      perguntaRef.current?.focus();
     }
   };
  function ultimaPergunta()
@@ -65,6 +68,7 @@ export function DashboardActivities({
         imagem={perguntas[perguntaAtual].urlImage || ""}
         imagemDescricao={perguntas[perguntaAtual].descricaoImagem || ""}
         isUltimaPergunta={ultimaPergunta}
+        perguntaRef={perguntaRef}
       />
 
     </section>

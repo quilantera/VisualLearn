@@ -21,7 +21,7 @@ export function ModalEnviarResposta(){
     return(
         <AlertDialog.Root>
         <AlertDialog.Trigger asChild>
-          <button className="w-[6rem] bg-green-700 p-2 text-white duration-300 hover:scale-105 hover:bg-green-800 ">
+          <button className="w-[6rem] bg-green-700 p-2 rounded text-white duration-300 hover:scale-105 hover:bg-green-800 ">
             Enviar
           </button>
         </AlertDialog.Trigger>

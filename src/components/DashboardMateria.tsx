@@ -11,7 +11,9 @@ export function DashboardMateria({ subject }: DashboardMateriaProps) {
     <section
       className={`mt-4 flex w-[90%] flex-col justify-center pl-4 pt-14 dark:bg-gray-800 dark:text-white `}
     >
-      <div className={`flex  w-12/12 flex-col justify-center gap-2 rounded-xl ${subject.cor? subject.cor : 'bg-primary-500'} px-8 py-5 shadow-md dark:bg-gray-900 `}>
+      <div
+       tabIndex={0}
+      className={`flex  w-12/12 flex-col justify-center gap-2 rounded-xl ${subject.cor? subject.cor : 'bg-primary-500'} px-8 py-5 shadow-md dark:bg-gray-900 `}>
         <h2 className="w-fit break-words bg-black bg-opacity-70 px-2 py-1 text-2xl font-semibold tracking-[1px]  text-white">
           6º ano B - {subject.nome}
         </h2>
