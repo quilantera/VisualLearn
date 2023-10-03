@@ -19,11 +19,10 @@ export function NavBar() {
         <NavPagesSelect />
       </div>
 
-      <div>
-        <Link href={"/login"}>
-          <LogOut className="cursor-pointer text-white duration-200 ease-in-out hover:text-slate-500 " />
-        </Link>
-      </div>
+        <Link href={"/login"} title="encerrar sessão"  aria-label="encerrar sessão" tabIndex={0} className="cursor-pointer p-2  text-white duration-200 ease-in-out hover:text-white focus:drop-shadow-lg focus:shadow-white " >
+          <LogOut data-ignore="true"  />
+        </Link> 
+      
     </nav>
   );
 }

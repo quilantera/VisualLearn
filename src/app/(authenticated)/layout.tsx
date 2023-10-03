@@ -5,6 +5,8 @@ import "../globals.css";
 import { Header } from "@/components/Header";
 import { NavBar } from "@/components/NavBar";
 import { AllColors } from "@/components/allColors";
+import SpeechReader from "@/components/SpeechReader";
+import { AccessibilityProvider } from "../Context/AccessibilityContext";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -29,12 +31,15 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body
         className={`${poppins.variable} bg-gray-50 font-san dark:bg-gray-800 dark:text-white `}
       >
-        <main className="flex min-h-screen w-full flex-col items-center bg-background-500  pl-[10%]  dark:bg-gray-800 dark:text-white ">
-          <Header />
-          <NavBar />
-          <AllColors />
-          {children}
-        </main>
+        <AccessibilityProvider >
+        <Header />
+          <main className="flex min-h-screen w-full flex-col items-center bg-background-500  pl-[10%]  dark:bg-gray-800 dark:text-white ">
+            <NavBar />
+            <AllColors />
+            {children}
+          </main>
+        <SpeechReader />
+        </AccessibilityProvider>
       </body>
     </html>
   );

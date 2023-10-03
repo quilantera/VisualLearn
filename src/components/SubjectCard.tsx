@@ -14,7 +14,8 @@ export function SubjectCard({ subject }: SubjectCardProps) {
   return (
     <div
       className=" grid min-h-[15.625rem] w-[20rem] overflow-hidden rounded-2xl bg-white shadow-lg duration-300 ease-in-out hover:scale-105 dark:border-2 dark:border-white dark:bg-gray-950"
-      aria-label="Card Matéria"
+      role="region" // Adicione um role para identificar essa seção como uma região da página
+      aria-label={`Matéria: ${subject.nome}`} // Use o nome da matéria no aria-label
       tabIndex={0}
     >
       <div

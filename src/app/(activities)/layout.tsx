@@ -1,8 +1,11 @@
+
 import { Poppins } from "next/font/google"
 import { ReactNode } from "react"
 
 import "../globals.css"
 import { ActivityHeader } from "@/components/ActivityHeader"
+import SpeechReader from "@/components/SpeechReader"
+import { AccessibilityProvider } from "../Context/AccessibilityContext"
 
 
 const poppins = Poppins({
@@ -27,10 +30,13 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="pt-br">
       <body className={`${poppins.variable}  bg-gray-50 font-san`}>
+       <AccessibilityProvider >
         <main className="w-full flex-col items-center min-h-screen  bg-background-500 pt-20  dark:bg-gray-800 ">
-          
           {children}
+
         </main>
+        <SpeechReader />
+        </AccessibilityProvider>   
       </body>
     </html>
   )

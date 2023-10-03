@@ -12,18 +12,24 @@ export function HomeDashboard() {
       }
       <PrimeiroCard/>
       <div className="w-full flex gap-10 justify-center">
-        <article className="w-[18rem] py-3   bg-slate-50 rounded-xl flex flex-col gap-4 items-center  shadow-lg hover:scale-105 duration-200 dark:bg-zinc-800 dark:border-2 dark:border-white ">
+        <article 
+          tabIndex={0}
+          aria-label="Seção de Tarefas"
+        className="w-[18rem] py-3   bg-slate-50 rounded-xl flex flex-col gap-4 items-center  shadow-lg hover:scale-105 duration-200 dark:bg-zinc-800 dark:border-2 dark:border-white ">
           <h2 className=" mt-2 font-semibold text-zinc-800 text-2xl  tracking-[0.5px] dark:text-slate-100 ">Tarefas </h2>
           <Image src={tarefa} alt={"imagem seção tarefa"} width={1000} height={1000}  className="h-36 w-36 rounded-md"/>
-          <Link href={"/tarefas"} className="rounded-md bg-primary-400 px-4 py-2 text-base font-medium tracking-[2px] text-white duration-300 ease-in-out hover:bg-blue-900 dark:border-2 dark:border-white dark:bg-zinc-900 dark:font-semibold dark:hover:bg-white dark:hover:text-black" >
-            Iniciar
+          <Link      tabIndex={0} href={"/tarefas"} className="rounded-md bg-primary-400 px-4 py-2 text-base font-medium tracking-[2px] text-white duration-300 ease-in-out hover:bg-blue-900 dark:border-2 dark:border-white dark:bg-zinc-900 dark:font-semibold dark:hover:bg-white dark:hover:text-black" >
+          <span>Iniciar</span>
           </Link>
         </article>
-        <article className="w-[18rem] py-3  bg-slate-50 rounded-xl flex flex-col gap-4 items-center shadow-lg hover:scale-105 duration-200  dark:bg-zinc-800 dark:border-2 dark:border-white ">
+        <article 
+        tabIndex={0}
+        aria-label="Seção de Matérias"
+        className="w-[18rem] py-3  bg-slate-50 rounded-xl flex flex-col gap-4 items-center shadow-lg hover:scale-105 duration-200  dark:bg-zinc-800 dark:border-2 dark:border-white ">
           <h2 className=" mt-2 font-semibold text-zinc-800 text-2xl  tracking-[0.5px]  dark:text-slate-100 ">Matérias </h2>
           <Image src={Materia} alt={"imagem seção tarefa"} width={1000} height={1000}  className="h-36 w-36 rounded-md"/>
-          <Link href={"/materias"} className="rounded-md bg-primary-400 px-4 py-2 text-base font-medium tracking-[2px] text-white duration-300 ease-in-out hover:bg-blue-900 dark:border-2 dark:border-white dark:bg-zinc-900 dark:font-semibold dark:hover:bg-white dark:hover:text-black" >
-            Iniciar
+          <Link  href={"/materias"} className="rounded-md bg-primary-400 px-4 py-2 text-base font-medium tracking-[2px] text-white duration-300 ease-in-out hover:bg-blue-900 dark:border-2 dark:border-white dark:bg-zinc-900 dark:font-semibold dark:hover:bg-white dark:hover:text-black" >
+          <span>Iniciar</span>
           </Link>
         </article>
     
