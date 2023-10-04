@@ -25,16 +25,16 @@ export function DashboardActivities({
     setRespostas(novasRespostas);
   };
 
-  const proximaPergunta = () => {
+  const proximaPergunta = async () => {
     if (perguntaAtual < perguntas.length - 1) {
-      setPerguntaAtual(perguntaAtual + 1);
+     await setPerguntaAtual(perguntaAtual + 1);
       perguntaRef.current?.focus();
     }
   };
 
-  const perguntaAnterior = () => {
+  const perguntaAnterior = async () => {
     if (perguntaAtual > 0) {
-      setPerguntaAtual(perguntaAtual - 1);
+      await setPerguntaAtual(perguntaAtual - 1);
       perguntaRef.current?.focus();
     }
   };
@@ -56,6 +56,7 @@ export function DashboardActivities({
         nomeAtividade={nomeAtividade}
         perguntaAtual={perguntaAtual}
         totalPerguntas={perguntas.length}
+        perguntaRef={perguntaRef}
       />
       <AtividadeBody
         pergunta={perguntas[perguntaAtual].pergunta}
@@ -68,7 +69,7 @@ export function DashboardActivities({
         imagem={perguntas[perguntaAtual].urlImage || ""}
         imagemDescricao={perguntas[perguntaAtual].descricaoImagem || ""}
         isUltimaPergunta={ultimaPergunta}
-        perguntaRef={perguntaRef}
+       
       />
 
     </section>

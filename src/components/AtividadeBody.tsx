@@ -14,7 +14,7 @@ interface AtividadeBodyProps {
   proximaPergunta: () => void;
   perguntaAnterior: () => void;
   letters: string[];
-  perguntaRef?: RefObject<HTMLDivElement>
+ 
 
 }
 
@@ -28,7 +28,6 @@ export function AtividadeBody({
   handleRadioChange,
   proximaPergunta,
   perguntaAnterior,
-  perguntaRef,
   letters,
  
 }: AtividadeBodyProps) {
@@ -40,7 +39,6 @@ export function AtividadeBody({
     <div className="mt-5 flex w-10/12 flex-col gap-3 rounded-xl bg-white p-10 shadow-2xl drop-shadow-lg dark:bg-gray-600">
       <div>
         <h2 className="text-lg dark:text-zinc-50"
-        ref={perguntaRef}
         tabIndex={0}>{pergunta}</h2>
         {imagem && (
           <div>
