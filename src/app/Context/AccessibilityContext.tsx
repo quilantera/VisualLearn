@@ -13,19 +13,26 @@ interface AccessibilityContextProps {
 const AccessibilityContext = createContext<AccessibilityContextProps | undefined>(undefined);
 
 export function AccessibilityProvider({ children }: { children: ReactNode }) {
-  const [contrast, setContrast] = useState(() => {
+  
+  const [contrast, setContrast] =  useState( () => {
+    if (typeof window !== "undefined") {
     const storedValue = localStorage.getItem('contrast');
     return storedValue ? JSON.parse(storedValue) : false;
+    }
   });
 
   const [zoom, setZoom] = useState(() => {
+    if (typeof window !== "undefined") {
     const storedValue = localStorage.getItem('zoom');
     return storedValue ? JSON.parse(storedValue) : false;
+    }
   });
 
-  const [sound, setSound] = useState(() => {
+  const [sound, setSound] = useState( () => {
+    if (typeof window !== "undefined") {
     const storedValue = localStorage.getItem('sound');
     return storedValue ? JSON.parse(storedValue) : false;
+    }
   });
 
   useEffect(() => {

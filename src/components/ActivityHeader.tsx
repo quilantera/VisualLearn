@@ -5,7 +5,7 @@ import {  ChevronLeft, ChevronRight, Eye, Volume2, ZoomIn } from "lucide-react";
 import { VoltarBtn } from "./VoltarBtn";
 import { useAccessibility } from "@/app/Context/AccessibilityContext";
 import { isPressed } from "./SpeechReader";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 interface ActivityHeaderProps {
   handleConfirmar: ()=>void
@@ -14,6 +14,8 @@ interface ActivityHeaderProps {
 export function ActivityHeader({handleConfirmar}: ActivityHeaderProps) {;
 
   const { contrast, setContrast, zoom, setZoom, sound, setSound } = useAccessibility();
+  
+  const [isLoading, setIsLoading] = useState(true);
   
 
   async function handleToggleChange(state: boolean ,setState: React.Dispatch<React.SetStateAction<boolean>>, onActivate: () => void, onDeactivate: () => void) {
@@ -39,14 +41,22 @@ export function ActivityHeader({handleConfirmar}: ActivityHeaderProps) {;
       document.documentElement.style.fontSize = ""; // Reset para o tamanho padrão
     }
   }, [contrast, zoom]);
+  useEffect(() => {
+    if(typeof window !== "undefined") {
+      setIsLoading(false);
+    }  
+}, []);
+
   return (
     <header
       className={`fixed right-0 top-0 z-20 flex w-full items-center justify-between gap-2 bg-primary-500 px-3 py-2 dark:bg-gray-600`}
     >
       <VoltarBtn voltar={handleConfirmar} />
-      
+      {!isLoading &&  
       <div aria-label="area de acessibilidade" tabIndex={0} className="  flex h-full gap-2 rounded-full bg-zinc-300 px-8 py-2 shadow-md ">
-        <Toggle.Root
+      
+    
+     <Toggle.Root
           onPressedChange={() => handleToggleChange(contrast, setContrast, () => isPressed(true), () => isPressed(false))}
           className="flex  w-[4.15rem] flex-col items-center justify-center rounded-lg bg-white px-1 text-primary-500 shadow-md drop-shadow-md duration-300 hover:scale-105 data-[state=on]:bg-primary-500 data-[state=on]:text-zinc-50"
           aria-label="botão mudar contraste"
@@ -79,7 +89,9 @@ export function ActivityHeader({handleConfirmar}: ActivityHeaderProps) {;
             Leitor
           </span>
         </Toggle.Root>
+   
       </div>
+       }
      <div className="flex gap-3 pr-10">
           <button className="rounded bg-zinc-100 px-1 py-1 text-primary-500 opacity-40 shadow-md drop-shadow-md duration-300 hover:scale-105">
           <ChevronLeft className="h-9 w-9" />

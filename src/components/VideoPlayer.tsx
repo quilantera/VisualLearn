@@ -69,8 +69,7 @@ export function VideoPlayer({ urlVideo }: VideoPlayerProps) {
         <ReactPlayer
           ref={playerRef}
           url={urlVideo}
-          controls
-          className="overflow-hidden shadow-lg "
+          className="overflow-hidden shadow-lg"
           tabIndex={-1}
           width={'80%'}
           playing={isPlaying}
@@ -86,9 +85,6 @@ export function VideoPlayer({ urlVideo }: VideoPlayerProps) {
                 controls:0,
                 showRelatedVideos:0
               }
-            },
-            facebook: {
-              appId: '12345'
             }
           }}
         />
@@ -137,7 +133,6 @@ export function VideoPlayer({ urlVideo }: VideoPlayerProps) {
                   onChange={handleVolumeChange}
                   aria-label="Controle de Volume"
                   className="ml-2 w-20"
-                  
                 />
               <button onClick={handleMute} aria-label='botão ligar volume'  className="mx-2 bg-yellow-700 hover:bg-yellow-900 hover:scale-105 dark:bg-gray-700 dark:border-yellow-700 dark:border-4 text-white shadow-md duration-300  font-bold py-2 px-4 rounded">
                   {muted ? <VolumeX/> : <Volume2/>}
@@ -145,11 +140,7 @@ export function VideoPlayer({ urlVideo }: VideoPlayerProps) {
                 
             </div>
         </div>
-        
       </div>
-      
-     
-     
     </div>
   );
 }

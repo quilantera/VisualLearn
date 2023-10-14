@@ -7,8 +7,10 @@
   import * as NavigationMenu from '@radix-ui/react-navigation-menu';
 
   export function Header() {
+    
     const { contrast, setContrast, zoom, setZoom, sound, setSound } = useAccessibility();
-  
+    
+    const [isLoading, setIsLoading] = useState(true);
     const [scrollPosition, setScrollPosition] = useState<number>(0);
   
     async function handleToggleChange(state: boolean ,setState: React.Dispatch<React.SetStateAction<boolean>>, onActivate: () => void, onDeactivate: () => void) {
@@ -43,9 +45,17 @@
       return () => {
         window.removeEventListener("scroll", handleScroll);
       };
-    }, [contrast, zoom]);
+    }, [contrast, zoom,sound]);
+    useEffect(() => {
+        if(typeof window !== "undefined") {
+          setIsLoading(false);
+        }  
+    }, []);
+  
   
     return (
+      <>
+    {!isLoading && 
     <NavigationMenu.Root aria-label="Area de acessibilidade">
       <NavigationMenu.List 
         className={`fixed right-8 top-4 z-20  flex gap-2 bg-primary-500 px-3 py-1 ${
@@ -59,7 +69,7 @@
               className="toggle rounded px-1 py-1 text-gray-50 data-[state=on]:bg-gray-100 data-[state=on]:text-violet-300  data-[state=on]:drop-shadow-md"
               aria-label="botão mudar contraste"
               tabIndex={1}
-              data-state={contrast ? 'on' : 'off'}
+              data-state={contrast? 'on' : 'off'}
             >
               <Eye className="h-7 w-7" />
             </Toggle.Root>
@@ -88,6 +98,8 @@
           </NavigationMenu.Item>
         </NavigationMenu.List>
       </NavigationMenu.Root>
+    }
+    </>
     );
   }
   
