@@ -23,7 +23,7 @@ export function DashboardActivities ({ nomeAtividade, perguntas }: DashboardActi
     ));
   };
 
-  const navegarPergunta =async (novaPergunta: number) => {
+  const navegarPergunta = async (novaPergunta: number) => {
     if (novaPergunta >= 0 && novaPergunta < perguntas.length) {
      await setPerguntaAtual(novaPergunta);
       perguntaRef.current?.focus();
