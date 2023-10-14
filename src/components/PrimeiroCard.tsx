@@ -2,7 +2,7 @@ import Image from "next/image";
 import initialImage from "../assets/astronauta-lendo-livro_1366-939.png";
 export function PrimeiroCard(){
     return (
-        <div className="flex w-full h-[10.5rem] min-w[400px] items-center rounded-xl shadow-sm bg-indigo-100 p-10 mt-10 relative  dark:bg-zinc-800 ">
+        <div tabIndex={0} className="flex w-full h-[10.5rem] min-w[400px] items-center rounded-xl shadow-sm bg-indigo-100 p-10  relative  dark:bg-zinc-800 ">
             <Image src={initialImage} alt={"imagem boas vindas"} 
             width={300} height={300} 
             className="w-[12rem] h-[12rem] opacity-90 absolute bottom-2"/>

@@ -33,9 +33,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       >
         <AccessibilityProvider >
         <Header />
+        <NavBar />
           <main className="flex min-h-screen w-full flex-col items-center bg-background-500  pl-[10%]  dark:bg-gray-800 dark:text-white ">
-            <NavBar />
-            <AllColors />
+            
+            <AllColors /> 
             {children}
           </main>
         <SpeechReader />

@@ -31,7 +31,7 @@ export function ModalEnviarResposta(){
             <AlertDialog.Title className="font-semibold text-2xl mb-6 dark:text-slate-50">Tem certeza que deseja sair?</AlertDialog.Title>
             <AlertDialog.Description className=" flex flex-col items-center gap-3 tracking-wide text-medium text-zinc-800 mb-6 dark:text-slate-100">
                 Deseja enviar suas respostas? essa tarefa não poderá ser desfeita.
-                <Image src={imagem1} alt='imagem astronauta' height={1000} width={1000} className='w-[38%] self-center' />
+                <Image src={imagem()} alt='imagem astronauta' height={1000} width={1000} className='w-[38%] self-center' />
             </AlertDialog.Description>
             <div style={{ display: 'flex', gap: 25, justifyContent: 'flex-end' }}>
               <AlertDialog.Cancel asChild>

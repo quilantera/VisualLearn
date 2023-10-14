@@ -1,25 +1,20 @@
-import React from "react";
 import * as RadioGroup from "@radix-ui/react-radio-group";
+
 
 interface RespostasRadioGroupProps {
   respostas: string[];
   selectedOption: number | null;
   handleRadioChange: (index: number) => void;
-  letters: string[];
 }
 
 export function RespostasRadioGroup({
   respostas,
   selectedOption,
   handleRadioChange,
-  letters,
 }: RespostasRadioGroupProps) {
+  const letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
   return (
-    <RadioGroup.Root
-      className="w-100 dark:boder-white flex flex-col gap-4 border-2 px-2 py-4 shadow-md  drop-shadow-sm dark:border-2"
-      defaultValue="0"
-      aria-label="Area de respostas"
-    >
+    <>
       {respostas.map((resposta, index) => {
         const isSelected = selectedOption === index;
         return (
@@ -48,6 +43,6 @@ export function RespostasRadioGroup({
           </RadioGroup.Item>
         );
       })}
-    </RadioGroup.Root>
+    </>
   );
 }

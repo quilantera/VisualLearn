@@ -14,6 +14,7 @@ export function LoginForm( {handleSubmit}: LoginFormProps){
           <Form.Label className="text-lg font-medium"> Usuário</Form.Label>
           <Form.Control asChild>
             <input
+              aria-label="insira usuário"
               className="Input h-10 bg-slate-300 px-4 text-base dark:text-black"
               type="text"
               required
@@ -30,6 +31,7 @@ export function LoginForm( {handleSubmit}: LoginFormProps){
               className="Input h-10 bg-slate-300 px-4 text-base dark:text-black"
               type="password"
               required
+              aria-label="insira senha"
             />
           </Form.Control>
           <Form.Message className="text-sm text-red-700" match="valueMissing">
@@ -42,7 +44,7 @@ export function LoginForm( {handleSubmit}: LoginFormProps){
         >
           <div>
             <Form.Control asChild>
-              <input type="checkbox" className="w-3 h-3" />
+              <input type="checkbox" className="w-3 h-3"  aria-label="lembrar-me "/>
             </Form.Control>
             <Form.Label className=" text-sm font-medium">
               {" "}

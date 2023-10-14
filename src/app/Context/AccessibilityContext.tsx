@@ -1,5 +1,5 @@
-"use client";
-import { createContext, useContext, ReactNode, useState } from 'react';
+"use client"
+import { createContext, useContext, ReactNode, useState, useEffect } from 'react';
 
 interface AccessibilityContextProps {
   contrast: boolean;
@@ -13,9 +13,26 @@ interface AccessibilityContextProps {
 const AccessibilityContext = createContext<AccessibilityContextProps | undefined>(undefined);
 
 export function AccessibilityProvider({ children }: { children: ReactNode }) {
-  const [contrast, setContrast] = useState(false);
-  const [zoom, setZoom] = useState(false);
-  const [sound, setSound] = useState(false);
+  const [contrast, setContrast] = useState(() => {
+    const storedValue = localStorage.getItem('contrast');
+    return storedValue ? JSON.parse(storedValue) : false;
+  });
+
+  const [zoom, setZoom] = useState(() => {
+    const storedValue = localStorage.getItem('zoom');
+    return storedValue ? JSON.parse(storedValue) : false;
+  });
+
+  const [sound, setSound] = useState(() => {
+    const storedValue = localStorage.getItem('sound');
+    return storedValue ? JSON.parse(storedValue) : false;
+  });
+
+  useEffect(() => {
+    localStorage.setItem('contrast', JSON.stringify(contrast));
+    localStorage.setItem('zoom', JSON.stringify(zoom));
+    localStorage.setItem('sound', JSON.stringify(sound));
+  }, [contrast, zoom, sound]);
 
   return (
     <AccessibilityContext.Provider value={{ contrast, setContrast, zoom, setZoom, sound, setSound }}>

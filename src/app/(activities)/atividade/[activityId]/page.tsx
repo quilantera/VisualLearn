@@ -6,6 +6,7 @@ import { bancoDeTasks } from "@/utils/tasks";
 import { useRouter } from "next/navigation";
 export interface Pergunta {
   pergunta: string;
+  urlVideo?: string;
   urlImage?: string;
   descricaoImagem?: string;
   respostas: string[];

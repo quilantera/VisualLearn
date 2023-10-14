@@ -1,6 +1,6 @@
 "use client"
 import { useAccessibility } from '@/app/Context/AccessibilityContext';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 export function isPressed(pressed: boolean){
   if(pressed){
@@ -20,46 +20,54 @@ export function isPressed(pressed: boolean){
 }
 export default function SpeechReader() {
   const tags =['svg', 'path', 'fill', 'line','circle','polyline','polygon']
-  const { contrast, setContrast, zoom, setZoom, sound, setSound } = useAccessibility();
+  const { sound } = useAccessibility();
+  const [selectedElement, setSelectedElement] = useState(null);
 
   useEffect(() => {
-    const elements = document.querySelectorAll('body *');
-    const handleFocus = (event: any ) => {
-        const text = event.currentTarget.textContent;
-        const ariaLabel = event.currentTarget.getAttribute('aria-label');
-      if(sound){
-          if(ariaLabel){
-            const speech = new SpeechSynthesisUtterance(ariaLabel);
-            speech.lang = 'pt-BR';
-            speech.rate = 1.6;
-            speechSynthesis.speak(speech);
-          } if (text) {
-            const speech = new SpeechSynthesisUtterance(text);
-            speech.lang = 'pt-BR';
-            speech.rate = 1.6;
-            speechSynthesis.speak(speech);
-          }
-        };
-      } 
+    console.log("nova pagina")
+    const handleFocus = (event:any) => {
+      if (selectedElement && selectedElement !== event.currentTarget) {
+        speechSynthesis.cancel();
+      }
 
+      setSelectedElement(event.currentTarget);
+
+      const text = event.currentTarget.textContent;
+      const ariaLabel = event.currentTarget.getAttribute('aria-label');
+
+      if (sound) {
+        if (ariaLabel) {
+          const speech = new SpeechSynthesisUtterance(ariaLabel);
+          speech.lang = 'pt-BR';
+          speech.rate = 1.4;
+          speechSynthesis.speak(speech);
+        }  
+        
+        if (text) {
+          const speech = new SpeechSynthesisUtterance(text);
+          speech.lang = 'pt-BR';
+          speech.rate = 1.4;
+          speechSynthesis.speak(speech);
+        }
+      };
+    };
+
+    const elements = document.querySelectorAll('body *');
     elements.forEach(element => { 
-        const isIcon = tags.includes(element.tagName.toLowerCase())// Verifica se possui a classe 'icon'
-        if (isIcon) return;
+      const isIcon = tags.includes(element.tagName.toLowerCase());
+      if (isIcon) return;
       element.addEventListener("focus", handleFocus);
     });
 
     return () => {
-        elements.forEach((element) => {
-            const isIcon = tags.includes(element.tagName.toLowerCase())// Verifica se possui a classe 'icon'
-            if (isIcon) return;
-            element.removeEventListener("focus", handleFocus);
-          });
-        }
-  }, [sound, tags]);
+      elements.forEach(element => {
+        const isIcon = tags.includes(element.tagName.toLowerCase());
+        if (isIcon) return;
+        element.removeEventListener("focus", handleFocus);
+      });
+    }
+    
+  },[selectedElement, sound, tags]);
 
-  
   return <></>;
 }
-
-
-
