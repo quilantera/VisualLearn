@@ -8,6 +8,8 @@ interface AccessibilityContextProps {
   setZoom: React.Dispatch<React.SetStateAction<boolean>>;
   sound: boolean;
   setSound: React.Dispatch<React.SetStateAction<boolean>>;
+  isReady: boolean;
+  setIsReady: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const AccessibilityContext = createContext<AccessibilityContextProps | undefined>(undefined);
@@ -34,6 +36,13 @@ export function AccessibilityProvider({ children }: { children: ReactNode }) {
     return storedValue ? JSON.parse(storedValue) : false;
     }
   });
+  const [isReady, setIsReady] = useState(()=> {
+    if (typeof window !== "undefined") {
+      return true;
+    }
+    return false;
+    
+  })
 
   useEffect(() => {
     localStorage.setItem('contrast', JSON.stringify(contrast));
@@ -42,7 +51,7 @@ export function AccessibilityProvider({ children }: { children: ReactNode }) {
   }, [contrast, zoom, sound]);
 
   return (
-    <AccessibilityContext.Provider value={{ contrast, setContrast, zoom, setZoom, sound, setSound }}>
+    <AccessibilityContext.Provider value={{ contrast, setContrast, zoom, setZoom, sound, setSound, isReady, setIsReady}}>
       {children}
     </AccessibilityContext.Provider>
   );
