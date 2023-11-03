@@ -1,43 +1,23 @@
 
-import { Poppins } from "next/font/google"
 import { ReactNode } from "react"
-
 import "../globals.css"
 import { ActivityHeader } from "@/components/ActivityHeader"
-import SpeechReader from "@/components/SpeechReader"
-import { AccessibilityProvider } from "../Context/AccessibilityContext"
-
-
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["300", "400", "500","600","700"],
-  style: "normal",
-  variable: "--font-poppins",
-})
-export const metadata = {
-  title: "Blind Study",
-  description: "Plataforma de estudos com acessibilidade ",
-  generator: 'Next.js',
-  applicationName: 'BlindStudy.js',
-  referrer: 'origin-when-cross-origin',
-  keywords: ['acessibilidade', 'baixa visão', 'plataforma escolar', 'plataforma acessível', 'accessibility','school platform'],
-  authors: [{ name: 'Gustavo Quilante', url: 'https://gustavoquilante.netlify.app' }, { name: 'Celso Olivete' }],
-  colorScheme: 'light',
-  creator: 'Gustavo Quilante Azevedo',
-}
-
-export default function RootLayout({ children }: { children: ReactNode }) {
+import { redirect } from "next/navigation";
+import { getServerSession } from "next-auth";
+import { nextAuthOptions } from "../api/auth/[...nextauth]/route";
+import "../globals.css";
+export const dynamic = "force-dynamic"
+export default async function PrivateLayout({ children }: { children: ReactNode }) {
+  const session = await getServerSession(nextAuthOptions);
+    if(!session){
+      redirect('/login');
+    }
   return (
-    <html lang="pt-br">
-      <body className={`${poppins.variable}  bg-gray-50 font-san`}>
-       <AccessibilityProvider >
+    <>
+    <ActivityHeader/>
         <main className="w-full flex-col items-center min-h-screen  bg-background-500 pt-20  dark:bg-gray-800 ">
           {children}
-
         </main>
-        <SpeechReader />
-        </AccessibilityProvider>   
-      </body>
-    </html>
+    </>
   )
 }

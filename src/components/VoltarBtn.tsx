@@ -4,6 +4,7 @@ import { ChevronLeft } from 'lucide-react';
 import Image from "next/image";
 import AstronautaVoltar from "../assets/astronauta_indeciso.jpg"
 import * as AspectRatio from '@radix-ui/react-aspect-ratio';
+import Link from 'next/link';
 interface VoltarBtnProps{
     voltar: () => void;
 }
@@ -32,7 +33,7 @@ export function VoltarBtn({voltar }: VoltarBtnProps){
                 <button className="bg-zinc-300  duration-300 rounded font-medium px-5 py-3 text-gray-950 shadow-lg hover:bg-zinc-400 dark:bg-black dark:text-white dark:border-4 dark:border-sky-900 dark:hover:scale-105" aria-label='botão cancelar'>cancelar</button>
               </AlertDialog.Cancel>
               <AlertDialog.Action asChild>
-                <button className="bg-green-700 text-white px-5 py-3 rounded shadow-lg hover:bg-green-900 duration-300 dark:bg-black dark:border-4 dark:border-red-900 dark:hover:scale-105" onClick={ voltar } aria-label='botão sair da atividade' >sim, desejo sair</button>
+                <Link href="/materias" className="bg-green-700 text-white px-5 py-3 rounded shadow-lg hover:bg-green-900 duration-300 dark:bg-black dark:border-4 dark:border-red-900 dark:hover:scale-105" onClick={ voltar } aria-label='botão sair da atividade' >sim, desejo sair</Link>
               </AlertDialog.Action>
             </div>
           </AlertDialog.Content>

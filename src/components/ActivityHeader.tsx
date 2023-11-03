@@ -7,11 +7,8 @@ import { useAccessibility } from "@/app/Context/AccessibilityContext";
 import { isPressed } from "./SpeechReader";
 import { useEffect, useState } from "react";
 
-interface ActivityHeaderProps {
-  handleConfirmar: ()=>void
-}
 
-export function ActivityHeader({handleConfirmar}: ActivityHeaderProps) {;
+export function ActivityHeader() {;
 
   const { contrast, setContrast, zoom, setZoom, sound, setSound } = useAccessibility();
   
@@ -46,6 +43,9 @@ export function ActivityHeader({handleConfirmar}: ActivityHeaderProps) {;
       setIsLoading(false);
     }  
 }, []);
+const handleConfirmar = () => {
+  return ("voltou")
+}
 
   return (
     <header

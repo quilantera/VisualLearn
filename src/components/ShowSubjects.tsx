@@ -1,24 +1,17 @@
 
+import { Materias } from "@/app/(authenticated)/materias/page";
 import { SubjectCard } from "./SubjectCard";
 
-export interface Subject {
-  id: number;
-  nome: string;
-  professor: string;
-  nomeURL: string;
-  cor?: string;
+interface MateriasProps{
+  materias: Materias[];
 }
-
-interface ShowSubjectsProps {
-  subjects: Subject[];
-}
-
-export function ShowSubjects({ subjects }: ShowSubjectsProps) {
+export function ShowSubjects({materias}: MateriasProps) {
   
+
   return (
     <section className="flex flex-wrap justify-center gap-8 py-10">
-      {subjects.map((subject) => (
-        <SubjectCard key={subject.id} subject={subject} />
+      {materias && materias.map((materia) => (
+        <SubjectCard key={materia.id} materia={materia} />
       ))}
     </section>
   );

@@ -16,15 +16,14 @@ export function isPressed(pressed: boolean){
     speechSynthesis.speak(speech);
   }
   
- 
 }
 export default function SpeechReader() {
   const tags =['svg', 'path', 'fill', 'line','circle','polyline','polygon']
-  const { sound } = useAccessibility();
+  const { sound, isReady} = useAccessibility();
   const [selectedElement, setSelectedElement] = useState(null);
 
   useEffect(() => {
-    console.log("nova pagina")
+    
     const handleFocus = (event:any) => {
       if (selectedElement && selectedElement !== event.currentTarget) {
         speechSynthesis.cancel();
@@ -67,7 +66,8 @@ export default function SpeechReader() {
       });
     }
     
-  },[selectedElement, sound, tags]);
+  },[selectedElement, sound, tags, isReady]);
+  
 
   return <></>;
 }

@@ -1,5 +1,5 @@
 "use client";
-import { Pergunta } from "@/app/(activities)/atividade/[activityId]/page";
+import { Questoes } from "@/utils/perguntasAreasPerimetros";
 import { useRef, useState } from "react";
 import { Atividade } from "./Atividade";
 
@@ -9,7 +9,7 @@ import { VideoPlayer } from "./VideoPlayer";
 
 interface DashboardActivitiesProps {
   nomeAtividade: string;
-  perguntas: Pergunta[];
+  perguntas: Questoes[];
 }
 
 export function DashboardActivities ({ nomeAtividade, perguntas }: DashboardActivitiesProps) {

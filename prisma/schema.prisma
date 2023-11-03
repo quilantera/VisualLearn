@@ -1,0 +1,76 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Escola {
+  id       String   @id @default(uuid())
+  nome     String
+  cnpj     String   @unique
+  urlLogo  String?
+  criadoEm DateTime @default(now())
+  usuarios Usuario[]
+  turmas Turma[]
+}
+
+model Usuario {
+  id          String    @id @default(uuid())
+  email       String    @unique
+  senha       String
+  nome        String
+  urlAvatar   String?
+  papel       String     @default("ALUNO")
+  dataCriacao DateTime  @default(now())
+  escola      Escola?    @relation(fields: [escolaId], references: [id])
+  escolaId    String?
+  turmas      Turma[]
+  materias    Disciplina[]
+  atividadesAluno AtividadeAluno[] 
+}
+
+model Turma {
+  id          String    @id @default(uuid())
+  nome        String
+  anoEscolar  DateTime  @default(now())
+  escola      Escola    @relation(fields: [escolaId], references: [id])
+  escolaId    String
+  alunos      Usuario[]
+  materias    Disciplina[]
+}
+
+model Disciplina {
+  id         String   @id @default(uuid())
+  nome       String
+  cor        String   @default("bg-primary-500")
+  urlImagem  String   @default("https://media.istockphoto.com/id/1095003184/vector/vector-bag-with-school-stationery.jpg?s=612x612&w=0&k=20&c=mAtn0PnqRVR8iQeBQ7TUlUD2kh4O9s-dGTpknyOwDTc=")
+  turmas     Turma[]  
+  professor  Usuario  @relation(fields: [professorId], references: [id])
+  professorId String
+  atividades Atividade[]
+}
+
+model Atividade {
+  id          String    @id @default(uuid())
+  nome        String
+  prazo       DateTime  @default(now())
+  cor         String    @default("bg-primary-500")
+  urlImagem   String    @default("https://media.istockphoto.com/id/1095003184/vector/vector-bag-with-school-stationery.jpg?s=612x612&w=0&k=20&c=mAtn0PnqRVR8iQeBQ7TUlUD2kh4O9s-dGTpknyOwDTc=")
+  idAtividadeMongoDB String
+  disciplina  Disciplina @relation(fields: [disciplinaId], references: [id])
+  disciplinaId  String
+  atividadesAluno AtividadeAluno[]
+}
+
+model AtividadeAluno {
+  id            Int       @id @default(autoincrement())
+  dataEntrega   DateTime?
+  nota          Int?
+  atividade     Atividade  @relation(fields: [atividadeId], references: [id])
+  atividadeId   String
+  aluno         Usuario    @relation(fields: [alunoId], references: [id])
+  alunoId       String
+}

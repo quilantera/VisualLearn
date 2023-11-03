@@ -34,7 +34,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
-  ],
+, "src/utils/insercaoBancoExemplo.js", "src/app/api/atividades/[id]/id"  ],
   "exclude": [
     "node_modules"
   ]
