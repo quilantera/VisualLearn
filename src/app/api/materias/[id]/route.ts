@@ -2,7 +2,7 @@
 import { NextResponse } from 'next/server';
 import prisma from '@/lib/prisma';
 import { Context } from 'vm';
-
+export const dynamic = "force-dynamic"
 export async function GET( request: Request, context: Context) {
     try {
         const disciplinaId: string = context.params.id;

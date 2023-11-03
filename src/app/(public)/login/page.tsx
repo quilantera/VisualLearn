@@ -6,7 +6,7 @@ import { Header } from "@/components/Header";
 import { useRouter } from "next/navigation";
 import { FormEvent } from "react";
 import { signIn } from "next-auth/react";
-
+export const dynamic = 'force-dynamic'
 export default function Login() {
   const router = useRouter();
   const handleLogin = async (event: FormEvent) => {
