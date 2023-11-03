@@ -23,7 +23,7 @@ export default function SpeechReader() {
   const [selectedElement, setSelectedElement] = useState(null);
 
   useEffect(() => {
-    console.log("nova pagina")
+    
     const handleFocus = (event:any) => {
       if (selectedElement && selectedElement !== event.currentTarget) {
         speechSynthesis.cancel();

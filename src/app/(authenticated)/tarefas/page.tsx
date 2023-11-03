@@ -1,7 +1,18 @@
+import { nextAuthOptions } from "@/app/api/auth/[...nextauth]/route";
 import { Dashboard } from "@/components/Dashboard";
 import { ShowTasks } from "@/components/ShowTasks";
-import { bancoDeTasks } from "@/utils/tasks";
-export default function Tarefas() {
+import axios from "axios";
+import { getServerSession } from "next-auth";
+
+export default  async function Tarefas() {
+  const session = await getServerSession(nextAuthOptions);
+  const atividadesResponse =  await axios.get(`${process.env.BASE_URL}/api/atividades`,{
+    headers: {
+      'idUser': session?.id ,
+    },
+  });
+  const atividades = atividadesResponse.data;
+
   return (
     <>
       <Dashboard >
@@ -10,7 +21,7 @@ export default function Tarefas() {
             Tarefas
           </h2>
         </div>
-        <ShowTasks tasks={bancoDeTasks} />
+        <ShowTasks atividades={atividades}  />
       </Dashboard>
       
       

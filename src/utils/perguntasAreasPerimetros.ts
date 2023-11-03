@@ -1,6 +1,9 @@
-import { Pergunta } from "@/app/(activities)/atividade/[activityId]/page";
 
-interface PerguntaAreaPerimetro {
+export interface Atividade{
+ nome: string;
+ questoes :Questoes[];
+}
+export interface Questoes {
   pergunta: string;
   urlImage?: string;
   descricaoImagem?: string;
@@ -10,7 +13,9 @@ interface PerguntaAreaPerimetro {
   // Campo opcional para URL da imagem
 }
 
-export const perguntasAreasPerimetros: PerguntaAreaPerimetro[] = [
+export const pergunta: Atividade = {
+  nome: "areas e perimetros",
+  questoes:[
   
   {
     pergunta: "Qual é a fórmula para calcular a área de um retângulo?",
@@ -79,4 +84,5 @@ export const perguntasAreasPerimetros: PerguntaAreaPerimetro[] = [
     respostaCorreta: 0,
   },
  
-];
+]
+};

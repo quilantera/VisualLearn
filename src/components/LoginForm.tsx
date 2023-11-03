@@ -2,32 +2,37 @@
 import * as Form from "@radix-ui/react-form";
 import { FormEvent } from "react";
 
+
 interface LoginFormProps{
-  handleSubmit: (event: FormEvent) => void;
+  handleSubmit: (event:  FormEvent) => void;
 }
 export function LoginForm( {handleSubmit}: LoginFormProps){
   return (
-    <Form.Root onSubmit={handleSubmit} className="flex h-auto w-[28rem] flex-col items-center gap-1 rounded-lg bg-gray-50 px-8 py-8 shadow-sm dark:bg-gray-700 dark:text-white ">
+    <Form.Root method="POST" onSubmit={handleSubmit} className="flex h-auto w-[28rem] flex-col items-center gap-1 rounded-lg bg-gray-50 px-8 py-8 shadow-sm dark:bg-gray-700 dark:text-white ">
       <h2 className="py-5 text-4xl font-semibold text-purple-100 dark:text-white">Bem-Vindo</h2>
       <div className="flex w-4/5 flex-col gap-3 py-3">
-        <Form.Field className="flex w-full flex-col gap-1" name="username">
-          <Form.Label className="text-lg font-medium"> Usuário</Form.Label>
+        <Form.Field className="flex w-full flex-col gap-1" name="email">
+          <Form.Label className="text-lg font-medium"> Email</Form.Label>
           <Form.Control asChild>
             <input
+              id="email"
+              name="email"
               aria-label="insira usuário"
               className="Input h-10 bg-slate-300 px-4 text-base dark:text-black"
-              type="text"
+              type="email"
               required
             />
           </Form.Control>
           <Form.Message className="text-sm text-red-700" match="valueMissing">
-            Usuário não encontrado{" "}
+            Por favor, preenche esse campo{" "}
           </Form.Message>
         </Form.Field>
-        <Form.Field name="password" className="flex w-full flex-col gap-2">
+        <Form.Field name="senha" className="flex w-full flex-col gap-2">
           <Form.Label className="text-lg font-medium"> Senha</Form.Label>
           <Form.Control asChild>
             <input
+              id="senha"
+              name='senha'
               className="Input h-10 bg-slate-300 px-4 text-base dark:text-black"
               type="password"
               required
