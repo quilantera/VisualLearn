@@ -18,6 +18,30 @@ module.exports = {
           '0%, 100%': { transform: 'translateY(-5%)' },
           '50%': { transform: 'translateY(-2%)' },
         },
+        open: {
+          "0%": {
+          opacity: 0,
+          transform: 'translateY(-30px)'
+          },
+        },
+        "100%":{
+          opacity: 1,
+          transform: 'translateY(0)',
+        },
+        close: {
+          "0%": {
+          opacity: 1,
+          transform: 'translateY(0px)'
+          },
+        },
+        "100%":{
+          opacity: 0,
+          transform: 'translateY(-30px)',
+        },
+        animation: {
+          open: 'open 2s ease-out',
+          close: 'close 2s ease-out'
+        }
       },
       colors: {
         

@@ -21,7 +21,10 @@ export  async function GET(request: Request) {
         }
       }
     });
-    
+    console.log(atividades)
+    if(atividades.length <= 0) {
+      return NextResponse.json({ message: 'error, atividades não encontradas.' }, { status:400})
+    }
     return NextResponse.json(atividades);
   } catch (error) {
     console.error(error);
