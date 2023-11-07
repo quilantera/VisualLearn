@@ -10,7 +10,7 @@ export async function GET(request: Request, context: Context) {
     console.log(ativityId);
     const atividade = await prisma.atividade.findFirst({ where: { id: ativityId } });
     console.log(atividade);
-    if (!atividade) {
+    if (!atividade) { 
       return NextResponse.json({ message: "Atividade não encontrada" }, { status: 404 });
     }
 
