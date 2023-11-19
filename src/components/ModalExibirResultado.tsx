@@ -15,7 +15,7 @@ export function ModalExibirResultado({nota, totalQuestoes}: ModalExibirResultado
                 
                 <div className='w-full flex flex-col items-center gap-4 justify-center'>
                 Sua nota
-                    <RadiusChart nota={nota} total={totalQuestoes}/>
+                    <RadiusChart nota={nota!} total={totalQuestoes!}/>
 
                 </div>
             </div>

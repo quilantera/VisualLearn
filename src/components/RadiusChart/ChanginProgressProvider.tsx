@@ -5,10 +5,10 @@ interface ChangingProgressProviderProps {
   values: number[];
   interval?: number;
   children: (currentValue: number) => ReactNode;
-  onComplete?: () => void;
+  
 }
 
-const ChangingProgressProvider: React.FC<ChangingProgressProviderProps> = ({ values, interval = 1000, children, onComplete }) => {
+const ChangingProgressProvider: React.FC<ChangingProgressProviderProps> = ({ values, interval = 1000, children }) => {
   const [valuesIndex, setValuesIndex] = useState(0);
 
   useEffect(() => {
@@ -18,14 +18,12 @@ const ChangingProgressProvider: React.FC<ChangingProgressProviderProps> = ({ val
       intervalId = setInterval(() => {
         setValuesIndex(prevIndex => prevIndex + 1);
       }, interval);
-    } else if (onComplete) {
-      onComplete();
     }
 
     return () => clearInterval(intervalId);
-  }, [valuesIndex, values, interval, onComplete]);
+  }, [valuesIndex, values, interval]);
 
-  return children(values[valuesIndex]);
+  // Call the children function with the current value
+  return <>{children(values[valuesIndex])}</>;
 }
-
 export default ChangingProgressProvider;
