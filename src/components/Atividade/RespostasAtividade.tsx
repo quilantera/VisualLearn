@@ -7,7 +7,7 @@ export function RespostasAtividade({children}: RespostasAtividadeProps){
     return (
     <form className="mt-4">
         <RadioGroup.Root
-            className="w-100 dark:boder-white flex flex-col gap-4 border-2 px-2 py-4 shadow-md  drop-shadow-sm dark:border-2"
+            className="w-100  flex flex-col gap-4 border-1 border-zinc-200 px-7 py-5 shadow-md bg-slate-300  rounded-md dark:bg-zinc-700 dark:border-white"
             defaultValue="0"
             aria-label="Area de respostas"
         >

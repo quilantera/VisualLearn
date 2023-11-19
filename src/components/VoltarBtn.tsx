@@ -3,7 +3,7 @@ import * as AlertDialog from '@radix-ui/react-alert-dialog';
 import { ChevronLeft } from 'lucide-react';
 import Image from "next/image";
 import AstronautaVoltar from "../assets/astronauta_indeciso.jpg"
-import * as AspectRatio from '@radix-ui/react-aspect-ratio';
+
 import Link from 'next/link';
 interface VoltarBtnProps{
     voltar: () => void;
@@ -21,7 +21,7 @@ export function VoltarBtn({voltar }: VoltarBtnProps){
           </button>
         </AlertDialog.Trigger>
         <AlertDialog.Portal>
-          <AlertDialog.Overlay className="bg-black fixed inset-0 z-20 opacity-30 dark:opacity-90 " style={{"animation": "overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1)"}} />
+          <AlertDialog.Overlay className="bg-black  opacity-30 fixed inset-0 z-20 dark:opacity-90 " />
           <AlertDialog.Content tabIndex={0} className="bg-slate-50 rounded-xl z-30 shadow-lg fixed top-1/2 left-1/2 w-[42rem] max-w-4/6  px-7 py-[30px] dark:bg-black dark:border-white dark:border-2 " style={{"transform": "translate(-50%, -50%)","animation":"contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1)" }}>
             <AlertDialog.Title className="font-semibold text-2xl mb-6 dark:text-slate-50">Tem certeza que deseja sair?</AlertDialog.Title>
             <AlertDialog.Description className=" flex flex-col items-center gap-3 tracking-wide text-medium text-zinc-800 mb-6 dark:text-slate-100">

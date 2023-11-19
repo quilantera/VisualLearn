@@ -1,5 +1,5 @@
 import { AlertOctagon, CheckCircle, X, XOctagon } from "lucide-react";
-import { useEffect, useState } from "react";
+
 import { ClockLoader } from "react-spinners";
 
 interface PopupProps{
@@ -35,7 +35,7 @@ export function Popup ({
     }
 
     return (
-    <article className="bg-white flex py-2 px-3 rounded items-center shadow-lg drop-shadow-md fixed gap-2 top-9 animate-[open_1s] dark:bg-zinc-800 dark:text-white">
+    <article className="bg-white flex py-2 px-3 z-50 rounded items-center shadow-lg drop-shadow-md fixed gap-2 top-9 animate-[open_1s] dark:bg-zinc-800 dark:text-white">
         <div>{showState(state)}</div>
         <div> {message} </div>
         <button onClick={onClose }> <X className="text-zinc-600 dark:text-white" /> </button>
