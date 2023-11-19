@@ -19,10 +19,10 @@ export function RespostasRadioGroup({
         const isSelected = selectedOption === index;
         return (
           <RadioGroup.Item
-            className={`w-100  border-1 flex items-center gap-4 rounded px-3   py-1 ${
+            className={`w-100  border-1 flex items-center gap-4 rounded-lg  px-4 py-3 shadow-lg   ${
               isSelected
                 ? "bg-primary-400 text-white dark:bg-yellow-500 dark:font-semibold dark:text-black"
-                : ""
+                : "bg-white dark:bg-zinc-950 "
             }`}
             key={index}
             value={String(index)}

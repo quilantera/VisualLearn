@@ -6,17 +6,24 @@ import { Atividade } from "./Atividade";
 import { ModalEnviarResposta } from "./ModalEnviarResposta";
 import { ImageBanner } from "./ImageBanner";
 import { VideoPlayer } from "./VideoPlayer";
+import { ModalExibirResultado } from "./ModalExibirResultado";
+
 
 interface DashboardActivitiesProps {
   nomeAtividade: string;
   perguntas: Questoes[];
+  idAtividade: string;
 }
 
-export function DashboardActivities ({ nomeAtividade, perguntas }: DashboardActivitiesProps) {
+export function DashboardActivities ({ nomeAtividade, perguntas, idAtividade}: DashboardActivitiesProps) {
   const perguntaRef = useRef<HTMLDivElement>(null);
   const [perguntaAtual, setPerguntaAtual] = useState<number>(0);
   const [resposta, setResposta] = useState<(number | null)[]>(Array(perguntas.length).fill(null));
-
+  
+  const [showModal, setShowModal] = useState<boolean> (false);
+  
+  
+  
   const handleRespostaChange = (resposta: number) => {
     setResposta(prevResposta => prevResposta.map((prevResposta, index) =>
       index === perguntaAtual ? resposta : prevResposta
@@ -32,10 +39,20 @@ export function DashboardActivities ({ nomeAtividade, perguntas }: DashboardActi
 
   const ultimaPergunta = () => perguntaAtual === perguntas.length - 1;
 
+  function getTotalAcertos(){
+    let totalAcertos = 0;
+    for( let i= 0; i < perguntas.length; i++){
+      if(perguntas[i].respostaCorreta === resposta[i]){
+        totalAcertos ++;
+      }
+    }
+    return totalAcertos;
+  }
 
   const { pergunta, urlImage,urlVideo, descricaoImagem, respostas } = perguntas[perguntaAtual];
 
   return (
+    <>
     <section className="flex flex-col w-full pt-10 mt-6 justify-center items-center dark:bg-gray-800 dark:text-white ">
       <Atividade.Root>
         <Atividade.Header
@@ -71,11 +88,20 @@ export function DashboardActivities ({ nomeAtividade, perguntas }: DashboardActi
                 Próxima
               </button>
             ) : (
-              <ModalEnviarResposta />
+              <ModalEnviarResposta 
+                idAtividade={idAtividade} 
+                totalQuestoes={perguntas.length} 
+                getTotalAcertos={getTotalAcertos} 
+                openStatusModal={ setShowModal } />
             )}
           </Atividade.Footer>
         </Atividade.Content>
       </Atividade.Root>
     </section>
+    { showModal && 
+      <ModalExibirResultado nota={getTotalAcertos()} totalQuestoes={perguntas.length} /> }
+    
+    
+  </>
   );
 }

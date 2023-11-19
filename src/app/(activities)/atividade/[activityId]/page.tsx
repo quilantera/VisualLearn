@@ -16,7 +16,8 @@ export  default async function AtividadesPage({
       <DashboardActivities
         nomeAtividade={atividade!.nome}
         perguntas={atividade!.questoes}
-      />
+        idAtividade={params.activityId}          
+       />
     </>
   );
 }
