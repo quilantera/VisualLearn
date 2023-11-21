@@ -4,6 +4,7 @@ import { TaskCard } from "@/components/TaskCard";
 import { Materia } from "@/types/typesBanco";
 import axios from "axios";
 import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
 
 
 export default  async function MateriaPage({
@@ -12,6 +13,9 @@ export default  async function MateriaPage({
   params: { id: string };
 }) {
   const session = await getServerSession(nextAuthOptions);
+  if(session?.papel !== "ALUNO"){
+    redirect('/');
+  }
   const materiaResponse =  await axios.get(`${process.env.BASE_URL}/api/materias/${params.id}`,{
     headers: {
       'idUser': session?.id ,
