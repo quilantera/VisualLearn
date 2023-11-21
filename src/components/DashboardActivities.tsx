@@ -7,21 +7,22 @@ import { ModalEnviarResposta } from "./ModalEnviarResposta";
 import { ImageBanner } from "./ImageBanner";
 import { VideoPlayer } from "./VideoPlayer";
 import { ModalExibirResultado } from "./ModalExibirResultado";
+import { Session } from "next-auth";
 
 
 interface DashboardActivitiesProps {
   nomeAtividade: string;
   perguntas: Questoes[];
   idAtividade: string;
+  session: string;
 }
 
-export function DashboardActivities ({ nomeAtividade, perguntas, idAtividade}: DashboardActivitiesProps) {
+export function DashboardActivities ({ nomeAtividade, perguntas, idAtividade,session}: DashboardActivitiesProps) {
   const perguntaRef = useRef<HTMLDivElement>(null);
   const [perguntaAtual, setPerguntaAtual] = useState<number>(0);
   const [resposta, setResposta] = useState<(number | null)[]>(Array(perguntas.length).fill(null));
   
   const [showModal, setShowModal] = useState<boolean> (false);
-  
   
   
   const handleRespostaChange = (resposta: number) => {
@@ -50,7 +51,7 @@ export function DashboardActivities ({ nomeAtividade, perguntas, idAtividade}: D
   }
 
   const { pergunta, urlImage,urlVideo, descricaoImagem, respostas } = perguntas[perguntaAtual];
-
+  console.log(idAtividade);
   return (
     <>
     <section className="flex flex-col w-full pt-10 mt-6 justify-center items-center dark:bg-gray-800 dark:text-white ">
@@ -89,10 +90,11 @@ export function DashboardActivities ({ nomeAtividade, perguntas, idAtividade}: D
               </button>
             ) : (
               <ModalEnviarResposta 
-                idAtividade={idAtividade} 
-                totalQuestoes={perguntas.length} 
-                getTotalAcertos={getTotalAcertos} 
-                openStatusModal={ setShowModal } />
+                    idAtividade={idAtividade!}
+                    totalQuestoes={perguntas.length}
+                    getTotalAcertos={getTotalAcertos}
+                    openStatusModal={setShowModal} 
+                    session={session} />
             )}
           </Atividade.Footer>
         </Atividade.Content>

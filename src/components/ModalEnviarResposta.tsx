@@ -8,6 +8,7 @@ import axios from 'axios';
 import { Popup } from "./Popup";
 import {  useSession } from "next-auth/react";
 import { useState } from 'react';
+import { Session } from 'next-auth';
 
 interface modalExibirResultadoProps {
   
@@ -15,11 +16,13 @@ interface modalExibirResultadoProps {
   totalQuestoes: number;
   openStatusModal: (state:boolean) => void;
   getTotalAcertos: () => number;
+  session: string;
 }
-export function ModalEnviarResposta({getTotalAcertos, idAtividade, openStatusModal}: modalExibirResultadoProps) {
+export function ModalEnviarResposta({getTotalAcertos, idAtividade, openStatusModal, session}: modalExibirResultadoProps) {
   const [popupType, setPopupType] = useState<string | null>(null);
   const [messagePopup, setMessagePopup] = useState<string | null>("sem mensagem");
-  const { data: session } = useSession()
+
+  console.log("id:"+idAtividade);
   const nota = getTotalAcertos()  ;
   const handlePopupClose = () => {
     setPopupType(null);
@@ -40,17 +43,19 @@ export function ModalEnviarResposta({getTotalAcertos, idAtividade, openStatusMod
         }
     }
    
-    async function handleClick(nota: number, idAtividade: String){
-      
+    async function handleClick(){
+     
       changePopupState('loading','por favor, aguarde');
     
       try {
-        if (idAtividade) {
-        const atividadeEnviada = await axios.post(`${process.env.BASE_URL_SEND!}`, {
+        if (idAtividade && session != null) {
+          console.log(`${process.env.BASE_URL_SEND!}`)
+        const atividadeEnviada = await axios.post(`http://localhost:3000/api/atividades/send`, {
            nota: nota,
-           idAtividade: idAtividade
+           idAtividade: idAtividade,
+           delivery: new Date(),
         },{ headers: {
-           'idUser': session?.id ,
+           'idUser': session ,
          },
        });
        if (!atividadeEnviada){
@@ -99,7 +104,7 @@ export function ModalEnviarResposta({getTotalAcertos, idAtividade, openStatusMod
                 <button className="bg-zinc-300  rounded font-medium px-5 py-3 text-gray-950 shadow-lg hover:bg-zinc-400 duration-300  dark:bg-black dark:text-white dark:border-4 dark:border-sky-900 dark:hover:scale-105">cancelar</button>
               </AlertDialog.Cancel>
               <AlertDialog.Action asChild>
-              <button onClick={() => handleClick(nota, idAtividade)} className=' bg-green-700 px-5 py-3 flex items-center shadow-lg tracking-wide rounded text-white  hover:bg-green-800  duration-300  dark:bg-black dark:text-white dark:border-4 dark:border-green-800 dark:hover:scale-105' >Enviar</button>
+              <button onClick={() => handleClick()} className=' bg-green-700 px-5 py-3 flex items-center shadow-lg tracking-wide rounded text-white  hover:bg-green-800  duration-300  dark:bg-black dark:text-white dark:border-4 dark:border-green-800 dark:hover:scale-105' >Enviar</button>
               </AlertDialog.Action>
             </div>
           </AlertDialog.Content>

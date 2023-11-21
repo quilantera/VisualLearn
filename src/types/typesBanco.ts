@@ -51,7 +51,7 @@ interface Professor {
     urlImagem: string;
     idAtividadeMongoDB: string;
     disciplinaId: string;
-    atividadesAluno?: AtividadeAluno[];
+    atividadesAluno: AtividadeAluno[];
     disciplina?: {
       nome: string;
     };
