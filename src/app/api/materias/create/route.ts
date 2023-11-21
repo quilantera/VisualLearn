@@ -8,7 +8,7 @@ interface TokenPayload {
     role: string;
     teacherId: string;
   }
-  
+  export const dynamic = "force-dynamic"
 export async function POST(req: Request){
     const { nome, cor , urlImagem, idProfessor, idTurma } =  await req.json();
     const cookieStore = cookies();

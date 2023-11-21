@@ -2,8 +2,8 @@ import { NextResponse } from 'next/server';
 import prisma from '../../../lib/prisma';
 export const dynamic = "force-dynamic"
 export async function GET(request: Request) {
+  const idUser = request.headers.get('idUser');
   try {
-    const idUser = request.headers.get('idUser');
 
     if (!idUser) {
       return NextResponse.json({ message: 'E-mail do usuário não fornecido.' }, { status: 400 });
