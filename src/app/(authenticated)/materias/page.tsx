@@ -3,6 +3,7 @@ import { Dashboard } from "@/components/Dashboard";
 import { ShowSubjects } from "@/components/ShowSubjects";
 import axios from "axios";
 import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
 
 interface TurmaProps{
   nome: string;
@@ -21,8 +22,11 @@ interface NomeProfessor{
 }
 export default async function Materias() {
   
+  const session = await getServerSession(nextAuthOptions);
+  if(session!.papel !== "ALUNO"){
+      redirect('/');
+  }
   try {
-    const session = await getServerSession(nextAuthOptions);
     const response = await axios.get(`${process.env.BASE_URL}/api/materias`, {
       headers: {
         'idUser': session?.id,
