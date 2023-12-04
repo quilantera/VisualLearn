@@ -6,12 +6,10 @@ import imagem2 from '../assets/astronauta_lua.jpg';
 import imagem3 from '../assets/astronauta_com_estrela.jpg';
 import axios from 'axios';
 import { Popup } from "./Popup";
-import {  useSession } from "next-auth/react";
 import { useState } from 'react';
-import { Session } from 'next-auth';
 
 interface modalExibirResultadoProps {
-  
+
   idAtividade: string;
   totalQuestoes: number;
   openStatusModal: (state:boolean) => void;
@@ -21,7 +19,7 @@ interface modalExibirResultadoProps {
 export function ModalEnviarResposta({getTotalAcertos, idAtividade, openStatusModal, session}: modalExibirResultadoProps) {
   const [popupType, setPopupType] = useState<string | null>(null);
   const [messagePopup, setMessagePopup] = useState<string | null>("sem mensagem");
-
+  
   console.log("id:"+idAtividade);
   const nota = getTotalAcertos()  ;
   const handlePopupClose = () => {
@@ -46,11 +44,10 @@ export function ModalEnviarResposta({getTotalAcertos, idAtividade, openStatusMod
     async function handleClick(){
      
       changePopupState('loading','por favor, aguarde');
-    
+      
       try {
         if (idAtividade && session != null) {
-          console.log(`${process.env.BASE_URL_SEND!}`)
-        const atividadeEnviada = await axios.post(`${process.env.BASE_URL!}/api/atividades/send`, {
+        const atividadeEnviada = await axios.post(`${process.env.BASE_URL_SEND}`, {
            nota: nota,
            idAtividade: idAtividade,
            delivery: new Date(),
