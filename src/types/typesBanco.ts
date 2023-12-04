@@ -6,8 +6,9 @@ interface Professor {
     id: number;
     dataEntrega: Date | null;
     nota: number | null;
-    atividade: Atividade;
+    atividadeId: string;
     aluno: Usuario;
+    alunoId: string;
   }
   export interface Escola {
     id:       String ;
@@ -50,8 +51,10 @@ interface Professor {
     cor: string;
     urlImagem: string;
     idAtividadeMongoDB: string;
+    alunosResponderam?: number;
+    totalAlunos?:number;
     disciplinaId: string;
-    atividadesAluno: AtividadeAluno[];
+    atividadesAluno?: AtividadeAluno[];
     disciplina?: {
       nome: string;
     };
@@ -77,4 +80,46 @@ interface Professor {
     atividades: Atividade[];
   }
   
-  
+  // types.ts
+
+export interface TarefaResultado {
+  nomeDisciplina: string;
+  totalAlunosDisponiveis?: number;
+  alunosResponderam?: number;
+  id: string;
+  nome: string;
+  prazo: Date;
+  cor: string;
+  urlImagem: string;
+  idAtividadeMongoDB: string;
+  disciplina: Disciplina;
+  disciplinaId: string;
+  atividadesAluno: AtividadeAluno[];
+}
+
+
+export interface AtividadeResultado {
+  id: string;
+  nome: string;
+  prazo: string;
+  cor: string;
+  urlImagem: string;
+  idAtividadeMongoDB: string;
+  disciplina: Disciplina;
+  disciplinaId: string;
+  atividadesAluno: {
+    aluno: string;
+  };
+}
+
+export interface DisciplinasProfessor {
+    id: string;
+    nome: string;
+    cor: string;
+    urlImagem: string;
+    professorId: string;
+    professor?: Professor;
+    atividades?: Atividade[];
+    turmas? : Turma[];
+
+}

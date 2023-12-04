@@ -50,7 +50,7 @@ export function ModalEnviarResposta({getTotalAcertos, idAtividade, openStatusMod
       try {
         if (idAtividade && session != null) {
           console.log(`${process.env.BASE_URL_SEND!}`)
-        const atividadeEnviada = await axios.post(`http://localhost:3000/api/atividades/send`, {
+        const atividadeEnviada = await axios.post(`${process.env.BASE_URL!}/api/atividades/send`, {
            nota: nota,
            idAtividade: idAtividade,
            delivery: new Date(),

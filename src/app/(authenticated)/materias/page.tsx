@@ -15,7 +15,7 @@ export interface Materias {
     cor: string;
     urlImagem: string;
     professorId: string;
-    professor: NomeProfessor;
+    professor?: NomeProfessor;
 }
 interface NomeProfessor{
   nome: string;

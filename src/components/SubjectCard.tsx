@@ -25,9 +25,11 @@ export function SubjectCard({ materia }: MateriasProps) {
         <h2 className="w-fit break-words bg-black  bg-opacity-70 px-2 py-[2px] text-xl font-normal tracking-[1px] text-white">
           6º ano - {materia.nome}
         </h2>
-        <h3 className="w-fit bg-black bg-opacity-70 px-2 py-[2px] font-normal tracking-[1px] text-white">
-          Professor {materia.professor.nome}
-        </h3>
+        {materia.professor?.nome &&  
+          <h3 className="w-fit bg-black bg-opacity-70 px-2 py-[2px] font-normal tracking-[1px] text-white">
+            Professor {materia.professor.nome}
+          </h3>
+        }
       </div>
       <div className=" align-end flex px-3 pb-4">
         <button
