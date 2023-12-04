@@ -7,7 +7,7 @@ import { redirect } from "next/navigation";
 
 export default  async function Tarefas() {
   const session = await getServerSession(nextAuthOptions);
-  if(session!.papel !== "ALUNO"){
+  if (session!.papel !== "ALUNO"){
     redirect('/');
  }
   const atividadesResponse =  await axios.get(`${process.env.BASE_URL}/api/atividades`,{

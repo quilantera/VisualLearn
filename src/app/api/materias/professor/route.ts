@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import prisma from '../../../lib/prisma';
+import prisma from '@/lib/prisma';
 export const dynamic = "force-dynamic"
 export async function GET(request: Request) {
   const idUser = request.headers.get('idUser');
@@ -12,32 +12,15 @@ export async function GET(request: Request) {
     if(!user) {
       return NextResponse.json({message: 'Usuário não encontrado.'}, { status: 400 });
     }
-    if(user.papel === "ALUNO"){
-    const materiasDoAluno = await prisma.usuario.findUnique({
-      where: { id: user.id },
-      select: {
-        turmas: {
-          select: {
-            nome: true,
-            materias: {
-              include: {
-                professor: {
-                  select: {
-                    nome: true
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
+    if(user.papel === "PROFESSOR"){
+    const disciplinas = await prisma.disciplina.findMany({
+      where: { professorId: user.id },
     });
-    if (!materiasDoAluno?.turmas|| materiasDoAluno.turmas.length === 0) {
+    if (!disciplinas|| disciplinas.length === 0) {
       return NextResponse.json({ message: 'Matérias nao encontradas.' }, { status: 404 });
     }
     
-    const turma = materiasDoAluno?.turmas[0];
-    return NextResponse.json(turma);
+    return NextResponse.json(disciplinas);
   }
   return NextResponse.json({ message: 'Usuário não autorizado.' }, { status: 401 });
   } catch (error) {

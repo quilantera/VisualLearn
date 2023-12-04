@@ -10,8 +10,9 @@ import { nextAuthOptions } from "../api/auth/[...nextauth]/route";
 
 export default async function Home() {
   const session = await getServerSession(nextAuthOptions);
-
+  console.log(session!.papel);
   if(session!.papel === "ALUNO"){
+
   return (
     <>
     
