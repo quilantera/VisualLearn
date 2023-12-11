@@ -47,7 +47,7 @@ export function ModalEnviarResposta({getTotalAcertos, idAtividade, openStatusMod
       
       try {
         if (idAtividade && session != null) {
-        const atividadeEnviada = await axios.post(`${process.env.BASE_URL_SEND}`, {
+        const atividadeEnviada = await axios.post(`https://blind-study.vercel.app/api/atividades/send"`, {
            nota: nota,
            idAtividade: idAtividade,
            delivery: new Date(),

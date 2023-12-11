@@ -1,6 +1,5 @@
 
 import { nextAuthOptions } from "@/app/api/auth/[...nextauth]/route";
-import { ActivityHeader } from "@/components/ActivityHeader";
 import { DashboardActivities } from "@/components/DashboardActivities";
 import { Atividade } from "@/utils/perguntasAreasPerimetros";
 import axios from "axios";
@@ -21,7 +20,6 @@ export  default async function AtividadesPage({
   const atividade: Atividade = await response.data;
   return (
     <>
-      <ActivityHeader />
       <DashboardActivities
         nomeAtividade={atividade!.nome}
         perguntas={atividade!.questoes}
