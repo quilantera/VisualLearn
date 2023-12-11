@@ -8,6 +8,7 @@ import { isPressed } from "./SpeechReader";
 import { useEffect, useState } from "react";
 
 
+
 export function ActivityHeader() {;
 
   const { contrast, setContrast, zoom, setZoom, sound, setSound } = useAccessibility();
@@ -43,15 +44,13 @@ export function ActivityHeader() {;
       setIsLoading(false);
     }  
 }, []);
-const handleConfirmar = () => {
-  return ("voltou")
-}
+
 
   return (
     <header
-      className={`fixed right-0 top-0 z-20 flex w-full items-center justify-between gap-2 bg-primary-500 px-3 py-2 dark:bg-gray-600`}
+      className={`fixed right-0 top-0 z-20 h-20 flex w-full items-center justify-between gap-2 bg-primary-500 px-3 py-2 dark:bg-gray-600`}
     >
-      <VoltarBtn voltar={handleConfirmar} />
+      <VoltarBtn />
       {!isLoading &&  
       <div aria-label="area de acessibilidade" tabIndex={0} className="  flex h-full gap-2 rounded-full bg-zinc-300 px-8 py-2 shadow-md ">
       

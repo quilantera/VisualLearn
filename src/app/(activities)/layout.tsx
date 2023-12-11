@@ -1,3 +1,4 @@
+import { useRouter } from 'next/navigation'
 
 import { ReactNode } from "react"
 import "../globals.css"
@@ -14,8 +15,8 @@ export default async function PrivateLayout({ children }: { children: ReactNode 
     }
   return (
     <>
-    <ActivityHeader/>
-        <main className="w-full flex-col items-center min-h-screen  bg-background-500 pt-20  dark:bg-gray-800 ">
+    <ActivityHeader />
+        <main className="w-full flex-col items-center min-h-screen   bg-background-500 pt-20  dark:bg-gray-900 ">
           {children}
         </main>
     </>

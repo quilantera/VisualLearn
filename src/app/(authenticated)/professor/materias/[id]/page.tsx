@@ -4,8 +4,9 @@ import { Atividade, DisciplinasProfessor, Turma} from "@/types/typesBanco";
 import axios from "axios";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
-import { ShowProfessorTasks2 } from "@/components/ShowProfessorTasks2";
 import { DashboardContainer } from "@/components/DashboardContainer";
+import Link from "next/link";
+import { PlusCircle } from "lucide-react";
 
 export default async function MateriaProfessorPage({
     params,
@@ -49,6 +50,9 @@ export default async function MateriaProfessorPage({
             Professor: {disciplina.professor?.nome}
           </h3>
         </div>
+        <Link  className="bg-green-700 w-fit flex gap-4 px-3 py-2 rounded mt-4 mr-4 hover:bg-green-800 hover:scale-[1.01] duration-300  self-end text-slate-50" href={`/atividade/criar/${disciplina.id}`}>
+          criar atividade <PlusCircle/>
+        </Link>
         <DashboardContainer 
           atividades={atividades} 
           nomeDisciplina={disciplina.nome} 

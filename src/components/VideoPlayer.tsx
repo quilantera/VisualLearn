@@ -65,13 +65,13 @@ export function VideoPlayer({ urlVideo }: VideoPlayerProps) {
   };
 
   return (
-    <div className='w-full flex flex-col items-center px-4 py-6'>
+    <div className='w-full flex flex-col items-center  py-6'>
         <ReactPlayer
           ref={playerRef}
           url={urlVideo}
           className="overflow-hidden shadow-lg"
           tabIndex={-1}
-          width={'80%'}
+          width={'90%'}
           playing={isPlaying}
           muted={muted}
           volume={volume}
@@ -89,7 +89,7 @@ export function VideoPlayer({ urlVideo }: VideoPlayerProps) {
           }}
         />
       <div className="flex flex-col gap-1 w-full items-center">
-      <div className="bg-gray-900 flex w-[80%] px-2 py-1">
+      <div className="bg-gray-900 flex w-[90%] px-2 py-1">
          
          <span className='w-1/12 text-center text-white'> {Math.floor(playedSeconds)}s </span> 
           
@@ -112,13 +112,13 @@ export function VideoPlayer({ urlVideo }: VideoPlayerProps) {
               aria-label='Controles do Vídeo'
               role='group'
               >
-            <button onClick={handleBackward} aria-label='Retroceder 5 Segundos' className=" bg-green-700 hover:bg-green-900 hover:scale-105 dark:bg-gray-700 dark:border-green-700 dark:border-4 text-white shadow-md duration-300 font-bold py-2 px-4 rounded">
+            <button  type='button' onClick={handleBackward} aria-label='Retroceder 5 Segundos' className=" bg-green-700 hover:bg-green-900 hover:scale-105 dark:bg-gray-700 dark:border-green-700 dark:border-4 text-white shadow-md duration-300 font-bold py-2 px-4 rounded">
                 <SkipBack/>
               </button>
-              <button onClick={togglePlay} aria-label={isPlaying ? 'Pausar Vídeo' : 'Iniciar Vídeo'} className=" bg-sky-700 hover:bg-sky-900 hover:scale-105 dark:bg-gray-700 dark:border-sky-700 dark:border-4 text-white shadow-md duration-300 font-bold py-2 px-4 rounded">
+              <button  type='button' onClick={togglePlay} aria-label={isPlaying ? 'Pausar Vídeo' : 'Iniciar Vídeo'} className=" bg-sky-700 hover:bg-sky-900 hover:scale-105 dark:bg-gray-700 dark:border-sky-700 dark:border-4 text-white shadow-md duration-300 font-bold py-2 px-4 rounded">
                 {isPlaying ? <PauseIcon/> : <PlayIcon/>}
               </button>
-              <button onClick={handleForward}  aria-label='Avançar 5 Segundos' className=" bg-green-700 hover:bg-green-900 hover:scale-105 dark:bg-gray-700 dark:border-green-700 dark:border-4 text-white shadow-md duration-300 font-bold py-2 px-4 rounded">
+              <button   type='button' onClick={handleForward}  aria-label='Avançar 5 Segundos' className=" bg-green-700 hover:bg-green-900 hover:scale-105 dark:bg-gray-700 dark:border-green-700 dark:border-4 text-white shadow-md duration-300 font-bold py-2 px-4 rounded">
                 <SkipForward/>
               </button>
             </div>
@@ -134,7 +134,7 @@ export function VideoPlayer({ urlVideo }: VideoPlayerProps) {
                   aria-label="Controle de Volume"
                   className="ml-2 w-20"
                 />
-              <button onClick={handleMute} aria-label='botão ligar volume'  className="mx-2 bg-yellow-700 hover:bg-yellow-900 hover:scale-105 dark:bg-gray-700 dark:border-yellow-700 dark:border-4 text-white shadow-md duration-300  font-bold py-2 px-4 rounded">
+              <button  type='button' onClick={handleMute} aria-label='botão ligar volume'  className="mx-2 bg-yellow-700 hover:bg-yellow-900 hover:scale-105 dark:bg-gray-700 dark:border-yellow-700 dark:border-4 text-white shadow-md duration-300  font-bold py-2 px-4 rounded">
                   {muted ? <VolumeX/> : <Volume2/>}
                 </button>
                 
