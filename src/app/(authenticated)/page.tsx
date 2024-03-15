@@ -11,9 +11,10 @@ import { TitleDashBoard } from "@/components/TitleDashboard";
 import { ActionCard } from "@/components/ActionsCard";
 import { ButtonLink } from "@/components/ButtonLink";
 export const dynamic = 'force-dynamic'
+
 export default async function Home(){
   const session = await getServerSession(nextAuthOptions);
-  new Promise((resolve) =>{ setTimeout(resolve, 30000)})
+
   const actionsAluno = [{
     text: "Veja as suas Disciplinas",
     ariaLabel: "Selecionar Matérias",
