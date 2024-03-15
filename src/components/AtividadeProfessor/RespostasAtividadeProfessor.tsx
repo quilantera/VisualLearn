@@ -91,7 +91,7 @@ export function RespostasAtividadeProfessor({
             type='button'
             className="w-100 font-md hover:scale-105 duration-200  flex text-gray-600 items-center gap-4 rounded-lg relative px-4 py-1 shadow-lg bg-white dark:bg-gray-900 dark:border-slate-300 dark:border-2 dark:text-white"
             onClick={handleAdicionarAlternativa}
-            aria-label="Adicionar Nova Alternativa"
+           
           >
             Adicionar Nova Alternativa <PlusCircle className="text-primary-400 dark:text-slate-50" size={34} />
           </button>

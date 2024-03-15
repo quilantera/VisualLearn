@@ -4,10 +4,10 @@ import { createContext, useContext, ReactNode, useState, useEffect } from 'react
 interface AccessibilityContextProps {
   contrast: boolean;
   setContrast: React.Dispatch<React.SetStateAction<boolean>>;
-  zoom: boolean;
-  setZoom: React.Dispatch<React.SetStateAction<boolean>>;
-  sound: boolean;
-  setSound: React.Dispatch<React.SetStateAction<boolean>>;
+  zoom: number;
+  setZoom: React.Dispatch<React.SetStateAction<number>>;
+  sound: number;
+  setSound: React.Dispatch<React.SetStateAction<number>>;
   isReady: boolean;
   setIsReady: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -26,15 +26,15 @@ export function AccessibilityProvider({ children }: { children: ReactNode }) {
   const [zoom, setZoom] = useState(() => {
     if (typeof window !== "undefined") {
     const storedValue = localStorage.getItem('zoom');
-    return storedValue ? JSON.parse(storedValue) : false;
-    }
+    return storedValue ? parseInt(JSON.parse(storedValue)) : 0;
+    }return 0;
   });
 
   const [sound, setSound] = useState( () => {
     if (typeof window !== "undefined") {
     const storedValue = localStorage.getItem('sound');
-    return storedValue ? JSON.parse(storedValue) : false;
-    }
+    return storedValue ? parseInt(JSON.parse(storedValue)) : 0;
+    }return 0;
   });
   const [isReady, setIsReady] = useState(()=> {
     if (typeof window !== "undefined") {

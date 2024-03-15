@@ -1,16 +1,12 @@
 import { nextAuthOptions } from "@/app/api/auth/[...nextauth]/route";
 import { Dashboard } from "@/components/Dashboard";
 import { ShowSubjects } from "@/components/ShowSubjects";
+import { TitleDashBoard } from "@/components/TitleDashboard";
+import { DisciplinasTeacher } from "@/types/typesTeacher";
 import axios from "axios";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
-export interface Materias {
-    id: string;
-    nome: string;
-    cor: string;
-    urlImagem: string;
-    professorId: string;
-}
+
 
 export default async function Materias(){
     const session = await getServerSession(nextAuthOptions);
@@ -19,24 +15,19 @@ export default async function Materias(){
     }
     
     try {
-        const response = await axios.get(`${process.env.BASE_URL}/api/materias/professor`, {
+        const response = await axios.get(`${process.env.BASE_URL}/api/teachers/subjects`, {
           headers: {
             'idUser': session?.id,
           },
         });
-        const materias: Materias[]= response.data;
+        const materias: DisciplinasTeacher[]= response.data;
     
         if (materias) {
-        
+       
           return (
             <>
               <Dashboard>
-                <div className="mb-3 flex w-full justify-between ">
-                  <h2 className="text-3xl font-semibold text-primary-700 dark:text-white">
-                    Matérias
-                  </h2>
-                 
-                </div>
+              <TitleDashBoard text="Suas Matérias"/>
                 <ShowSubjects materias={materias} />
               </Dashboard>
             </>
@@ -45,11 +36,7 @@ export default async function Materias(){
           return (
             <>
               <Dashboard>
-                <div className="mb-3 flex w-full justify-between ">
-                  <h2 className="text-3xl font-semibold text-primary-700 dark:text-white">
-                    Matérias não encontradas
-                  </h2>
-                </div>
+              <TitleDashBoard text="Matérias não encontradas"/>
               </Dashboard>
             </>
           );
@@ -59,11 +46,7 @@ export default async function Materias(){
         return (
           <>
             <Dashboard>
-              <div className="mb-3 flex w-full justify-between ">
-                <h2 className="text-3xl font-semibold text-primary-700 dark:text-white">
-                  Ocorreu um erro ao obter as matérias
-                </h2>
-              </div>
+            <TitleDashBoard text="Erro ao buscar as matérias, por favor, entrar novamente"/>
             </Dashboard>
           </>
         );

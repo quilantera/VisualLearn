@@ -42,7 +42,7 @@ export default function CriarAtividade({
         console.log(atividade);
         try {
             //https://blind-study.vercel.app/api/atividades/create
-            const response = await axios.post(`https://blind-study.vercel.app/api/atividades/create`, {
+            const response = await axios.post(`http://localhost:3000/api/teachers/lessons/create`, {
                 idUsuario: session!.id,
                 idDisciplina: params.materiaId,
                 atividade: atividade ,

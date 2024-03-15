@@ -1,4 +1,4 @@
-import { Poppins } from "next/font/google";
+import { Inter, Rubik, Teko } from "next/font/google";
 import { ReactNode } from "react";
 
 import "./globals.css";
@@ -6,12 +6,19 @@ import SpeechReader from "@/components/SpeechReader";
 import { AccessibilityProvider } from "./Context/AccessibilityContext";
 import NextAuthSessionProvider from "./providers/sessionProvider";
 import { AllColors } from "@/components/allColors";
+import { ScrollToTop } from "@/components/ScrollToTop";
 
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "700"],
+const rubik = Rubik({
+  subsets: ['latin'],
+  weight: ["300","400","500","600",'700',"800","900"],
   style: "normal",
-  variable: "--font-poppins",
+  variable: "--font-rubik",
+});
+const teko = Teko({
+  subsets: ["latin"],
+  weight: ["300","400","500","600","700"],
+  style: "normal",
+  variable: "--font-teko",
 });
 
 
@@ -28,18 +35,18 @@ export const metadata = {
 };
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="pt-br">
+    <html  lang="pt-br">
       
-      <body className={`${poppins.variable} bg-gray-50 font-san`}>
+      <body className={`${rubik.variable} ${teko.variable} bg-gray-50 dark:bg-gray-600 font-san`}>
       <NextAuthSessionProvider >
         <AccessibilityProvider >
       
         <AllColors /> 
             {children}
         <SpeechReader />
-      
         </AccessibilityProvider>
         </NextAuthSessionProvider>
+        <ScrollToTop/>
       </body>
      
     </html>

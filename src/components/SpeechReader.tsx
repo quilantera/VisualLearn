@@ -1,56 +1,58 @@
 "use client"
+
 import { useAccessibility } from '@/app/Context/AccessibilityContext';
 import React, { useEffect, useState } from 'react';
 
-export function isPressed(pressed: boolean){
-  if(pressed){
-    const speech = new SpeechSynthesisUtterance("pressionado");
-    speech.lang = 'pt-BR';
-    speech.rate = 1.6;
-    speechSynthesis.speak(speech);
-  }
-  else{
-    const speech = new SpeechSynthesisUtterance("Não pressionado");
-    speech.lang = 'pt-BR';
-    speech.rate = 1.6;
-    speechSynthesis.speak(speech);
-  }
-  
+export function stateSpeak(text:string,rate:number = 1.6){
+  speechSynthesis.cancel();
+  speaksText(text,rate);
+}
+
+ function speaksText (text:string,rate:number = 1.6){
+  const speech = new SpeechSynthesisUtterance(text);
+  speech.lang = 'pt-BR';
+  speech.rate = rate;
+  speechSynthesis.speak(speech);
 }
 export default function SpeechReader() {
-  const tags =['svg', 'path', 'fill', 'line','circle','polyline','polygon']
   const { sound, isReady} = useAccessibility();
   const [selectedElement, setSelectedElement] = useState(null);
-
   useEffect(() => {
-    
+    const tags = ['svg', 'path','rect', 'fill', 'line','circle','polyline','polygon']
+    const elementsTags = ['p', 'h1', 'h2', 'h3', 'h4', 'a'];
     const handleFocus = (event:any) => {
       if (selectedElement && selectedElement !== event.currentTarget) {
         speechSynthesis.cancel();
       }
-
+    
       setSelectedElement(event.currentTarget);
-
-      const text = event.currentTarget.textContent;
-      const ariaLabel = event.currentTarget.getAttribute('aria-label');
-
-      if (sound) {
+      
+      const parent: HTMLElement = event.currentTarget;
+      const parentText = parent.textContent;
+      const parentAriaLabel = parent.ariaLabel;
+      const children = parent.querySelectorAll(elementsTags.join(', ')) ;
+      
+       if (sound > 0 ) {
+         if (parentAriaLabel) {
+          speaksText(parentAriaLabel,1+(0.4*sound));
+         
+         }
+         else if (parentText) {
+          speaksText(parentText,1+(0.4*sound));
+         }
+      children.forEach((child) => {
+        const ariaLabel = child.ariaLabel;
+        const text = child.textContent|| null;
         if (ariaLabel) {
-          const speech = new SpeechSynthesisUtterance(ariaLabel);
-          speech.lang = 'pt-BR';
-          speech.rate = 1.4;
-          speechSynthesis.speak(speech);
-        }  
-        
-        if (text) {
-          const speech = new SpeechSynthesisUtterance(text);
-          speech.lang = 'pt-BR';
-          speech.rate = 1.4;
-          speechSynthesis.speak(speech);
+          speaksText(ariaLabel,1+(0.4*sound));
         }
-      };
+        else if (text) {
+          speaksText(text,1+(0.4*sound));
+        }
+      });
+    
     };
-
+  }
     const elements = document.querySelectorAll('body *');
     elements.forEach(element => { 
       const isIcon = tags.includes(element.tagName.toLowerCase());
@@ -66,7 +68,7 @@ export default function SpeechReader() {
       });
     }
     
-  },[selectedElement, sound, tags, isReady]);
+  },[selectedElement, sound, isReady]);
   
 
   return <></>;

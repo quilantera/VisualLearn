@@ -1,37 +1,96 @@
 "use client"
-import Image from "next/image";
-
-import profile from "../assets/profile.jpg";
+import { useRef, useState, useEffect } from "react";
 import { NavPagesSelect } from "./NavPagesSelect";
 import { LogOut } from "lucide-react";
-import Link from "next/link";
 import { signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
-export function NavBar() {
+import { coordinatorMenuItems, studentMenuItems, teacherMenuItems } from "@/utils/usersConstants";
+import { useAccessibility } from "@/app/Context/AccessibilityContext";
+
+interface NavigationLinks {
+  icon: string;
+  name: string;
+  route: string;
+}
+interface NavBarProps {
+  userRole: string;
+}
+export function NavBar({userRole}: NavBarProps) {
+  const {zoom} = useAccessibility();
+  const navRef = useRef<HTMLDivElement>(null);
+  const [isNavFixed, setIsNavFixed] = useState(false);
   const router = useRouter();
-  async function logout(){
+  useEffect(() => {
+    const handleScroll = () => {
+      if (navRef.current) {
+        const navTop = navRef.current.getBoundingClientRect().top;
+        if (navTop <= 8) {
+          setIsNavFixed(true);
+        } else {
+          setIsNavFixed(false);
+        }
+      }
+    };
+  
+    window.addEventListener("scroll", handleScroll);
+  
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+  
+  
+
+ 
+  async function logout() {
     await signOut({
       redirect: false
-    })
-    router.replace("/login")
+    });
+    router.replace("/login");
+  }
+
+  let menuItems: NavigationLinks[]= [];
+  switch (userRole) {
+    case "ALUNO":
+      menuItems = studentMenuItems;
+      break;
+    case "PROFESSOR":
+      menuItems = teacherMenuItems;
+      break;
+    case "COORDENADOR":
+      menuItems = coordinatorMenuItems;
+      break;
+    default:
+      menuItems = []; // ou adicione um comportamento padrão aqui
+      break;
   }
   return (
-    <nav className=" fixed inset-0 flex h-full w-[7.5rem] flex-col items-center justify-between bg-primary-500 pb-10 pt-14 dark:border-r-2 dark:border-white dark:bg-gray-700">
-      <div className="flex w-full  flex-col items-center gap-6">
-        <Image
-          src={profile}
-          alt={"Imagem de perfil"}
-          width={80}
-          height={80}
-          className="w-2/3 rounded-full border-2 border-slate-300  duration-200 ease-in-out hover:shadow-[0px_0px_12px_#E2E8F0]  "
-        />
-        <NavPagesSelect />
-      </div>
-
-        <button onClick={logout} title="encerrar sessão"  aria-label="encerrar sessão" tabIndex={0} className="cursor-pointer p-2  text-white duration-200 ease-in-out hover:text-white focus:drop-shadow-lg focus:shadow-white " >
-          <LogOut data-ignore="true"  />
-        </button> 
+    <>
+    <div ref={navRef} className=" h-full min-h-4 flex flex-col"  
+      style={{ width: zoom === 0 ? "17vw" : zoom === 1  ? "19vw": "21vw" }}>
+    <nav
       
+      className={`flex flex-col h-fit py-8 w px-4 bg-white dark:bg-gray-900 dark:border-2 dark:border-slate-50 rounded-lg shadow-md ${
+        isNavFixed ? "fixed top-2 z-10" : ""
+      }`}
+      style={{ width: zoom === 0 ? "16vw" :  zoom === 1 ? "19vw": "21vw" }}
+    >
+      <div className="flex w-full flex-col items-center gap-6">
+        <NavPagesSelect navigationLinks={menuItems} userRole={userRole} />
+      </div>
+      <button
+        onClick={logout}
+        title="Encerrar sessão"
+        aria-label="Encerrar sessão"
+        tabIndex={0}
+        className="flex gap-2 w-full items-center font-medium text-lg cursor-pointer py-4 pl-5 pr-5 mt-2 rounded text-slate-600 dark:text-white duration-200 ease-in-out hover:text-white hover:bg-violet-800 focus:drop-shadow-lg focus:shadow-white"
+      >
+        <LogOut data-ignore="true" /> Sair
+      </button>
     </nav>
+    {isNavFixed && <div style={{  width: zoom === 0 ? "16vw" :  zoom ===1 ? "19vw": "25vw", height: "500px" }} />}
+    </div>
+    </>
   );
 }
+

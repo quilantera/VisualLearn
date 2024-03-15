@@ -8,14 +8,10 @@ interface DashboardProps {
   action? :() => void;
 }
 export function Dashboard({children, action}: DashboardProps) {
-  const {isReady, setIsReady} = useAccessibility();
-  useEffect(() => {
-    setIsReady(!isReady);
-  },
-  []);
+ 
   return (
     <section
-      className={`mt-6  flex w-11/12 flex-col   pt-14 `}
+      className={` w-full bg-[#fefefefe] dark:bg-gray-900  dark:border-2 dark:border-slate-50 min-h-[80vh] flex flex-col  shadow-lg  px-[24px] pb-14 pt-8 rounded-md `}
     >
      {children}
     </section>

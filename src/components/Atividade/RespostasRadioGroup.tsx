@@ -22,12 +22,13 @@ export function RespostasRadioGroup({
             className={`w-100  border-1 flex items-center gap-4 rounded-lg  px-4 py-3 shadow-lg   ${
               isSelected
                 ? "bg-primary-400 text-white dark:bg-yellow-500 dark:font-semibold dark:text-black"
-                : "bg-white dark:bg-zinc-950 "
+                : "bg-white dark:bg-zinc-950 dark:border-2 dark:border-slate-100 "
             }`}
             key={index}
             value={String(index)}
             id={String(index)}
             onClick={() => handleRadioChange(index)}
+            aria-label={`alternativa ${ letters[index] }:  ${selectedOption === index? "selecionado":""}`}
           >
             <div
               className={`flex h-8 w-8 items-center justify-center   rounded-full border-[3px]  text-center ${
@@ -36,9 +37,9 @@ export function RespostasRadioGroup({
                   : "border-primary-400 dark:border-white"
               } `}
             >
-              <h2>{letters[index]}</h2>
+            <span >{letters[index]}</span>
             </div>
-            <h3> {resposta}</h3>
+            <h3 className="w-[95%] text-left"> {resposta}</h3>
             <RadioGroup.Indicator className="hidden focus:hidden" />
           </RadioGroup.Item>
         );

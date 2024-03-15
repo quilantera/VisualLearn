@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 
 const QuestoesSchema = new mongoose.Schema({
   pergunta: String,
+  texto: String,
   urlImage: String,
   descricaoImagem: String,
   urlVideo: String,

@@ -1,7 +1,8 @@
 
 import { nextAuthOptions } from "@/app/api/auth/[...nextauth]/route";
 import { DashboardActivities } from "@/components/DashboardActivities";
-import { Atividade } from "@/utils/perguntasAreasPerimetros";
+import { QuestoesAtividadeStudent } from "@/types/typesStudent";
+
 import axios from "axios";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
@@ -16,8 +17,8 @@ export  default async function AtividadesPage({
     redirect('/');
  }
   const atividadeId = params.activityId;
-  const response = await axios.get(`${process.env.BASE_URL!}/api/atividades/${atividadeId}`)
-  const atividade: Atividade = await response.data;
+  const response = await axios.get(`${process.env.BASE_URL!}/api/students/lessons/${atividadeId}`)
+  const atividade: QuestoesAtividadeStudent = await response.data;
   return (
     <>
       <DashboardActivities
