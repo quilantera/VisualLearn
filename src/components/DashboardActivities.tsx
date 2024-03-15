@@ -1,14 +1,12 @@
 "use client";
-import { Questoes } from "@/utils/perguntasAreasPerimetros";
+import { Questoes } from "@/types/typesStudent"
 import { useRef, useState } from "react";
 import { Atividade } from "./Atividade";
 
-import { ModalEnviarResposta } from "./ModalEnviarResposta";
 import { ImageBanner } from "./ImageBanner";
 import { VideoPlayer } from "./VideoPlayer";
 import { ModalExibirResultado } from "./ModalExibirResultado";
-import { Session } from "next-auth";
-
+import { useSearchParams } from "next/navigation";
 
 interface DashboardActivitiesProps {
   nomeAtividade: string;
@@ -19,31 +17,26 @@ interface DashboardActivitiesProps {
 
 export function DashboardActivities ({ nomeAtividade, perguntas, idAtividade,session}: DashboardActivitiesProps) {
   const perguntaRef = useRef<HTMLDivElement>(null);
-  const [perguntaAtual, setPerguntaAtual] = useState<number>(0);
-  const [resposta, setResposta] = useState<(number | null)[]>(Array(perguntas.length).fill(null));
+  
+  const searchParams = useSearchParams()
+ 
+  const posicaoPergunta = parseInt(searchParams.get('questao')||"0") || 0 
+  const perguntaAtual = posicaoPergunta < 0 ? 0 : posicaoPergunta >= perguntas.length ? perguntas.length-1: posicaoPergunta;
+  
+  const [respostasTemporarias,setRespostasTemporarias] =useState(Array(perguntas.length).fill(null));
   
   const [showModal, setShowModal] = useState<boolean> (false);
-  
-  
-  const handleRespostaChange = (resposta: number) => {
-    setResposta(prevResposta => prevResposta.map((prevResposta, index) =>
-      index === perguntaAtual ? resposta : prevResposta
-    ));
+  const handleRespostaChange = (posicaoResposta: number) => {
+    setRespostasTemporarias(prevRespostas => {
+      const updatedRespostas = [...prevRespostas]; // Create a new array
+      updatedRespostas[perguntaAtual] = posicaoResposta;
+      return updatedRespostas;
+    });
   };
-
-  const navegarPergunta = async (novaPergunta: number) => {
-    if (novaPergunta >= 0 && novaPergunta < perguntas.length) {
-     await setPerguntaAtual(novaPergunta);
-      perguntaRef.current?.focus();
-    }
-  };
-
-  const ultimaPergunta = () => perguntaAtual === perguntas.length - 1;
-
   function getTotalAcertos(){
     let totalAcertos = 0;
     for( let i= 0; i < perguntas.length; i++){
-      if(perguntas[i].respostaCorreta === resposta[i]){
+      if(perguntas[i].respostaCorreta === respostasTemporarias[i]){
         totalAcertos ++;
       }
     }
@@ -51,10 +44,10 @@ export function DashboardActivities ({ nomeAtividade, perguntas, idAtividade,ses
   }
 
   const { pergunta, urlImage,urlVideo, descricaoImagem, respostas } = perguntas[perguntaAtual];
-  console.log(idAtividade);
+  
   return (
     <>
-    <section className="flex flex-col w-full pt-10 mt-6 justify-center items-center dark:bg-gray-800 dark:text-white ">
+    <section className="flex flex-col w-full py-10 mt-6 justify-center items-center  dark:text-white ">
       <Atividade.Root>
         <Atividade.Header
           nomeAtividade={nomeAtividade}
@@ -70,33 +63,16 @@ export function DashboardActivities ({ nomeAtividade, perguntas, idAtividade,ses
           <Atividade.Respostas>
             <Atividade.RespostasGroup
               respostas={respostas}
-              selectedOption={resposta[perguntaAtual]}
+              selectedOption={respostasTemporarias[perguntaAtual]}
               handleRadioChange={handleRespostaChange}
             />
           </Atividade.Respostas>
-          <Atividade.Footer>
-            {perguntaAtual > 0? <button
-              className="w-[6rem] bg-red-700 p-2 rounded text-white duration-300 hover:scale-105 hover:bg-red-800 dark:bg-gray-900 dark:border-4 dark:border-red-800"
-              onClick={() => navegarPergunta(perguntaAtual - 1)}
-            >
-              voltar
-            </button>:<></> }
-            {!ultimaPergunta() ? (
-              <button
-                className="w-[6rem] bg-green-700 p-2 rounded text-white duration-300 hover:scale-105 hover:bg-green-800 dark:bg-gray-900 dark:border-4 dark:border-green-800 "
-                onClick={() => navegarPergunta(perguntaAtual + 1)}
-              >
-                Próxima
-              </button>
-            ) : (
-              <ModalEnviarResposta 
-                    idAtividade={idAtividade!}
-                    totalQuestoes={perguntas.length}
-                    getTotalAcertos={getTotalAcertos}
-                    openStatusModal={setShowModal} 
-                    session={session} />
-            )}
-          </Atividade.Footer>
+          <Atividade.Footer perguntaAtual={perguntaAtual}
+    ultimaPergunta={perguntas.length}
+    idAtividade ={idAtividade}
+    getTotalAcertos={() => getTotalAcertos()}
+    setShowModal={()=>setShowModal}
+    session={session}/>
         </Atividade.Content>
       </Atividade.Root>
     </section>

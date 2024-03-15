@@ -80,6 +80,7 @@ export function ImagemAtividadeProfessor({
       <div className="w-full px-4 py-3">
         {imagemProvisoria ? 
          <div className='w-full flex items-center justify-center'>
+           {/* eslint-disable-next-line @next/next/no-img-element */}
          <img
            src={imagemProvisoria}
            className='w-full h-full max-h-[20rem] object-contain rounded border-2 border-dash border-transparent  hover:border-primary-500  hover:translate-y-[-4px] duration-300'

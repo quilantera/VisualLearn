@@ -23,7 +23,7 @@ body {
 }
 .scrollbar1::-webkit-scrollbar {
   width: 10px;  
-  border-radius: 10px;
+  border-radius: 4px;
 }
 
 /* Cursor na barra de rolagem */
@@ -35,6 +35,20 @@ body {
 /* Fundo da barra de rolagem */
 .scrollbar1::-webkit-scrollbar-track {
   background-color: #575757; /* Cor de fundo da barra de rolagem */
+}
+
+.dark .scrollbar::-webkit-scrollbar-thumb{
+  background-color: rgb(212, 216, 219);
+  border-color:#dfb80c;
+}
+.dark .scrollbar::-webkit-scrollbar-track{
+  background-color: rgb(27, 27, 27);
+ 
+  border: solid 2px #dfdede;
+}
+.dark .scrollbar::-webkit-scrollbar  {
+  width: 14px; /* Largura da barra de rolagem */
+  border-radius: 10px;
 }
 .scrollbar::-webkit-scrollbar {
   width: 10px; /* Largura da barra de rolagem */
@@ -53,13 +67,13 @@ body {
 
 /* Cursor na barra de rolagem */
 .scrollbar::-webkit-scrollbar-thumb {
-  background-color: #2F2347; /* Cor da barra de rolagem */
-  border-radius: 10px; /* Raio das bordas da barra de rolagem */
+  background-color: #5e5e5e; /* Cor da barra de rolagem */
+  border-radius: 0; /* Raio das bordas da barra de rolagem */
 }
 
 /* Fundo da barra de rolagem */
 .scrollbar::-webkit-scrollbar-track {
-  background-color: #8E98A8; /* Cor de fundo da barra de rolagem */
+  background-color: #d1d1d1; /* Cor de fundo da barra de rolagem */
 }
 
 @keyframes overlayShow {
@@ -100,5 +114,21 @@ body {
   to {
     opacity: 0;
     transform: translateY(-10px);
+  }
+}
+
+@layer utilities {
+  .text-shadow {
+    text-shadow: 1px 0px 1px rgba(0, 0, 0, 0.1);
+  }
+
+  .text-shadow-custom {
+    text-shadow: 2px 2px 4px #3498db;
+  }
+  .text-stroke{
+    
+      -webkit-text-stroke-width: 1px;
+      -webkit-text-stroke-color: rgb(26, 25, 25);
+    
   }
 }

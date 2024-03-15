@@ -10,8 +10,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        san: 'var(--font-poppins)',
-        alt: 'var(--font-roboto)',
+        san: ['var(--font-rubik)'],
+        alt: ['var(--font-teko)'],
       },
       keyframes: {
         float: {
@@ -83,5 +83,19 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [ 
+    ({ addUtilities, theme, variants }) => {
+    const gradients = theme('colors');
+
+    const utilities = Object.keys(gradients).map((name) => ({
+      [`.border-gradient-${name}`]: {
+        borderColor: `transparent`,
+        backgroundImage: `linear-gradient(0deg, transparent, transparent), linear-gradient(90deg, ${gradients[name][500]}, ${gradients[name][700]})`,
+        backgroundOrigin: 'border-box',
+        backgroundClip: 'content-box, border-box',
+      },
+    }));
+
+    addUtilities(utilities, variants('borderWidth'));
+  }],
 }

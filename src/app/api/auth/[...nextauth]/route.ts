@@ -19,12 +19,11 @@ const nextAuthOptions: NextAuthOptions = {
           where: { email: credentials?.email},
         });
         if(!user){
-          console.log("usuario nao encontrado");
+          console.error("usuario nao encontrado");
           return null
         }
 
         const validPassword = await bcrypt.compare(credentials!.password, user.senha);
-        console.log(validPassword);
         if (!validPassword) {
           return null
         }

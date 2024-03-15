@@ -2,7 +2,7 @@
 import { LoginForm } from "@/components/LoginForm";
 import Image from "next/image";
 import LoginImg from "../../../assets/astronauta-lendo-livro_1366-939.png";
-import { Header } from "@/components/Header";
+import { AccessibilityPanel } from "@/components/AccessibilityPanel";
 import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
 import { signIn } from "next-auth/react";
@@ -67,7 +67,7 @@ export default function Login() {
   };
   return (
     <main className="flex min-h-screen w-full flex-row items-center justify-center gap-10  bg-violet-300">
-      <Header />
+      <div className="fixed top-3 left-[40px] "> <AccessibilityPanel /> </div>
       {popupType && <Popup message={messagePopup} state={popupType === "loading" ? "loading" : popupType === "success" ? "success" : popupType === "error" ? "error" : "alert"} onClose={handlePopupClose} />}
      
       <Image
