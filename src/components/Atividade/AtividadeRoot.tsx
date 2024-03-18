@@ -3,7 +3,7 @@ interface AtividadeRootProps{
 }
 export function AtividadeRoot({children}:AtividadeRootProps) {
     return(
-        <div className="w-10/12 flex flex-col " role="region" aria-label="Atividade">
+        <div className="w-10/12 sm:w-11/12 flex flex-col " role="region" aria-label="Atividade">
             {children}
         </div>
     )

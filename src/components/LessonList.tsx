@@ -26,7 +26,7 @@ export function LessonsList({ subjectName ="undefined", lessons, subjectImage,us
         { label: "Status", value: "status" },
     ];
     return (
-        <div className="  h-[90vh] flex flex-col">
+        <div className="  h-[90vh] flex flex-col sm:px-[8px]">
             <div className="flex justify-end pb-2 ">
                 <SortDropdown options={sortOptions} data={lessons} onChange={handleSortChange} />
 
@@ -34,7 +34,7 @@ export function LessonsList({ subjectName ="undefined", lessons, subjectImage,us
             <LessonListHeader lessonNames={lessonsHeaderNames} firstName={"Nome da Atividade"} />
          
             
-            <div className="flex-1 overflow-y-scroll scrollbar mt-2 pl-2 pr-2 pt-1">
+            <div className="flex-1 overflow-y-scroll scrollbar mt-2 pl-2 pr-2 pt-1 ">
                 {sortedLessons.map((lesson, index) => (
                     <LessonCard key={index} lesson={lesson} useColor={useColor} subjectName={lesson.disciplina?.nome||subjectName} subjectImage={subjectImage} />
                 ))}

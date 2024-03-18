@@ -7,8 +7,6 @@ import imagem3 from '../assets/astronauta_com_estrela.jpg';
 import axios from 'axios';
 import { Popup } from "./Popup";
 import { useState } from 'react';
-import { useAccessibility } from '@/app/Context/AccessibilityContext';
-
 interface modalExibirResultadoProps {
 
   idAtividade: string;
@@ -20,6 +18,7 @@ interface modalExibirResultadoProps {
 export function ModalEnviarResposta({getTotalAcertos, idAtividade, openStatusModal, session}: modalExibirResultadoProps) {
   const [popupType, setPopupType] = useState<string | null>(null);
   const [messagePopup, setMessagePopup] = useState<string | null>("sem mensagem");
+  
   const nota = getTotalAcertos()  ;
   const handlePopupClose = () => {
     setPopupType(null);

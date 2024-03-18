@@ -8,6 +8,20 @@ module.exports = {
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
+    screens: {
+      'sm':{"max": '768px'},
+      // => @media (max-width: 640px) { ... }
+
+      'md': {"max":'1024px'},
+      // => @media (max-width: 768px) { ... }
+
+      'lg': {"max":'1280px'},
+      // => @media (max-width: 1024px) { ... }
+
+      'xl': '1280px',
+      // => @media (min-width: 1280px) { ... }
+
+    },
     extend: {
       fontFamily: {
         san: ['var(--font-rubik)'],
@@ -81,6 +95,7 @@ module.exports = {
           500: '#E9EBF8',
         },
       },
+      
     },
   },
   plugins: [ 

@@ -67,7 +67,7 @@ export function SortDropdown({ options, data, onChange }: SortDropdownProps) {
             </label> 
 
             <Select.Root onValueChange={handleSelectChange } >
-            <Select.Trigger onClick={()=>setIsReady(!isReady)} className="flex border-2 bg-violet-950 dark:bg-gray-900  font-medium text-slate-50 border-slate-700 dark:border-slate-50 justify-between items-center w-full gap-4 py-2 pl-3 rounded-md shadow-md cursor-pointer hover:bg-violet-950 hover:text-white duration-300" >
+            <Select.Trigger onClick={()=>setIsReady(!isReady)} className="flex border-2 bg-violet-950 dark:bg-gray-900  font-medium text-slate-50 border-slate-700 dark:border-slate-50 justify-between items-center w-full gap-4 py-2 pl-3 sm:py-1 rounded-md shadow-md cursor-pointer hover:bg-violet-950 hover:text-white duration-300" >
                 <Select.Value  placeholder="padrão" />
                 <Select.Icon className="SelectIcon">
                     <ChevronDown />

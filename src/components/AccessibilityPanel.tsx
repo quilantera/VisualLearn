@@ -1,7 +1,7 @@
   "use client";
   import { useAccessibility } from "@/app/Context/AccessibilityContext";
   import * as Toggle from "@radix-ui/react-toggle";
-  import { Eye, ZoomIn, Volume2 } from "lucide-react";
+  import { Eye, ZoomIn, Volume2, Accessibility } from "lucide-react";
   import { useEffect, useState } from "react";
   import { stateSpeak } from "./SpeechReader";
   import * as NavigationMenu from '@radix-ui/react-navigation-menu';
@@ -12,7 +12,7 @@
   export function AccessibilityPanel({visibleOnScroll = false}: AccessibilityPanelProps) {
     
     const { contrast, setContrast, zoom, setZoom, sound, setSound,isReady, setIsReady } = useAccessibility();
-    
+    const [isVisible, setIsVisible] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     const [scrollPosition, setScrollPosition] = useState<number>(0);
     async function handleToggleChange(state: number , setState: React.Dispatch<React.SetStateAction<number>>, max:number = 2) {
@@ -77,25 +77,28 @@
   
     return (
       <>
+      <button onClick={()=>{setIsVisible(state => !state)}} className={`hidden sm:block fixed top-4 right-4 p-3 bg-white rounded shadow-lg dark:bg-gray-900 dark:border dark:border-slate-50`}><Accessibility/> </button>
     {!isLoading && 
 
+   
     <NavigationMenu.Root >
       <NavigationMenu.List 
         aria-label="Area de acessibilidade"
-        className={`  
-         z-20  self-center justify-self-center flex h-full gap-3 rounded-3xl  bg-zinc-300 dark:border dark:border-slate-50  dark:bg-gray-900 px-8 py-2 shadow-md ${
+        className={` sm:fixed sm:top-4 sm:h-fit
+          ${isVisible ? "sm:right-5": "sm:right-[-100vw]"}
+         z-20  self-center justify-self-center flex h-full gap-3 rounded-3xl sm:gap-1 sm:px-4  bg-zinc-300 dark:border dark:border-slate-50  dark:bg-gray-900 px-8 py-2 shadow-md ${
           scrollPosition > 20 && !visibleOnScroll ? "opacity-30" : "opacity-100"
-        }  rounded duration-200  ease-in-out  hover:opacity-100 focus:opacity-100 `}
+        }  rounded duration-200 sm:duration-700  ease-in-out  hover:opacity-100 focus:opacity-100 `}
        
         >
           <NavigationMenu.Item>
             <Toggle.Root
               onPressedChange={() => handleContrastChange(contrast, setContrast)}
-              className="flex  h-full w-[4.20rem] flex-col items-center justify-center rounded-lg bg-white dark:bg-gray-900 dark:border dark:border-slate-50 px-1 text-primary-500 dark:text-white shadow-md drop-shadow-md duration-300 hover:scale-105 data-[state=on]:bg-primary-500 data-[state=on]:text-zinc-50 dark:data-[state=on]:bg-yellow-500 dark:data-[state=on]:text-gray-900"
+              className="flex  h-full w-[4.20rem] sm:w-[4rem] flex-col items-center justify-center rounded-lg bg-white dark:bg-gray-900 dark:border dark:border-slate-50 px-1 text-primary-500 dark:text-white shadow-md drop-shadow-md duration-300 hover:scale-105 data-[state=on]:bg-primary-500 data-[state=on]:text-zinc-50 dark:data-[state=on]:bg-yellow-500 dark:data-[state=on]:text-gray-900"
               aria-label="botão mudar contraste"
               data-state={contrast ? 'on' : 'off'}
             >
-              <Eye className="h-7 w-7" absoluteStrokeWidth={true} tabIndex={-1}/>
+              <Eye className="h-7 w-7 sm:h-5 sm:w-5" absoluteStrokeWidth={true} tabIndex={-1}/>
               <span className="  text-[0.7rem] font-semibold leading-none pb-1">
                 Contraste
               </span>
@@ -104,16 +107,16 @@
           <NavigationMenu.Item>
           <Toggle.Root
           onPressedChange={() => handleToggleChange(zoom, setZoom)}
-          className="flex h-full relative w-[4.20rem] flex-col items-center justify-center rounded-lg bg-white dark:bg-gray-900 dark:border dark:border-slate-50 px-1 text-primary-500 dark:text-white shadow-md drop-shadow-md duration-300 hover:scale-105 data-[state=on]:bg-primary-500 data-[state=on]:text-zinc-50 dark:data-[state=on]:bg-yellow-500 dark:data-[state=on]:text-gray-900"
+          className="flex h-full relative w-[4.20rem] sm:w-[4rem] flex-col items-center justify-center rounded-lg bg-white dark:bg-gray-900 dark:border dark:border-slate-50 px-1 text-primary-500 dark:text-white shadow-md drop-shadow-md duration-300 hover:scale-105 data-[state=on]:bg-primary-500 data-[state=on]:text-zinc-50 dark:data-[state=on]:bg-yellow-500 dark:data-[state=on]:text-gray-900"
           aria-label="botão aumentar o zoom"
           data-state={zoom > 0 ?'on' : 'off'}
         >
-          <ZoomIn className="h-6 w-6" />
+          <ZoomIn className="h-6 w-6 sm:h-5 sm:w-5" />
           <span className=" text-[0.7rem] font-semibold leading-none pb-1">
             Zoom
           </span>
           {zoom >= 1&&
-           <span className={`absolute font-semibold top-[-10px] right-[-10px] text-[0.6rem]
+           <span className={`absolute font-semibold top-[-10px] right-[-10px] text-[0.6rem] sm:text-[0.4rem] sm:border
             p-[0.3rem] bg-cyan-900 dark:bg-yellow-300 border-[2px] border-slate-100 dark:border-slate-900 rounded-full shadow-md `}>
             X {zoom}
             </span>}
@@ -122,16 +125,16 @@
           <NavigationMenu.Item>
           <Toggle.Root
            onPressedChange={() => handleToggleChange(sound, setSound, 3)}
-          className="flex   h-full relative w-[4.20rem] flex-col items-center justify-center rounded-lg bg-white dark:bg-gray-900 dark:border dark:border-slate-50 px-1 text-primary-500 dark:text-white shadow-md drop-shadow-md duration-300 hover:scale-105 data-[state=on]:bg-primary-500 data-[state=on]:text-zinc-50 dark:data-[state=on]:bg-yellow-500 dark:data-[state=on]:text-gray-900 "
+          className="flex   h-full relative w-[4.20rem] sm:w-[4rem] flex-col items-center justify-center rounded-lg bg-white dark:bg-gray-900 dark:border dark:border-slate-50 px-1 text-primary-500 dark:text-white shadow-md drop-shadow-md duration-300 hover:scale-105 data-[state=on]:bg-primary-500 data-[state=on]:text-zinc-50 dark:data-[state=on]:bg-yellow-500 dark:data-[state=on]:text-gray-900 "
           aria-label="botão ligar som"
           data-state={sound >0 ? 'on' : 'off'}
         >
-          <Volume2 className="h-6 w-6  " />
+          <Volume2 className="h-6 w-6 sm:h-5 sm:w-5  " />
           <span className="  text-[0.7rem] font-semibold leading-none pb-1">
             Leitor
           </span>
           {sound >= 1 && 
-          <span className={` absolute font-semibold top-[-10px] right-[-10px] text-[0.6rem] p-[0.3rem]
+          <span className={` absolute font-semibold top-[-10px] right-[-10px] text-[0.6rem] p-[0.3rem]  sm:text-[0.4rem] sm:border
            bg-cyan-900 dark:bg-yellow-300 border-[2px] border-slate-100 dark:border-slate-900 rounded-full shadow-md `}>
             X {sound}
           </span>}

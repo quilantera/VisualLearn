@@ -46,9 +46,9 @@ export function EloCard({lessons}: EloCardProps){
     const currentElo = showElo();
     
     return (
-        <div className="flex flex-col justify-center w-40 py-1 rounded-lg drop-shadow-md  bg-slate-100 dark:bg-gray-800 items-center">
-            <Image  className="w-20 h-20" src={elo[currentElo[0]]} alt={eloName[currentElo[0]]} width={100} height={100}/>
-            <h2  className={`font-bold text-[${eloColors[currentElo[0]]}]  dark:text-white italic text-shadow text-2xl --font-alt text-shadow  tracking-wider `}
+        <div className="flex flex-col justify-center w-40 sm:w-fit sm:px-6 sm:py-1 py-1 rounded-lg drop-shadow-md  bg-slate-100 dark:bg-gray-800 items-center">
+            <Image  className="w-20 h-20 sm:w-14 sm:h-14" src={elo[currentElo[0]]} alt={eloName[currentElo[0]]} width={100} height={100}/>
+            <h2  className={`font-bold text-[${eloColors[currentElo[0]]}] sm:text-lg  dark:text-white italic text-shadow text-2xl --font-alt text-shadow  tracking-wider `}
             >{eloName[currentElo[0]]}</h2>
         </div>
     )

@@ -1,25 +1,34 @@
 "use client"
 import * as NavigationMenu from '@radix-ui/react-navigation-menu';
 
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import Link from 'next/link';
 
-import { BookOpen, User, Monitor, Users, CalendarDays, NotebookPen, Users2Icon } from "lucide-react";
+import { BookOpen, User, Monitor, Users, CalendarDays, NotebookPen, Users2Icon, LogOut } from "lucide-react";
 import { useEffect, useState } from 'react';
+import { signOut } from 'next-auth/react';
 interface NavigationLinks {
   icon: string;
   name: string;
   route: string;
+ 
 }
 
 interface NavigationMenuProps {
   userRole: string;
   navigationLinks: NavigationLinks[];
+  isVisible: boolean;
 }
-export function NavPagesSelect( {navigationLinks, userRole}: NavigationMenuProps){
+export function NavPagesSelect( {navigationLinks, userRole, isVisible}: NavigationMenuProps){
   const [pathname, setPathname] = useState<string>(''); // Estado para armazenar o pathname
   const path = usePathname() || '/'; // Obtém o caminho atual
-
+  const router = useRouter();
+  async function logout() {
+    await signOut({
+      redirect: false
+    });
+    router.replace("/login");
+  }
   useEffect(() => {
     // Atualiza o pathname com base no userRole
     switch (userRole) {
@@ -39,13 +48,13 @@ export function NavPagesSelect( {navigationLinks, userRole}: NavigationMenuProps
   function selectIcon(iconName: string) {
     // Mapeamento dos nomes dos ícones para os ícones importados do Lucide Icons
     const iconMap: { [key: string]: JSX.Element } = {
-      BookOpen: <BookOpen aria-hidden="true" />,
-      User: <User aria-hidden="true" />,
-      Monitor: <Monitor aria-hidden="true"/>,
-      Users: <Users aria-hidden="true"/>,
-      CalendarDays: <CalendarDays aria-hidden="true"/>,
-      NotebookPen: <NotebookPen aria-hidden="true"/>,
-      Users2Icon: <Users2Icon aria-hidden="true"/>
+      BookOpen: <BookOpen aria-hidden="true" className={'sm:h-5 sm:w-5'}/>,
+      User: <User aria-hidden="true"className={'sm:h-5 sm:w-5'} />,
+      Monitor: <Monitor aria-hidden="true" className={'sm:h-5 sm:w-5'}/>,
+      Users: <Users aria-hidden="true"className={'sm:h-5 sm:w-5'}/>,
+      CalendarDays: <CalendarDays aria-hidden="true"className={'sm:h-5 sm:w-5'}/>,
+      NotebookPen: <NotebookPen aria-hidden="true"className={'sm:h-5 sm:w-5'}/>,
+      Users2Icon: <Users2Icon aria-hidden="true"className={'sm:h-5 sm:w-5'}/>
       // Adicione mais mapeamentos conforme necessário
     };
   
@@ -59,8 +68,8 @@ export function NavPagesSelect( {navigationLinks, userRole}: NavigationMenuProps
   }
 
 
-  return (
-
+  return (  
+    <>
       <NavigationMenu.Root orientation="vertical" >
     <NavigationMenu.List  className='flex flex-col gap-3 '>
       {navigationLinks.map((link) => {
@@ -68,11 +77,14 @@ export function NavPagesSelect( {navigationLinks, userRole}: NavigationMenuProps
          <NavigationMenu.Item className="flex relative" key={link.name} >
           <Link 
             href={link.route} 
-            title={`Selecione`+link.name}
-            className={`w-full flex items-center text-slate-600  dark:tracking-wide text-lg gap-1 py-4 pl-3 pr-5 rounded-lg mt-1 font-medium  duration-100 ${(pathname === link.route) ? ' right-[-10px] bg-violet-950 dark:bg-slate-50 dark:font-bold  text-white dark:text-gray-900' : 'hover:bg-violet-800 hover:text-white dark:text-sky-300 dark:hover:text-white'}`}
+            title={`Selecione `+link.name}
+            className={`w-full flex items-center
+             text-slate-600  dark:tracking-wide text-lg sm:text-sm gap-1  
+              sm:py-4 sm:px-4 sm:items-center py-4 pl-3 pr-5 rounded-lg mt-1 font-medium  duration-100 
+            ${(pathname === link.route) ? '  bg-violet-950 dark:bg-slate-50 dark:font-bold  text-white dark:text-gray-900' : 'hover:bg-violet-800 hover:text-white dark:text-sky-300 dark:hover:text-white'}`}
             style={{ whiteSpace: 'nowrap' }}
             >
-                {selectIcon(link.icon)}{link.name}
+                {selectIcon(link.icon)} { link.name }
 
             </Link>
           </NavigationMenu.Item>
@@ -80,8 +92,23 @@ export function NavPagesSelect( {navigationLinks, userRole}: NavigationMenuProps
       })}
      
     </NavigationMenu.List>
+    <NavigationMenu.List className='flex flex-col gap-3 '>
+    <button
+        onClick={logout}
+        title="Encerrar sessão"
+        aria-label="Encerrar sessão"
+        tabIndex={0}
+        className={`w-full flex items-center text-slate-600  dark:tracking-wide text-lg sm:text-sm gap-1  
+        sm:py-4 sm:px-4 sm:items-center py-4 pl-3 pr-5  
+        rounded-lg mt-1 font-medium  duration-10 hover:bg-violet-800 hover:text-white dark:text-sky-300 dark:hover:text-white`}
+       
+        >
+        <LogOut data-ignore="true"className={'sm:h-5 sm:w-5'} /> Sair
+      </button>
+    </NavigationMenu.List>
   </NavigationMenu.Root>
 
+</>
   );
 }
 
