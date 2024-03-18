@@ -59,6 +59,10 @@ export function TitleDashBoard({text,size = 5, color= "violet",weight = "medium"
                 return <h2  aria-label={ariaLabel}
                 className={`font-medium text-[${selectedColor}] text-2xl text-shadow w-full dark:text-slate-50 `}
                 >{text}</h2>;
+            case 6:
+                return <h2  aria-label={ariaLabel}
+                className={`font-medium text-[${selectedColor}] text-3xl text-shadow w-full dark:text-slate-50 `}
+                >{text}</h2>;
             default:    
                 return <p  aria-label={ariaLabel}
                 className={`font-medium text-[${selectedColor}] text-base text-shadow w-full dark:text-slate-50 `}>{text}</p>;

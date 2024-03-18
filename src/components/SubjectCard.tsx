@@ -38,13 +38,13 @@ export function SubjectCard({ materia, nameClass }: MateriasProps) {
       </div>
       <div
        className={` flex flex-col justify-center  py-3 `}>
-       <TitleDashBoard text={materia.nome} size={3} weight="medium" />
+       <TitleDashBoard text={materia.nome} size={4} weight="medium" />
         {materia.professor?.nome && 
-         <TitleDashBoard  text={ materia.professor.nome} size={2} ariaLabel={`professor: ${ materia.professor.nome} `} color="gray" weight="base"/>
+         <TitleDashBoard  text={ materia.professor.nome} size={3} ariaLabel={`professor: ${ materia.professor.nome} `} color="gray" weight="base"/>
         }
         {
           nameClass &&
-          <TitleDashBoard text={nameClass} size={2} color={"gray"} weight="base"/>
+          <TitleDashBoard text={nameClass} size={3} color={"gray"} weight="base"/>
         }
       </div>
      
@@ -65,7 +65,7 @@ export function SubjectCard({ materia, nameClass }: MateriasProps) {
       <div className=" align-end flex px-1 py-4">
         <button
         aria-label ={`ir para matéria ${materia.nome}`}
-          className="h-fit self-end rounded-md bg-blue-900 text-shadow px-6 py-2 text-base font-medium  text-white duration-300 ease-in-out hover:bg-blue-950 dark:border-2 dark:border-white dark:bg-black dark:font-semibold dark:hover:bg-white dark:hover:text-black"
+          className="h-fit self-end rounded-md bg-blue-950 text-shadow px-6 py-2 text-xl font-medium  text-white duration-300 ease-in-out hover:bg-violet-900 dark:border-2 dark:border-white dark:bg-black dark:font-semibold dark:hover:bg-white dark:hover:text-black"
         >
           Iniciar
         </button>
