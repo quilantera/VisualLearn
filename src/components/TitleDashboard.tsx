@@ -45,28 +45,23 @@ export function TitleDashBoard({text,size = 5, color= "violet",weight = "medium"
         switch (size) {
             case 1:
                 return <p  aria-label={ariaLabel}
-                className={`font-medium text-[${selectedColor}] text-shadow w-full dark:text-slate-50 `}
-                style={{fontSize: font[size-1].fontSize, lineHeight: font[size-1].lineHeight , fontWeight: fontWeightSelected}}>{text}</p>;
+                className={`font-medium text-[${selectedColor}] text-sm text-shadow w-full dark:text-slate-50 `}>{text}</p>;
             case 2:
                 return <h4  aria-label={ariaLabel}
-                className={`font-medium text-[${selectedColor}] text-shadow w-full dark:text-slate-50 `}
-                style={{fontSize: font[size-1].fontSize, lineHeight: font[size-1].lineHeight , fontWeight: fontWeightSelected}}>{text}</h4>;
+                className={`font-medium text-[${selectedColor}] text-base text-shadow w-full dark:text-slate-50 `}>{text}</h4>;
             case 3:
                 return <h3  aria-label={ariaLabel}
-                className={`font-medium text-[${selectedColor}] text-shadow w-full dark:text-slate-50 `}
-                style={{fontSize: font[size-1].fontSize, lineHeight: font[size-1].lineHeight , fontWeight: fontWeightSelected}}>{text}</h3>;
+                className={`font-medium text-[${selectedColor}] text-lg text-shadow w-full dark:text-slate-50 `}>{text}</h3>;
             case 4:
                 return <h2 aria-label={ariaLabel}
-                className={`font-medium text-[${selectedColor}] text-shadow w-full dark:text-slate-50 `}
-                style={{fontSize: font[size-1].fontSize, lineHeight: font[size-1].lineHeight , fontWeight: fontWeightSelected}}>{text}</h2>;
+                className={`font-medium text-[${selectedColor}] text-xl text-shadow w-full dark:text-slate-50 `}>{text}</h2>;
             case 5:
                 return <h2  aria-label={ariaLabel}
-                className={`font-medium text-[${selectedColor}] text-shadow w-full dark:text-slate-50 `}
-                style={{fontSize: font[size-1].fontSize, lineHeight: font[size-1].lineHeight , fontWeight: fontWeightSelected}}>{text}</h2>;
+                className={`font-medium text-[${selectedColor}] text-2xl text-shadow w-full dark:text-slate-50 `}
+                >{text}</h2>;
             default:    
                 return <p  aria-label={ariaLabel}
-                className={`font-medium text-[${selectedColor}] text-shadow w-full dark:text-slate-50 `}
-                style={{fontSize: font[size-1].fontSize, lineHeight: font[size-1].lineHeight , fontWeight: fontWeightSelected}}>{text}</p>;
+                className={`font-medium text-[${selectedColor}] text-base text-shadow w-full dark:text-slate-50 `}>{text}</p>;
         }
     };
         return(
