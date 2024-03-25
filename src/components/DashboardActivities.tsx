@@ -56,7 +56,7 @@ export function DashboardActivities ({ nomeAtividade, perguntas, idAtividade,ses
         />
         <Atividade.Content>
           <Atividade.Questao>
-            <h2 className="text-lg dark:text-zinc-50" ref={perguntaRef} tabIndex={0}>{pergunta}</h2>
+            <h2 className="text-2xl dark:text-slate-50" ref={perguntaRef} tabIndex={0}>{pergunta}</h2>
             {urlImage && <ImageBanner imageUrl={urlImage!} imageDescription={perguntas[perguntaAtual].descricaoImagem!} /> }
             {urlVideo && <VideoPlayer urlVideo={urlVideo!}/>}
           </Atividade.Questao>

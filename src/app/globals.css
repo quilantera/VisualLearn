@@ -16,7 +16,7 @@ body {
 :focus {
   outline-color: #dfb80c; 
   outline-style:dashed; /* Você pode alterar o estilo do contorno (dotted, dashed, etc.) se desejar */
-  outline-width: 4px; /* A largura do contorno, ajuste conforme necessário */
+  outline-width: 0.3rem; /* A largura do contorno, ajuste conforme necessário */
   transition: all 0s;
   opacity: 1;
   scale:1.01;

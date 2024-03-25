@@ -52,7 +52,7 @@ export default async function DashboardLayout({ children }: { children: ReactNod
   return (
     <>
       <div className="fixed top-2 right-[44px] z-30 "> <AccessibilityPanel /> </div>
-      <main className="flex  flex-wrap min-h-screen w-full pt-20 pb-10 sm:px-[10px] items-center bg-gray-50 px-[60px] dark:bg-gray-700 dark:text-white ">
+      <main className="flex  flex-wrap min-h-screen w-full pt-20 pb-10 sm:px-[10px] items-center bg-gray-50 px-[3vw] dark:bg-gray-700 dark:text-white ">
         <PrimeiroCard usuario={usuario} turma={turma} />
         <section className="flex w-full h-full mt-4 gap-[16px]">
           <NavBar userRole={session.papel} />

@@ -49,8 +49,8 @@ export default async function Home(){
     const actions = session?.papel === "ALUNO" ? actionsAluno : actionsProfessor;
 
     return actions.map((action, index) => (
-      <Link key={index}href={action.linkUrl} className="border-2 gap-3 border-slate-400 text-violet-950 hover:bg-violet-950 hover:text-slate-50 rounded-lg shadow-lg px-[32px] py-[16px] flex flex-col items-center justify-center text-center hover:translate-y-[-10px] hover:scale-105 duration-500 dark:border-slate-50 dark:text-slate-50 dark:bg-gray-800 dark:hover:bg-slate-200 dark:hover:text-gray-900">
-        <Image src={action.image} alt={action.ariaLabel} className="h-30 w-30" height={200} width={200}/>
+      <Link key={index}href={action.linkUrl} aria-label="Ir para " className="min-w-[22vw] w-[14rem] border-2 gap-3 border-slate-400 text-violet-950 hover:bg-violet-950 hover:text-slate-50 rounded-lg shadow-lg px-[32px] py-[16px] flex flex-col items-center justify-center text-center hover:translate-y-[-10px] hover:scale-105 duration-500 dark:border-slate-50 dark:text-slate-50 dark:bg-gray-800 dark:hover:bg-slate-200 dark:hover:text-gray-900">
+        <Image src={action.image} alt={action.ariaLabel} className="h-32 w-32" height={200} width={200}/>
       <h2 className="font-medium  text-3xl text-shadow w-full  "> {action.text} </h2>
       </Link>
     ));

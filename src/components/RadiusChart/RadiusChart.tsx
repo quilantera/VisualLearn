@@ -80,7 +80,7 @@ export function RadiusChart({nota, total,width="13rem"}: RadiusChartProps){
                
               })
            } >
-            <p className={`text-gray-600 dark:text-slate-50 font-medium`} aria-label={`sua nota: ${nota}`} tabIndex={-1}> {nota}/{total}</p>
+            <p className={`text-gray-600 dark:text-slate-50 font-medium`} aria-label={`${nota}`} tabIndex={-1}> {nota}/{total}</p>
             </CircularProgressbarWithChildren>
         )}
       </ChangingProgressProvider>
