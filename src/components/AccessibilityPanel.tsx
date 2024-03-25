@@ -42,9 +42,9 @@
       }
       if(sound > 0)
       if (stateAux > 0) {
-        stateSpeak(`nivel ${stateAux}`,1+(0.4*sound))
+        stateSpeak(`nivel ${stateAux}`,1+(0.24*sound))
       } else {
-        stateSpeak(`desligado`,1+(0.4*sound))
+        stateSpeak(`desligado`,1+(0.24*sound))
       }
     }
     async function handleContrastChange(state: boolean ,setState: React.Dispatch<React.SetStateAction<boolean>>) {
@@ -52,9 +52,9 @@
       await setState(!state);
       if(sound > 0)
       if (auxState ) {
-        stateSpeak(`pressionado`,1+(0.4*sound))
+        stateSpeak(`pressionado`,1+(0.24*sound))
       } else {
-        stateSpeak(`não pressionado`,1+(0.4*sound))
+        stateSpeak(`não pressionado`,1+(0.24*sound))
       }
     }
   
@@ -139,7 +139,7 @@
           </NavigationMenu.Item>
           <NavigationMenu.Item>
           <Toggle.Root
-           onPressedChange={() => handleToggleChange(sound, setSound, 3)}
+           onPressedChange={() => handleToggleChange(sound, setSound, 4)}
           className="flex   h-full relative w-[4.20rem] sm:w-[4rem] flex-col items-center justify-center rounded-lg bg-white dark:bg-gray-900 dark:border dark:border-slate-50 px-1 text-primary-500 dark:text-white shadow-md drop-shadow-md duration-300 hover:scale-105 data-[state=on]:bg-primary-500 data-[state=on]:text-zinc-50 dark:data-[state=on]:bg-yellow-500 dark:data-[state=on]:text-gray-900 "
           aria-label="botão ligar som"
           data-state={sound >0 ? 'on' : 'off'}
