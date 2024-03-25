@@ -16,7 +16,7 @@ interface ShowLessonsProps {
 export function LessonsList({ subjectName ="undefined", lessons, subjectImage,useColor = false, lessonsHeaderNames }: ShowLessonsProps) {
     const {setIsReady, isReady} = useAccessibility();
     const [sortedLessons, setSortedLessons] = useState<AtividadeStudent[]>(lessons);
-    setIsReady(!isReady);
+ 
     const handleSortChange = (sortedData: AtividadeStudent[]) => {
         setSortedLessons(sortedData);
         setIsReady(!isReady);
