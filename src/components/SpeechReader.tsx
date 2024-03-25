@@ -15,8 +15,11 @@ export function stateSpeak(text:string,rate:number = 1.6){
   speechSynthesis.speak(speech);
 }
 export default function SpeechReader() {
-  const { sound, isReady} = useAccessibility();
+  const { sound, isReady,setIsReady} = useAccessibility();
   const [selectedElement, setSelectedElement] = useState(null);
+  useEffect(()=>{
+    setIsReady(!isReady);
+  },[]);
   useEffect(() => {
     const tags = ['svg', 'path','rect', 'fill', 'line','circle','polyline','polygon']
     const elementsTags = ['p', 'h1', 'h2', 'h3', 'h4', 'a'];

@@ -15,6 +15,21 @@
     const [isVisible, setIsVisible] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     const [scrollPosition, setScrollPosition] = useState<number>(0);
+    const [windowWidth, setWindowWidth] = useState(1000);
+
+  useEffect(() => {
+    function handleResize() {
+      
+      setWindowWidth(window.innerWidth);
+    }
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+  const maxZoom = windowWidth < 780 ? 2 : 4;
+
     async function handleToggleChange(state: number , setState: React.Dispatch<React.SetStateAction<number>>, max:number = 2) {
       let stateAux = state;
       if( state >= 0 && state < max){
@@ -57,7 +72,7 @@
       }
   
       if (zoom) {
-        document.documentElement.style.fontSize = `${100 + (zoom) * 23}%`; // Ajuste o valor conforme necessário
+        document.documentElement.style.fontSize = `${100 + (zoom) * 34}%`; // Ajuste o valor conforme necessário
       } else {
         document.documentElement.style.fontSize = ""; // Reset para o tamanho padrão
       }
@@ -86,7 +101,7 @@
         aria-label="Area de acessibilidade"
         className={` sm:fixed sm:top-4 sm:h-fit
           ${isVisible ? "sm:right-5": "sm:right-[-100vw]"}
-         z-20  self-center justify-self-center flex h-full gap-3 rounded-3xl sm:gap-1 sm:px-4  bg-zinc-300 dark:border dark:border-slate-50  dark:bg-gray-900 px-8 py-2 shadow-md ${
+         z-20  self-center justify-self-center flex h-full gap-3 rounded-3xl sm:gap-1 sm:px-4  bg-zinc-300 dark:border dark:border-slate-50  dark:bg-gray-900 px-8 py-[8px] shadow-md ${
           scrollPosition > 20 && !visibleOnScroll ? "opacity-30" : "opacity-100"
         }  rounded duration-200 sm:duration-700  ease-in-out  hover:opacity-100 focus:opacity-100 `}
        
@@ -106,7 +121,7 @@
           </NavigationMenu.Item>
           <NavigationMenu.Item>
           <Toggle.Root
-          onPressedChange={() => handleToggleChange(zoom, setZoom)}
+          onPressedChange={() => handleToggleChange(zoom, setZoom,maxZoom)}
           className="flex h-full relative w-[4.20rem] sm:w-[4rem] flex-col items-center justify-center rounded-lg bg-white dark:bg-gray-900 dark:border dark:border-slate-50 px-1 text-primary-500 dark:text-white shadow-md drop-shadow-md duration-300 hover:scale-105 data-[state=on]:bg-primary-500 data-[state=on]:text-zinc-50 dark:data-[state=on]:bg-yellow-500 dark:data-[state=on]:text-gray-900"
           aria-label="botão aumentar o zoom"
           data-state={zoom > 0 ?'on' : 'off'}

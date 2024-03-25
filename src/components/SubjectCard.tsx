@@ -24,7 +24,7 @@ export function SubjectCard({ materia, nameClass }: MateriasProps) {
 
   return (
     <article
-      className=" grid min-h-[10.625rem] w-[17.65rem]  p-3 border  border-slate-200   rounded-md bg-white shadow-lg duration-300 ease-in-out hover:scale-105 dark:border-2 dark:border-white dark:bg-gray-900"
+      className=" grid min-h-[10.625rem] w-[17.65rem] pt-5 pb-10 px-3 border hover:text-slate-50 hover:bg-slate-200 border-slate-200   rounded-md bg-white shadow-lg duration-300 ease-in-out hover:scale-105 dark:border-2 dark:border-white dark:bg-gray-900"
       role={`button`}// Use o nome da matéria no aria-label
       aria-label={`Cartão selecione Matéria`}
       tabIndex={0}
@@ -37,14 +37,14 @@ export function SubjectCard({ materia, nameClass }: MateriasProps) {
         alt={` imagem disciplina ${materia.nome}`}/>
       </div>
       <div
-       className={` flex flex-col justify-center  py-3 `}>
-       <TitleDashBoard text={materia.nome} size={4} weight="medium" />
+       className={` flex flex-col justify-center  py-3  hover:text-slate-50`}>
+       <TitleDashBoard text={materia.nome} size={5} weight="medium" />
         {materia.professor?.nome && 
-         <TitleDashBoard  text={ materia.professor.nome} size={3} ariaLabel={`professor: ${ materia.professor.nome} `} color="gray" weight="base"/>
+         <TitleDashBoard  text={ materia.professor.nome} size={4} ariaLabel={`professor: ${ materia.professor.nome} `} color="gray" weight="base"/>
         }
         {
           nameClass &&
-          <TitleDashBoard text={nameClass} size={3} color={"gray"} weight="base"/>
+          <TitleDashBoard text={nameClass} size={4} color={"gray"} weight="base"/>
         }
       </div>
      
@@ -62,14 +62,7 @@ export function SubjectCard({ materia, nameClass }: MateriasProps) {
         </Progress.Root>
     }
       </div>
-      <div className=" align-end flex px-1 py-4">
-        <button
-        aria-label ={`ir para matéria ${materia.nome}`}
-          className="h-fit self-end rounded-md bg-blue-950 text-shadow px-6 py-2 text-xl font-medium  text-white duration-300 ease-in-out hover:bg-violet-900 dark:border-2 dark:border-white dark:bg-black dark:font-semibold dark:hover:bg-white dark:hover:text-black"
-        >
-          Iniciar
-        </button>
-      </div>
+      
     </article>
   );
 }

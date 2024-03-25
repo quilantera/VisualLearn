@@ -59,14 +59,14 @@ export function NavBar({userRole}: NavBarProps) {
   }
   return (
     <>
-    <div ref={navRef} className={ `h-full min-h-4  sm:fixed  sm:z-50  sm:h-fit flex flex-col  ${zoom === 0 ? "w-[17vw]" : zoom === 1  ? "w-[19vw]": "w-[21vw]" } `}  
+    <div ref={navRef} className={ ` ${zoom>=3 ? "hidden":""} h-full min-h-4  sm:fixed  sm:z-50  sm:h-fit flex flex-col  ${zoom === 0 ? "w-[17vw]" : zoom === 1  ? "w-[19vw]": "w-[22vw]" } `}  
       >
         <div className={`hidden fixed top-0 left-0 h-screen w-screen bg-gray-700 duration:300 opacity-40 z-40 ${isVisible? "sm:block":"sm:hidden"}`}/>
         <button className={`hidden sm:block fixed top-4 left-4 p-3 bg-white rounded shadow-lg dark:bg-gray-900 dark:border dark:border-slate-50`} onClick={ () => setIsVisible((state)=> !state)}> <Menu /> </button>
     <nav
       className={`flex flex-col h-fit py-8  sm:fixed sm:h-screen  sm:z-50 duration-700  sm:top-0 ${isVisible? "sm:left-0" : "sm:left-[-600px]"}  sm:w-fit sm:px-4  px-4 bg-white dark:bg-gray-900 dark:border-2 dark:border-slate-50 rounded-lg shadow-md ${
         isNavFixed ? "fixed top-2 z-10" : ""
-      }  ${zoom === 0 ? "w-[17vw]" : zoom === 1  ? "w-[19vw]": "w-[21vw]" } `}
+      }  ${zoom === 0 ? "w-[17vw]" : zoom === 1  ? "w-[19vw]": "w-[22vw]" } `}
     >
       <button aria-label={isVisible? "botão abrir barra de navegação": "botão fechar barra de navegação"}className={`hidden sm:block self-end `}onClick={ () => setIsVisible((state)=> !state)}>
             <ArrowLeft/>
