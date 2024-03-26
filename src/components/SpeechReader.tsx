@@ -1,8 +1,7 @@
 "use client"
 
 import { useAccessibility } from '@/app/Context/AccessibilityContext';
-import React, { useEffect, useState } from 'react';
-
+import React, { useEffect, useRef, useState } from 'react';
 export function stateSpeak(text:string,rate:number = 1.6){
   speechSynthesis.cancel();
   speaksText(text,rate);
@@ -19,10 +18,13 @@ export default function SpeechReader() {
   const [selectedElement, setSelectedElement] = useState(null);
   useEffect(()=>{
     setIsReady(!isReady);
+     
   },[]);
   useEffect(() => {
     const tags = ['svg', 'path','rect', 'fill', 'line','circle','polyline','polygon']
     const elementsTags = ['p', 'h1', 'h2', 'h3', 'h4', 'a'];
+
+
     const handleFocus = (event:any) => {
       if (selectedElement && selectedElement !== event.currentTarget) {
         speechSynthesis.cancel();
@@ -58,9 +60,12 @@ export default function SpeechReader() {
   }
     const elements = document.querySelectorAll('body *');
     elements.forEach(element => { 
+      
       const isIcon = tags.includes(element.tagName.toLowerCase());
       if (isIcon) return;
       element.addEventListener("focus", handleFocus);
+     
+      
     });
 
     return () => {
@@ -68,11 +73,12 @@ export default function SpeechReader() {
         const isIcon = tags.includes(element.tagName.toLowerCase());
         if (isIcon) return;
         element.removeEventListener("focus", handleFocus);
+        
       });
     }
     
   },[selectedElement, sound, isReady]);
   
-
+  
   return <></>;
 }

@@ -54,11 +54,11 @@ export function ModalEnviarResposta({getTotalAcertos, idAtividade, openStatusMod
          },
        });
        if (!atividadeEnviada){
-      changePopupState('error','Erro ao enviar dados, por favor tente novamente mais tarde');
+     await changePopupState('error','Erro ao enviar dados, por favor tente novamente mais tarde');
         return 
        }
        changePopupState('success','Respostas enviadas com sucesso');
-        openStatusModal(true); 
+       await openStatusModal(true); 
         return 
       }
     }catch(error){

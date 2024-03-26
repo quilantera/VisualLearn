@@ -44,9 +44,10 @@ export function FooterAtividade({perguntaAtual, ultimaPergunta, idAtividade,getT
                     idAtividade={idAtividade!}
                     totalQuestoes={ultimaPergunta}
                     getTotalAcertos={getTotalAcertos}
-                    openStatusModal={()=>setShowModal} 
+                    openStatusModal={()=>setShowModal(true)} 
                     session={session} />
             )}
+
         </footer>
     )
 }

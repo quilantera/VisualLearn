@@ -3,13 +3,13 @@ import { DisciplinasTeacher } from "@/types/typesTeacher";
 import { SubjectCard } from "./SubjectCard";
 import { DisciplinasStudent } from "@/types/typesStudent";
 import { useAccessibility } from "@/app/Context/AccessibilityContext";
+import { useEffect } from "react";
 
 interface MateriasProps{
   materias: DisciplinasStudent[]| DisciplinasTeacher [];
 }
 export function ShowSubjects({materias}: MateriasProps) {
-  const {setIsReady} = useAccessibility();
-  setIsReady(state => !state);
+
   return (
     <section className="flex flex-wrap justify-center gap-6 py-4">
 
