@@ -3,14 +3,14 @@
   import * as Toggle from "@radix-ui/react-toggle";
   import { Eye, ZoomIn, Volume2, Accessibility } from "lucide-react";
   import { useEffect, useState } from "react";
-  import { stateSpeak } from "./SpeechReader";
   import * as NavigationMenu from '@radix-ui/react-navigation-menu';
+import { useSpeech } from "@/app/Context/SpeechReaderContext";
 
   interface AccessibilityPanelProps{
     visibleOnScroll?: boolean;
   }
   export function AccessibilityPanel({visibleOnScroll = false}: AccessibilityPanelProps) {
-    
+    const { stateSpeak} = useSpeech();
     const { contrast, setContrast, zoom, setZoom, sound, setSound,isReady, setIsReady } = useAccessibility();
     const [isVisible, setIsVisible] = useState(false);
     const [isLoading, setIsLoading] = useState(true);

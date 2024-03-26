@@ -7,6 +7,8 @@ import { AccessibilityProvider } from "./Context/AccessibilityContext";
 import NextAuthSessionProvider from "./providers/sessionProvider";
 import { AllColors } from "@/components/allColors";
 import { ScrollToTop } from "@/components/ScrollToTop";
+import ClickableWrapper from "./Context/ClickableWrapperContext";
+import SpeechReaderContext from "./Context/SpeechReaderContext";
 
 const rubik = Rubik({
   subsets: ['latin'],
@@ -40,10 +42,12 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body className={`${rubik.variable} ${teko.variable} bg-gray-50 dark:bg-gray-600 font-san`}>
       <NextAuthSessionProvider >
         <AccessibilityProvider >
-      
-        <AllColors /> 
-            {children}
-        <SpeechReader />
+          <SpeechReaderContext>
+            <ClickableWrapper>
+              <AllColors /> 
+                  {children}
+          </ClickableWrapper>
+          </SpeechReaderContext>
         </AccessibilityProvider>
         </NextAuthSessionProvider>
         <ScrollToTop/>
