@@ -1,12 +1,14 @@
 "use client";
 import { Questoes } from "@/types/typesStudent"
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Atividade } from "./Atividade";
 
 import { ImageBanner } from "./ImageBanner";
 import { VideoPlayer } from "./VideoPlayer";
 import { ModalExibirResultado } from "./ModalExibirResultado";
 import { useSearchParams } from "next/navigation";
+import { AuxTextPanel } from "./AuxTextPanel";
+import { ZoomedImageBanner } from "./ZoomedImageBanner";
 
 interface DashboardActivitiesProps {
   nomeAtividade: string;
@@ -24,7 +26,7 @@ export function DashboardActivities ({ nomeAtividade, perguntas, idAtividade,ses
   const perguntaAtual = posicaoPergunta < 0 ? 0 : posicaoPergunta >= perguntas.length ? perguntas.length-1: posicaoPergunta;
   
   const [respostasTemporarias,setRespostasTemporarias] =useState(Array(perguntas.length).fill(null));
-  
+  console.log(respostasTemporarias);  
   const [showModal, setShowModal] = useState<boolean> (false);
   const handleRespostaChange = (posicaoResposta: number) => {
     setRespostasTemporarias(prevRespostas => {
@@ -42,11 +44,25 @@ export function DashboardActivities ({ nomeAtividade, perguntas, idAtividade,ses
     }
     return totalAcertos;
   }
-
-  const { pergunta, urlImage,urlVideo, descricaoImagem, respostas } = perguntas[perguntaAtual];
-  
+  useEffect(() => {
+    // Verifica se a referência da pergunta existe antes de tentar focar nela
+    if (perguntaRef.current) {
+      perguntaRef.current.focus();
+    }
+  }, [perguntaAtual]); // Executar sempre que perguntaAtual mudar
+  const [openImage, setOpenImage] = useState<boolean>(false);
+  function handleCloseImage(){
+    setOpenImage(false)
+  }
+  function handleOpenImage(){
+    setOpenImage(true)
+  }
+  function handleShowModal(){
+    setShowModal(true);
+  }
   return (
-    <>
+    <>   
+   
     <section className="flex flex-col w-full py-10 mt-6 justify-center items-center  dark:text-white ">
       <Atividade.Root>
         <Atividade.Header
@@ -56,30 +72,31 @@ export function DashboardActivities ({ nomeAtividade, perguntas, idAtividade,ses
         />
         <Atividade.Content>
           <Atividade.Questao>
-            <h2 className="text-2xl dark:text-slate-50" ref={perguntaRef} tabIndex={0}>{pergunta}</h2>
-            {urlImage && <ImageBanner imageUrl={urlImage!} imageDescription={perguntas[perguntaAtual].descricaoImagem!} /> }
-            {urlVideo && <VideoPlayer urlVideo={urlVideo!}/>}
+            <div className="flex gap-[8px] "><div className=" font-semibold text-2xl h-10 w-10 border-[3px] mt-[1px] dark:text-white border-sky-900 dark:border-yellow-500 rounded-full flex items-center justify-center"><span>{perguntaAtual+1}</span></div> <h2  className=" max-w-[92%] mt-[2px] text-2xl dark:text-slate-50" ref={perguntaRef} tabIndex={0}>{perguntas[perguntaAtual].pergunta}</h2></div>
+            {perguntas[perguntaAtual].textoAuxiliar && <AuxTextPanel text={perguntas[perguntaAtual].textoAuxiliar!} reference={perguntas[perguntaAtual].referenciaTexto}/>}
+            {perguntas[perguntaAtual].urlVideo && <VideoPlayer urlVideo={perguntas[perguntaAtual].urlVideo!}/>}
+            {perguntas[perguntaAtual].urlImage && <ImageBanner imageUrl={perguntas[perguntaAtual].urlImage!} imageDescription={perguntas[perguntaAtual].descricaoImagem!} referenceImage={perguntas[perguntaAtual].referenciaImagem} openZoomImage={handleOpenImage}/> }
           </Atividade.Questao>
           <Atividade.Respostas>
             <Atividade.RespostasGroup
-              respostas={respostas}
+              respostas={perguntas[perguntaAtual].respostas}
               selectedOption={respostasTemporarias[perguntaAtual]}
               handleRadioChange={handleRespostaChange}
             />
           </Atividade.Respostas>
-          <Atividade.Footer perguntaAtual={perguntaAtual}
-    ultimaPergunta={perguntas.length}
-    idAtividade ={idAtividade}
-    getTotalAcertos={() => getTotalAcertos()}
-    setShowModal={()=>setShowModal}
-    session={session}/>
+          <Atividade.Footer 
+                perguntaAtual={perguntaAtual}
+                ultimaPergunta={perguntas.length}
+                idAtividade ={idAtividade}
+                getTotalAcertos={getTotalAcertos}
+                setShowModal={handleShowModal}
+                session={session}/>
         </Atividade.Content>
       </Atividade.Root>
     </section>
     { showModal && 
       <ModalExibirResultado nota={getTotalAcertos()} totalQuestoes={perguntas.length} /> }
-    
-    
+   {perguntas[perguntaAtual].urlImage && openImage && <ZoomedImageBanner onClose={handleCloseImage} imageUrl={perguntas[perguntaAtual].urlImage!}/>}
   </>
   );
 }

@@ -40,7 +40,7 @@ export function RespostasAtividadeProfessor({
                 <RadioGroup.Item
                 tabIndex={0}
                 aria-label={`alternativa ${letters[index]}`}
-                className={`w-full border-1 flex items-center gap-4`}
+                className={`w-full border-1 flex items-center gap-[16px]`}
            
            value={String(index)}
            id={String(index)}
@@ -71,7 +71,7 @@ export function RespostasAtividadeProfessor({
            <button
            type='button'
             onClick={() => handleRemoverAlternativa(index)}
-            className={`self-end p-2 rounded shadow-sm hover:bg-red-500
+            className={`self-end p-[8px] rounded shadow-sm hover:bg-red-500
               dark:text-slate-50
               hover:text-slate-50 duration-300
               ${ index === respostaCorreta

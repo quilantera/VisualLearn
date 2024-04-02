@@ -19,7 +19,7 @@ export function RespostasRadioGroup({
         const isSelected = selectedOption === index;
         return (
           <RadioGroup.Item
-            className={`w-100  border-1 flex items-center gap-4 rounded-lg  px-4 py-3 shadow-lg   ${
+            className={`w-100  border-1 flex items-center gap-4 sm:gap-[8px] rounded-lg sm:px-[8px] px-[16px] py-3 shadow-lg   ${
               isSelected
                 ? "bg-primary-400 text-white dark:bg-yellow-500 dark:font-semibold dark:text-black"
                 : "bg-white dark:bg-zinc-950 dark:border-2 dark:border-slate-100 "
@@ -39,7 +39,7 @@ export function RespostasRadioGroup({
             >
             <span >{letters[index]}</span>
             </div>
-            <h3 className="w-[95%] text-left"> {resposta}</h3>
+            <h3 className="w-[95%] text-left leading-relaxed tracking-wide"> {resposta}</h3>
             <RadioGroup.Indicator className="hidden focus:hidden" />
           </RadioGroup.Item>
         );

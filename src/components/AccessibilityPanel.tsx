@@ -1,7 +1,7 @@
   "use client";
   import { useAccessibility } from "@/app/Context/AccessibilityContext";
   import * as Toggle from "@radix-ui/react-toggle";
-  import { Eye, ZoomIn, Volume2, Accessibility } from "lucide-react";
+  import { Eye, ZoomIn, Volume2, Accessibility, PersonStanding } from "lucide-react";
   import { useEffect, useState } from "react";
   import * as NavigationMenu from '@radix-ui/react-navigation-menu';
 import { useSpeech } from "@/app/Context/SpeechReaderContext";
@@ -92,7 +92,7 @@ import { useSpeech } from "@/app/Context/SpeechReaderContext";
   
     return (
       <>
-      <button onClick={()=>{setIsVisible(state => !state)}} className={`hidden sm:block fixed top-4 right-4 p-3 bg-white rounded shadow-lg dark:bg-gray-900 dark:border dark:border-slate-50`}><Accessibility/> </button>
+      <button aria-label="área de acessibilidade" onClick={()=>{setIsVisible(state => !state)}} className={`hidden sm:block fixed bg-sky-900 hover:bg-sky-950 duration-300 top-4 right-4 p-[6px] rounded shadow-lg  dark:bg-gray-900 dark:border dark:text-white dark:border-slate-50`}><PersonStanding className="text-white h-8 w-8"strokeWidth="2.2"/> </button>
     {!isLoading && 
 
    

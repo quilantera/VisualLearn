@@ -2,12 +2,14 @@ import mongoose from 'mongoose';
 
 const QuestoesSchema = new mongoose.Schema({
   pergunta: String,
-  texto: String,
   urlImage: String,
-  descricaoImagem: String,
-  urlVideo: String,
   respostas: [String],
-  respostaCorreta: Number
+  descricaoImagem: String,
+  referenciaImagem: String,
+  urlVideo: String,
+  respostaCorreta: Number,
+  textoAuxiliar: String,
+  referenciaTexto: String,
 });
 
 const AtividadeSchema = new mongoose.Schema({
