@@ -87,14 +87,18 @@ export function ModalEnviarResposta({getTotalAcertos, idAtividade, openStatusMod
           </button>
         </AlertDialog.Trigger>
         <AlertDialog.Portal>
-          <AlertDialog.Overlay className="bg-black fixed inset-0 z-40 opacity-30 dark:opacity-90 " style={{"animation": "overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1)"}} />
-          <AlertDialog.Content className="bg-slate-50 rounded-xl z-50 shadow-lg fixed top-1/2 left-1/2 w-[42rem] max-w-[75vw] max-h-[95vh]  px-[28px] py-[30px] dark:bg-black dark:border-white dark:border-2 " style={{"transform": "translate(-50%, -50%)","animation":"contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1)" }}>
-            <AlertDialog.Title className="font-semibold text-2xl mb-6 dark:text-slate-50">Confirmar Entrega</AlertDialog.Title>
-            <AlertDialog.Description className=" flex flex-col items-center gap-[12px] tracking-wide text-medium text-zinc-800 mb-6 dark:text-slate-100">
+          <AlertDialog.Overlay className=" bg-black  opacity-30 fixed h-screen inset-0 z-40 dark:opacity-90 "
+           style={{"animation": "overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1)"}} />
+            <AlertDialog.Content tabIndex={0} className="bg-slate-50 rounded-xl z-50 shadow-lg fixed top-1/2 left-1/2 w-[40rem] max-w-[90vw] max-h-[87vh] sm:h-[75vh] sm:w-[95vw] sm:max-w-full px-[30px] py-[30px] dark:bg-black dark:border-white dark:border-2 " 
+             style={{    "transform": "translate(-50%,-50%)",
+             "animation": "contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1)",
+             "overflowY": "auto"  }}>
+            <AlertDialog.Title className="font-semibold text-2xl mb-[24px] dark:text-slate-50">Confirmar Entrega</AlertDialog.Title>
+            <AlertDialog.Description className=" flex flex-col items-center gap-[12px] tracking-wide text-medium text-zinc-800 mb-[24px] dark:text-slate-100">
                 Deseja enviar suas respostas? essa tarefa não poderá ser desfeita.
                 <Image src={imagem()} alt='imagem astronauta' height={1000} width={1000} className='w-[35%]  max-w-[300px] self-center rounded-md shadow-md' />
             </AlertDialog.Description>
-            <div style={{ display: 'flex', gap: 10, justifyContent: 'flex-end' }}>
+            <div className='flex gap-[30px] justify-end sm:gap-[4px]'>
               <AlertDialog.Cancel asChild>
                 <button className="bg-zinc-300  rounded font-medium px-[20px] py-[12px] text-gray-950 shadow-lg hover:bg-zinc-400 duration-300  dark:bg-black dark:text-white dark:border-4 dark:border-sky-900 dark:hover:scale-105">cancelar</button>
               </AlertDialog.Cancel>

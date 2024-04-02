@@ -20,15 +20,19 @@ interface AtividadeAlunoStudent{
 }
 export interface QuestoesAtividadeStudent{
     nome: string;
+    id?:string;
     questoes :Questoes[];
    }
    export interface Questoes {
-     pergunta: string;
-     urlImage?: string;
-     descricaoImagem?: string;
-     urlVideo?: string;
-     respostas: string[];
-     respostaCorreta: number;
+    pergunta: string;
+    urlImage?: string;
+    respostas: string[];
+    descricaoImagem?: string;
+    referenciaImagem?: string;
+    urlVideo?: string;
+    respostaCorreta: number;
+    textoAuxiliar?: string;
+    referenciaTexto?: string;
      // Campo opcional para URL da imagem
    }
 

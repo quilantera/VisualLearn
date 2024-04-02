@@ -31,7 +31,7 @@ export default function SpeechProvider ({ children }: { children: ReactNode }){
 
   useEffect(() => {
     const tags = ['svg', 'path', 'rect', 'fill', 'line', 'circle', 'polyline', 'polygon'];
-    const elementsTags = ['p', 'h1', 'h2', 'h3', 'h4', 'a'];
+    const elementsTags = ['p','h1','h2','h3','h4','a'];
 
     const handleFocus = (event:any) => {
       if (selectedElement && selectedElement !== event.currentTarget) {

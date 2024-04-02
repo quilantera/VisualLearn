@@ -8,7 +8,7 @@ interface FooterAtividadeProps{
     ultimaPergunta: number;
     idAtividade: string;
     getTotalAcertos: () => number;
-    setShowModal: (showModal:boolean) => void;
+    setShowModal: () => void;
     session: string;
 }
 export function FooterAtividade({perguntaAtual, ultimaPergunta, idAtividade,getTotalAcertos,setShowModal,session}:FooterAtividadeProps) {
@@ -44,7 +44,7 @@ export function FooterAtividade({perguntaAtual, ultimaPergunta, idAtividade,getT
                     idAtividade={idAtividade!}
                     totalQuestoes={ultimaPergunta}
                     getTotalAcertos={getTotalAcertos}
-                    openStatusModal={()=>setShowModal(true)} 
+                    openStatusModal={()=>setShowModal()} 
                     session={session} />
             )}
 
