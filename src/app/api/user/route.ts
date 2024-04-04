@@ -17,6 +17,7 @@ export async function GET(request: Request) {
             select: {
               email: true,
               nome: true,
+              senha: true,
               urlAvatar: true,
               papel: true,
               turmas: {
