@@ -13,6 +13,7 @@ export const dynamic = 'force-dynamic'
 interface UserWithSchoolAndActivities {
   email: string;
   nome: string;
+  senha?: string;
   urlAvatar: string | null;
   papel: string;
   escola: {
