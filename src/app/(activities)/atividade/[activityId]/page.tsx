@@ -18,9 +18,9 @@ export  default async function AtividadesPage({
     redirect('/');
  }
   const atividadeId = params.activityId;
- // const response = await axios.get(`${process.env.BASE_URL!}/api/students/lessons/${atividadeId}`)
- // const atividade: QuestoesAtividadeStudent = await response.data;
-    const atividade: QuestoesAtividadeStudent = InterpretacaoDeTexto;
+  const response = await axios.get(`${process.env.BASE_URL!}/api/students/lessons/${atividadeId}`)
+  const atividade: QuestoesAtividadeStudent = await response.data;
+   // const atividade: QuestoesAtividadeStudent = InterpretacaoDeTexto;
   return (
     <>
     <RefreshContentToSpeak/>
