@@ -8,6 +8,12 @@ interface SpeechContextType {
 }
 
 const SpeechContext = createContext<SpeechContextType | undefined>(undefined);
+export const speaksText = (text: string, rate: number = 1.6): void => {
+  const speech = new SpeechSynthesisUtterance(text);
+  speech.lang = 'pt-BR';
+  speech.rate = rate;
+  speechSynthesis.speak(speech);
+};
 
 export default function SpeechProvider ({ children }: { children: ReactNode }){
     const { sound, isReady, setIsReady } = useAccessibility();
@@ -18,13 +24,7 @@ export default function SpeechProvider ({ children }: { children: ReactNode }){
     speaksText(text, rate);
   };
 
-  const speaksText = (text: string, rate: number = 1.6): void => {
-    const speech = new SpeechSynthesisUtterance(text);
-    speech.lang = 'pt-BR';
-    speech.rate = rate;
-    speechSynthesis.speak(speech);
-  };
-
+  
   useEffect(() => {
     setIsReady(!isReady);
   }, []);
@@ -84,7 +84,6 @@ export default function SpeechProvider ({ children }: { children: ReactNode }){
 
   const value: SpeechContextType = {
     stateSpeak,
-    
   };
 
   return (

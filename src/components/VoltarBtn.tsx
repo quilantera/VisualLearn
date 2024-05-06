@@ -5,6 +5,7 @@ import Image from "next/image";
 import AstronautaVoltar from "../assets/astronauta_indeciso.jpg"
 
 import Link from 'next/link';
+import { RefreshContentToSpeak } from './RefreshContentToSpeak';
 
 export function VoltarBtn(){
  
@@ -19,6 +20,7 @@ export function VoltarBtn(){
           </button>
         </AlertDialog.Trigger>
         <AlertDialog.Portal>
+        
           <AlertDialog.Overlay className="bg-black  opacity-30 fixed overflow-y-scroll h-screen inset-0 z-40 dark:opacity-90 " />
           <AlertDialog.Content tabIndex={0} className="bg-slate-50 rounded-xl z-50 shadow-lg fixed top-1/2 left-1/2 w-[40rem] max-w-[90vw] max-h-[87vh] sm:h-[75vh] sm:w-[95vw] sm:max-w-full px-[30px] py-[30px] dark:bg-black dark:border-white dark:border-2 " 
           style={{    "transform": "translate(-50%,-50%)",
@@ -36,6 +38,7 @@ export function VoltarBtn(){
               <AlertDialog.Action asChild>
                 <Link href="/" className="bg-green-700 sm:text-center sm:text-[18px] text-white px-[20px] py-[12px] rounded shadow-lg hover:bg-green-900 duration-300 dark:bg-black dark:border-4 dark:border-red-900 dark:hover:scale-105"  aria-label='botão sair da atividade' >sim, desejo sair</Link>
               </AlertDialog.Action>
+              <RefreshContentToSpeak/>
             </div>
           </AlertDialog.Content>
         </AlertDialog.Portal>

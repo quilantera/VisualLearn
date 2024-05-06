@@ -1,6 +1,7 @@
 
 import { nextAuthOptions } from "@/app/api/auth/[...nextauth]/route";
 import { DashboardActivities } from "@/components/DashboardActivities";
+import { RefreshContentToSpeak } from "@/components/RefreshContentToSpeak";
 import { QuestoesAtividadeStudent } from "@/types/typesStudent";
 import { InterpretacaoDeTexto } from "@/utils/interpretacaoDeTexto";
 import axios from "axios";
@@ -17,11 +18,12 @@ export  default async function AtividadesPage({
     redirect('/');
  }
   const atividadeId = params.activityId;
-  const response = await axios.get(`${process.env.BASE_URL!}/api/students/lessons/${atividadeId}`)
-  const atividade: QuestoesAtividadeStudent = await response.data;
-
+ // const response = await axios.get(`${process.env.BASE_URL!}/api/students/lessons/${atividadeId}`)
+ // const atividade: QuestoesAtividadeStudent = await response.data;
+    const atividade: QuestoesAtividadeStudent = InterpretacaoDeTexto;
   return (
     <>
+    <RefreshContentToSpeak/>
       <DashboardActivities
         nomeAtividade={atividade!.nome}
         perguntas={atividade!.questoes}

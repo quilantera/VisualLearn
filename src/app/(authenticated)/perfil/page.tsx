@@ -3,6 +3,7 @@ import { BackgroundProfile } from "@/components/BackgroundProfile";
 import { Dashboard } from "@/components/Dashboard";
 import { ImageProfile } from "@/components/ImageProfile";
 import { ProfileForms } from "@/components/ProfileForms";
+import { RefreshContentToSpeak } from "@/components/RefreshContentToSpeak";
 import { TitleDashBoard } from "@/components/TitleDashboard";
 import axios from "axios";
 import { School } from "lucide-react";
@@ -40,7 +41,7 @@ export default async function Perfil(){
   });
   
   const usuario: UserWithSchoolAndActivities = response.data;
-    return(
+    return(<>
         <Dashboard>
             <TitleDashBoard text={"Seu Perfil"} size={5}/>
             <BackgroundProfile/>
@@ -52,5 +53,7 @@ export default async function Perfil(){
                 <ProfileForms email={usuario.email}/>
              </div>
         </Dashboard>
+        <RefreshContentToSpeak/>
+        </>
     )
 }

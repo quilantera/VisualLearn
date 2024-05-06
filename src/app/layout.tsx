@@ -1,8 +1,7 @@
-import { Inter, Rubik, Teko } from "next/font/google";
+import { Rubik, Teko } from "next/font/google";
 import { ReactNode } from "react";
 
 import "./globals.css";
-import SpeechReader from "@/components/SpeechReader";
 import { AccessibilityProvider } from "./Context/AccessibilityContext";
 import NextAuthSessionProvider from "./providers/sessionProvider";
 import { AllColors } from "@/components/allColors";
@@ -25,10 +24,10 @@ const teko = Teko({
 
 
 export const metadata = {
-  title: "Blind Study",
+  title: "Visual Learn",
   description: "Plataforma de estudos com acessibilidade ",
   generator: 'Next.js',
-  applicationName: 'BlindStudy.js',
+  applicationName: 'visualLearn.js',
   referrer: 'origin-when-cross-origin',
   keywords: ['acessibilidade', 'baixa visão', 'plataforma escolar', 'plataforma acessível', 'accessibility','school platform'],
   authors: [{ name: 'Gustavo Quilante', url: 'https://gustavoquilante.netlify.app' }, { name: 'Celso Olivete' }],
@@ -37,9 +36,9 @@ export const metadata = {
 };
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html  lang="pt-br">
+    <html  lang="pt-BR">
       
-      <body className={`${rubik.variable} ${teko.variable} bg-gray-50 dark:bg-gray-600 font-san`}>
+      <body className={`${rubik.variable} ${teko.variable} tracking-wider bg-gray-50 dark:bg-gray-600 font-san`}>
       <NextAuthSessionProvider >
         <AccessibilityProvider >
           <SpeechReaderContext>

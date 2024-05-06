@@ -57,13 +57,13 @@ export function PrimeiroCard({ usuario, turma }: PrimeiroCardProps) {
                         <div
                             className={`h-36 w-36  z-20 flex items-center justify-center p-[4px] bg-white dark:bg-gray-900 rounded-full `}
                         >
-                            {usuario.urlAvatar ? (
+                            {/* {usuario.urlAvatar ? (
                                 <img
                                     src={usuario.urlAvatar!}
                                     alt={"Imagem de perfil"}
                                     className={`w-full rounded-full  z-20 duration-200 ease-in-out hover:shadow-[0px_0px_12px_#E2E8F0]`}
                                 />
-                            ) : (
+                            ) : ( */}
                                 <Image
                                     src={profile}
                                     alt={"Imagem de perfil"}
@@ -71,7 +71,7 @@ export function PrimeiroCard({ usuario, turma }: PrimeiroCardProps) {
                                     height={140}
                                     className={`w-full rounded-full z-20 duration-200 ease-in-out hover:shadow-[0px_0px_12px_#E2E8F0]`}
                                 />
-                            )}
+                            {/* )} */}
                         </div>
                     </div>
                 </div>

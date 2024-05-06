@@ -1,5 +1,6 @@
 import { nextAuthOptions } from "@/app/api/auth/[...nextauth]/route";
 import { Dashboard } from "@/components/Dashboard";
+import { RefreshContentToSpeak } from "@/components/RefreshContentToSpeak";
 import { ShowSubjects } from "@/components/ShowSubjects";
 import { TitleDashBoard } from "@/components/TitleDashboard";
 import { DisciplinasStudent } from "@/types/typesStudent";
@@ -36,6 +37,7 @@ export default async function Materias() {
             <TitleDashBoard text={"Matérias"}/>
             <ShowSubjects materias={turma!.materias} />
           </Dashboard>
+          <RefreshContentToSpeak/>
         </>
       );
     } else {
@@ -48,6 +50,7 @@ export default async function Materias() {
               </h2>
             </div>
           </Dashboard>
+          <RefreshContentToSpeak/>
         </>
       );
     }
@@ -62,6 +65,7 @@ export default async function Materias() {
             </h2>
           </div>
         </Dashboard>
+        <RefreshContentToSpeak/>
       </>
     );
   }
