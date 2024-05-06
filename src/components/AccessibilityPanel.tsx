@@ -28,6 +28,31 @@ import { useSpeech } from "@/app/Context/SpeechReaderContext";
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+  useEffect(() => {
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.altKey) {
+        switch (event.key) {
+          case "1":
+            handleContrastChange(contrast, setContrast);
+            break;
+          case "2":
+            handleToggleChange(zoom, setZoom, maxZoom);
+            break;
+          case "3":
+            handleToggleChange(sound, setSound, 4);
+            break;
+          default:
+            break;
+        }
+      }
+    }
+
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [contrast, zoom, sound]);
   const maxZoom = windowWidth < 780 ? 2 : 4;
 
     async function handleToggleChange(state: number , setState: React.Dispatch<React.SetStateAction<number>>, max:number = 2) {
@@ -72,7 +97,7 @@ import { useSpeech } from "@/app/Context/SpeechReaderContext";
       }
   
       if (zoom) {
-        document.documentElement.style.fontSize = `${100 + (zoom) * 34}%`; // Ajuste o valor conforme necessário
+        document.documentElement.style.fontSize = `${100 + (zoom) * 40}%`; // Ajuste o valor conforme necessário
       } else {
         document.documentElement.style.fontSize = ""; // Reset para o tamanho padrão
       }
@@ -89,6 +114,7 @@ import { useSpeech } from "@/app/Context/SpeechReaderContext";
     useEffect(() =>{
       setIsReady(!isReady);
     },[]);
+
   
     return (
       <>
@@ -121,21 +147,26 @@ import { useSpeech } from "@/app/Context/SpeechReaderContext";
           </NavigationMenu.Item>
           <NavigationMenu.Item>
           <Toggle.Root
-          onPressedChange={() => handleToggleChange(zoom, setZoom,maxZoom)}
-          className="flex h-full relative w-[4.20rem] sm:w-[4rem] flex-col items-center justify-center rounded-lg bg-white dark:bg-gray-900 dark:border dark:border-slate-50 px-1 text-primary-500 dark:text-white shadow-md drop-shadow-md duration-300 hover:scale-105 data-[state=on]:bg-primary-500 data-[state=on]:text-zinc-50 dark:data-[state=on]:bg-yellow-500 dark:data-[state=on]:text-gray-900"
-          aria-label="botão aumentar o zoom"
-          data-state={zoom > 0 ?'on' : 'off'}
-        >
-          <ZoomIn className="h-6 w-6 sm:h-5 sm:w-5" />
-          <span className=" text-[0.7rem] font-semibold leading-none pb-1">
-            Zoom
-          </span>
-          {zoom >= 1&&
-           <span className={`absolute font-semibold top-[-10px] right-[-10px] text-[0.6rem] sm:text-[0.4rem] sm:border
-            p-[0.3rem] bg-cyan-900 dark:bg-yellow-300 border-[2px] border-slate-100 dark:border-slate-900 rounded-full shadow-md `}>
-            X {zoom}
+            onPressedChange={() => handleToggleChange(zoom, setZoom,maxZoom)}
+            className={`flex h-full relative w-[4.20rem] sm:w-[4rem] flex-col items-center 
+                        justify-center rounded-lg bg-white dark:bg-gray-900 dark:border
+                        dark:border-slate-50 px-1 text-primary-500 dark:text-white shadow-md
+                        drop-shadow-md duration-300 hover:scale-105 data-[state=on]:bg-primary-500
+                        data-[state=on]:text-zinc-50 dark:data-[state=on]:bg-yellow-500 
+                        dark:data-[state=on]:text-gray-900`}
+            aria-label="botão aumentar o zoom"
+            data-state={zoom > 0 ?'on' : 'off'}
+          >
+            <ZoomIn className="h-6 w-6 sm:h-5 sm:w-5" />
+            <span className=" text-[0.7rem] font-semibold leading-none pb-1">
+              Zoom
+            </span>
+            {zoom >= 1&&
+            <span className={`absolute font-semibold top-[-10px] right-[-10px] text-[0.6rem] sm:text-[0.4rem] sm:border
+              p-[0.3rem] bg-cyan-900 dark:bg-yellow-300 border-[2px] border-slate-100 dark:border-slate-900 rounded-full shadow-md `}>
+              X {zoom}
             </span>}
-        </Toggle.Root>
+          </Toggle.Root>
           </NavigationMenu.Item>
           <NavigationMenu.Item>
           <Toggle.Root

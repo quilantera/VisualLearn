@@ -46,22 +46,24 @@ export function LessonCard({ lesson, subjectName, subjectImage, useColor = false
      { useColor === true && <div className={`absolute top-0 left-0 w-full h-4 sm:h-[28px]  ${cor} `} /> }
      
       <div className="flex flex-col gap-2 w-full justify-center items-center mt-[8px] sm:mt-[20px]">
-        {subjectImage || lesson.urlImagem ? (
+         {subjectImage || lesson.urlImagem ? (
           /* eslint-disable-next-line @next/next/no-img-element */
-                  <img
-                      src={subjectImage|| lesson.urlImagem}
-                      alt={lesson.nome}
+                   <img
+                       src={subjectImage|| lesson.urlImagem}
+                       alt={lesson.nome}
                       className="w-full sm:w-[90%] h-40  rounded  object-cover"
-                  />
-              ) : (
+                   />
+              ) : (  
+            
                   <Image
                       src={Subject}
                       alt={lesson.nome}
                       className="w-full  sm:w-[90%] h-40  rounded  object-cover"
-                      width={100}
-                      height={100}
+                      width={1000}
+                      height={1000}
                   />
-              )}
+             )}
+             
         <div className="flex flex-col w-full">
           <h2 className="text-xl sm:text-lg w-full font-semibold text-slate-600 dark:text-white">
             {subjectName}

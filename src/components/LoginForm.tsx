@@ -11,7 +11,11 @@ interface LoginFormProps{
 
 export function LoginForm( {handleSubmit, errors, resetErrors}: LoginFormProps){
   return (
-    <Form.Root method="POST" onSubmit={handleSubmit} className="flex h-auto w-[28rem] flex-col items-center gap-1 rounded-lg bg-gray-50 px-8 py-8 shadow-sm dark:bg-gray-700 dark:text-white ">
+    <Form.Root
+        method="POST" 
+        onSubmit={handleSubmit} 
+        className="flex h-auto w-[28rem] flex-col items-center gap-1 rounded-lg bg-gray-50 px-8 py-8 shadow-sm dark:bg-gray-700 dark:text-white "
+        >
       <h2 className="py-5 text-4xl font-semibold text-purple-100 dark:text-white">Bem-Vindo</h2>
       <div className="flex w-4/5 flex-col gap-3 py-3">
         <Form.Field className="flex w-full flex-col gap-1" name="email" serverInvalid={errors.email}> 

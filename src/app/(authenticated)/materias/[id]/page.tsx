@@ -1,6 +1,7 @@
 import { nextAuthOptions } from "@/app/api/auth/[...nextauth]/route";
 import { Dashboard } from "@/components/Dashboard";
 import { LessonsList } from "@/components/LessonList";
+import { RefreshContentToSpeak } from "@/components/RefreshContentToSpeak";
 import { TitleDashBoard } from "@/components/TitleDashboard";
 import { AtividadeStudent, DisciplinasStudent } from "@/types/typesStudent";
 import axios from "axios";
@@ -44,6 +45,7 @@ export default async function MateriaPage({
           <LessonsList subjectName={subject.nome} subjectImage={subject.urlImagem} lessons={lessons} lessonsHeaderNames={["prazo","status","nota"]}/>
         }
       </Dashboard >
+      <RefreshContentToSpeak/>
     </>
   );
 }

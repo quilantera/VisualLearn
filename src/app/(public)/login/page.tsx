@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
 import { signIn } from "next-auth/react";
 import { Popup } from "@/components/Popup";
+import { speaksText } from "@/app/Context/SpeechReaderContext";
 
 export const dynamic = 'force-dynamic'
 export default function Login() {
@@ -49,13 +50,15 @@ export default function Login() {
       if (result?.error) {
         console.log(result)
         setPopupType('error');
-        setMessagePopup("usuário ou senha inválidos" ) ;
+        await speaksText("usuário ou senha inválidos");
+       await setMessagePopup("usuário ou senha inválidos" ) ;
         setServerErrors({email: true, password : true});
         return
       } 
                  
       router.replace('/')
-      setMessagePopup("Bem vindo!");
+      await setMessagePopup("Bem vindo!");
+      speaksText("Bem vindo");
       setPopupType('success');
       
     

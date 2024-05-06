@@ -1,6 +1,7 @@
 import { nextAuthOptions } from "@/app/api/auth/[...nextauth]/route";
 import { Dashboard } from "@/components/Dashboard";
 import { LessonsList } from "@/components/LessonList";
+import { RefreshContentToSpeak } from "@/components/RefreshContentToSpeak";
 import { TitleDashBoard } from "@/components/TitleDashboard";
 import axios from "axios";
 import { getServerSession } from "next-auth";
@@ -26,7 +27,7 @@ export default  async function Tarefas() {
         <LessonsList lessons={atividades} useColor={true} lessonsHeaderNames={["prazo","status","notas"]} />
       </Dashboard>
       
-      
+      <RefreshContentToSpeak/>
     </>
   );
 }

@@ -61,7 +61,6 @@ export default async function Home(){
         <TitleDashBoard text="Página Inicial"/>
        <div className="flex flex-wrap gap-[24px] justify-center pt-10"> 
        {ActionCards()}
-       
         </div>
     </Dashboard>
   )

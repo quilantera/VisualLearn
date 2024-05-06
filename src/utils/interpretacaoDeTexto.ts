@@ -72,8 +72,8 @@ export const InterpretacaoDeTexto: QuestoesAtividadeStudent = {
                 "reclamaram do pouco tempo de duração do recreio.",
             ],
             respostaCorreta: 2,
-            urlImage:
-                "https://firebasestorage.googleapis.com/v0/b/unesppp-c4395.appspot.com/o/images%2F5.png?alt=media&token=cf2bcc4f-5484-41b2-a68e-a86fa4b1117a",
+            urlImage: "0",
+                // "https://firebasestorage.googleapis.com/v0/b/unesppp-c4395.appspot.com/o/images%2F5.png?alt=media&token=cf2bcc4f-5484-41b2-a68e-a86fa4b1117a",
             descricaoImagem:
                 "primeiro quadrinho: a formiga diz: Muito bem Formigas! Meia Hora de Recreio!, as operárias dizem: UÊBA! Quadrinho 2: as formigas sobem em um balanço, Quadrinho 3: as formigas falam: Agora só falta empurrar!",
             referenciaImagem:
@@ -81,11 +81,11 @@ export const InterpretacaoDeTexto: QuestoesAtividadeStudent = {
         },
         {
             pergunta:
-                "Na frase:&quot; Agora só falta alguém pra empurrar. &quot;, a palavra destacada é um exemplo de linguagem:",
+                "Na frase: '; Agora só falta alguém pra empurrar. ', a palavra destacada é um exemplo de linguagem:",
             respostas: ["formal", "regional", "técnica", "coloquial"],
             respostaCorreta: 3,
-            urlImage:
-                "https://firebasestorage.googleapis.com/v0/b/unesppp-c4395.appspot.com/o/images%2F5.png?alt=media&token=cf2bcc4f-5484-41b2-a68e-a86fa4b1117a",
+            urlImage:"1",
+                // "https://firebasestorage.googleapis.com/v0/b/unesppp-c4395.appspot.com/o/images%2F5.png?alt=media&token=cf2bcc4f-5484-41b2-a68e-a86fa4b1117a",
             descricaoImagem:
                 "primeiro quadrinho: a formiga diz: Muito bem Formigas! Meia Hora de Recreio!, as outras respondem: UÊBA! , Quadrinho 2: as formigas sobem em um balanço, Quadrinho 3: as formigas dizem: Agora só falta empurrar!",
             referenciaImagem:
@@ -96,8 +96,8 @@ export const InterpretacaoDeTexto: QuestoesAtividadeStudent = {
             duplo sentido. Identifique qual delas apresenta mais de um significado dentro do contexto.`,
             respostas: ["coraçõezinhos", "vida", "filho", "pai"],
             respostaCorreta: 0,
-            urlImage:
-                "https://firebasestorage.googleapis.com/v0/b/unesppp-c4395.appspot.com/o/images%2F7.png?alt=media&token=d5c44e60-703c-4bee-b9b7-2c09a80c4cd2",
+            urlImage:"2",
+                // "https://firebasestorage.googleapis.com/v0/b/unesppp-c4395.appspot.com/o/images%2F7.png?alt=media&token=d5c44e60-703c-4bee-b9b7-2c09a80c4cd2",
             descricaoImagem: descricaoImagem7,
             referenciaImagem:
                 "https://educacao.frutal.mg.gov.br/banco-de-atividades/ensino-fundamental/",
@@ -111,8 +111,8 @@ export const InterpretacaoDeTexto: QuestoesAtividadeStudent = {
                 "ensinando o pai a usar o videogame",
             ],
             respostaCorreta: 1,
-            urlImage:
-                "https://firebasestorage.googleapis.com/v0/b/unesppp-c4395.appspot.com/o/images%2F7.png?alt=media&token=d5c44e60-703c-4bee-b9b7-2c09a80c4cd2",
+            urlImage:"2",
+                // "https://firebasestorage.googleapis.com/v0/b/unesppp-c4395.appspot.com/o/images%2F7.png?alt=media&token=d5c44e60-703c-4bee-b9b7-2c09a80c4cd2",
             descricaoImagem: descricaoImagem7,
             referenciaImagem:
                 "https://educacao.frutal.mg.gov.br/banco-de-atividades/ensino-fundamental/",
@@ -128,8 +128,8 @@ export const InterpretacaoDeTexto: QuestoesAtividadeStudent = {
             respostaCorreta: 0,
             textoAuxiliar: texto2,
             referenciaTexto: "Revista Recreio, v. 6, n. 273, p. 12, jun. 2005.",
-            referenciaImagem:
-                "https://educacao.frutal.mg.gov.br/banco-de-atividades/ensino-fundamental/",
+            referenciaImagem:"2",
+                // "https://educacao.frutal.mg.gov.br/banco-de-atividades/ensino-fundamental/",
         },
         {
             pergunta:
