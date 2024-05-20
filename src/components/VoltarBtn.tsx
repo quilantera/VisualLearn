@@ -21,11 +21,9 @@ export function VoltarBtn(){
         </AlertDialog.Trigger>
         <AlertDialog.Portal>
         
-          <AlertDialog.Overlay className="bg-black  opacity-30 fixed overflow-y-scroll h-screen inset-0 z-40 dark:opacity-90 " />
-          <AlertDialog.Content tabIndex={0} className="bg-slate-50 rounded-xl z-50 shadow-lg fixed top-1/2 left-1/2 w-[40rem] max-w-[90vw] max-h-[87vh] sm:h-[75vh] sm:w-[95vw] sm:max-w-full px-[30px] py-[30px] dark:bg-black dark:border-white dark:border-2 " 
-          style={{    "transform": "translate(-50%,-50%)",
-                          "animation": "contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1)",
-                          "overflowY": "auto"  }}>
+          <AlertDialog.Overlay className="bg-black z-50  bg-opacity-30 fixed flex items-center justify-center overflow-y-scroll w-screen h-screen inset-0 dark:bg-opacity-90 " >
+          <AlertDialog.Content tabIndex={0} className="bg-slate-50 rounded-xl shadow-lg w-[40rem] max-w-[90vw]  sm:h-[75vh] sm:w-[95vw] sm:max-w-full px-[30px] py-[30px] dark:bg-black dark:border-white dark:border-2 " 
+          style={{  "animation": "contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1)" }}>
             <AlertDialog.Title className="font-semibold text-2xl mb-[24px] dark:text-slate-50">Tem certeza que deseja sair?</AlertDialog.Title>
             <AlertDialog.Description className=" flex flex-col items-center gap-[12px] tracking-wide text-medium text-zinc-800 mb-[24px] dark:text-slate-100">
                 Se você sair agora, o progresso desta atividade não será salvo e será perdido. Certifique-se de terminar a atividade antes de sair para que possa continuar de onde parou da próxima vez que entrar.
@@ -41,6 +39,7 @@ export function VoltarBtn(){
               <RefreshContentToSpeak/>
             </div>
           </AlertDialog.Content>
+          </AlertDialog.Overlay>
         </AlertDialog.Portal>
       </AlertDialog.Root>
     )

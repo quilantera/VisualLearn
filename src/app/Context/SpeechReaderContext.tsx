@@ -8,6 +8,7 @@ interface SpeechContextType {
 }
 
 const SpeechContext = createContext<SpeechContextType | undefined>(undefined);
+
 export const speaksText = (text: string, rate: number = 1.6): void => {
   const speech = new SpeechSynthesisUtterance(text);
   speech.lang = 'pt-BR';
@@ -15,8 +16,8 @@ export const speaksText = (text: string, rate: number = 1.6): void => {
   speechSynthesis.speak(speech);
 };
 
-export default function SpeechProvider ({ children }: { children: ReactNode }){
-    const { sound, isReady, setIsReady } = useAccessibility();
+export default function SpeechProvider({ children }: { children: ReactNode }) {
+  const { sound, isReady, setIsReady } = useAccessibility();
   const [selectedElement, setSelectedElement] = useState<HTMLElement | null>(null);
 
   const stateSpeak = (text: string, rate: number = 1.6): void => {
@@ -24,16 +25,36 @@ export default function SpeechProvider ({ children }: { children: ReactNode }){
     speaksText(text, rate);
   };
 
-  
-  useEffect(() => {
-    setIsReady(!isReady);
-  }, []);
+  const handleSpeechStart = (element: HTMLElement) => {
+    element.classList.add("highlight");
+    element.scrollIntoView({ behavior: "smooth", block: "center" });
+
+  };
+
+  const handleSpeechEnd = (element: HTMLElement) => {
+    element.classList.remove("highlight");
+  };
+
+  const speaksAndHighlight = (text: string, rate: number = 1.6, element: HTMLElement) => {
+    if (text && element) {
+      const speech = new SpeechSynthesisUtterance(text);
+      speech.lang = 'pt-BR';
+      speech.rate = rate;
+      speech.onstart = () => handleSpeechStart(element);
+      speech.onend = () => handleSpeechEnd(element);
+      speechSynthesis.speak(speech);
+    }
+  };
+
+  // useEffect(() => {
+  //   setIsReady(!isReady);
+  // }, []);
 
   useEffect(() => {
-    const tags = ['svg', 'path', 'rect', 'fill', 'line', 'circle', 'polyline', 'polygon'];
-    const elementsTags = ['p','h1','h2','h3','h4','a'];
+    const tagsToExclude = ['svg', 'path', 'rect', 'fill', 'line', 'circle', 'polyline', 'polygon'];
+    const elementsTags = ['p', 'h1', 'h2', 'h3', 'h4', 'a'];
 
-    const handleFocus = (event:any) => {
+    const handleFocus = (event: any) => {
       if (selectedElement && selectedElement !== event.currentTarget) {
         speechSynthesis.cancel();
       }
@@ -43,23 +64,22 @@ export default function SpeechProvider ({ children }: { children: ReactNode }){
       const parent = event.currentTarget;
       const parentText = parent.textContent;
       const parentAriaLabel = parent.getAttribute('aria-label');
-      const children = parent.querySelectorAll(elementsTags.join(', '));
-
+      const children: HTMLElement[] | null = Array.from(parent.querySelectorAll(elementsTags.join(', ')));
+      parent.scrollIntoView({ behavior: "smooth", block: "center" });
       if (sound > 0) {
         if (parentAriaLabel) {
-          speaksText(parentAriaLabel, 1 + (0.4 * sound));
+          speaksText(parentAriaLabel, 0.8 + (0.7 * sound));
+        } else if (parentText) {
+          speaksText(parentText, 0.8 + (0.7 * sound));
         }
-        else if (parentText) {
-          speaksText(parentText, 1 + (0.4 * sound));
-        }
-        children.forEach((child:HTMLElement) => {
+
+        children.forEach((child: HTMLElement, index: number) => {
           const ariaLabel = child.getAttribute('aria-label');
-          const text = child.textContent || null;
+          const text = child.textContent || '';
           if (ariaLabel) {
-            speaksText(ariaLabel, 1 + (0.4 * sound));
-          }
-          else if (text) {
-            speaksText(text, 1 + (0.4 * sound));
+            speaksAndHighlight(ariaLabel, 1 + (0.4 * sound), child);
+          } else if (text) {
+            speaksAndHighlight(text, 1 + (0.4 * sound), child);
           }
         });
       }
@@ -67,19 +87,20 @@ export default function SpeechProvider ({ children }: { children: ReactNode }){
 
     const elements = document.querySelectorAll('body *');
     elements.forEach(element => {
-      const isIcon = tags.includes(element.tagName.toLowerCase());
-      if (isIcon) return;
-      element.addEventListener("focus", handleFocus);
+      const isIcon = tagsToExclude.includes(element.tagName.toLowerCase());
+      if (!isIcon) {
+        element.addEventListener("focus", handleFocus);
+      }
     });
 
     return () => {
       elements.forEach(element => {
-        const isIcon = tags.includes(element.tagName.toLowerCase());
-        if (isIcon) return;
-        element.removeEventListener("focus", handleFocus);
+        const isIcon = tagsToExclude.includes(element.tagName.toLowerCase());
+        if (!isIcon) {
+          element.removeEventListener("focus", handleFocus);
+        }
       });
-    }
-
+    };
   }, [selectedElement, sound, isReady]);
 
   const value: SpeechContextType = {
@@ -94,10 +115,9 @@ export default function SpeechProvider ({ children }: { children: ReactNode }){
 };
 
 export const useSpeech = (): SpeechContextType => {
-    const context = useContext(SpeechContext);
-    if (!context) {
-      throw new Error('useSpeech must be used within a SpeechProvider');
-    }
-    return context;
-  };
-  
+  const context = useContext(SpeechContext);
+  if (!context) {
+    throw new Error('useSpeech must be used within a SpeechProvider');
+  }
+  return context;
+};

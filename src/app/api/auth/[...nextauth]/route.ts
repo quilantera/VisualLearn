@@ -20,12 +20,12 @@ const nextAuthOptions: NextAuthOptions = {
         });
         if(!user){
           console.error("usuario nao encontrado");
-          return null
+          return  Promise.reject(new Error('Email não encontrado'));
         }
 
         const validPassword = await bcrypt.compare(credentials!.password, user.senha);
         if (!validPassword) {
-          return null
+          return Promise.reject(new Error('Senha incorreta'));
         }
         return user;
       }

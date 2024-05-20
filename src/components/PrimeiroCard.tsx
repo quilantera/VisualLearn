@@ -34,8 +34,8 @@ export function PrimeiroCard({ usuario, turma }: PrimeiroCardProps) {
     const { zoom } = useAccessibility();
     return (
         <article
-            tabIndex={0}
-            aria-label="Card de Perfil"
+           tabIndex={0}
+           aria-label={"card inicial"}
             className={`flex  sm:h-fit  sm:flex-col  sm:px-2 sm:py-4 w-full min-h-[10.2rem] min-w[400px] items-center rounded-md  shadow-md bg-white py-[20px] px-[32px]  dark:bg-gray-900 dark:border-2 dark:border-slate-50
             ${zoom >= 2 ? "h-fit  flex-col  px-2 py-4" : ""}`}
         >
@@ -87,14 +87,14 @@ export function PrimeiroCard({ usuario, turma }: PrimeiroCardProps) {
                         }`}
                     >
                         <h1
-                            className={` text-2xl  font-semibold  h-fit  pb-1 text-blue-950 dark:text-white text-shadow`}
+                            className={` text-2xl  font-bold h-fit  pb-1 text-blue-950 dark:text-white text-shadow`}
                         >
                             {" "}
                             Olá , {usuario.nome} !
                         </h1>
                         {turma && (
                             <div
-                                className={`flex  items-center   font-semibold gap-1 text-slate-700 dark:text-slate-50 text-shadow hover:text-shadow2 ${
+                                className={`flex  items-center   font-bold gap-1 text-slate-700 dark:text-slate-50 text-shadow hover:text-shadow2 ${
                                     zoom >= 3 ? "mb-7" : "mb-2"
                                 }`}
                             >
@@ -108,6 +108,7 @@ export function PrimeiroCard({ usuario, turma }: PrimeiroCardProps) {
                         )}
                     </div>
                     <div
+                        
                         className={` w-full flex sm:items-center sm:justify-center ${
                             zoom >= 2 ? "items-center justify-center" : ""
                         }`}
@@ -154,23 +155,23 @@ export function PrimeiroCard({ usuario, turma }: PrimeiroCardProps) {
                     zoom >= 2 ? "w-full h-[0.1rem] my-4" : " w-[0.1rem] h-[150px]"
                 }`}
             />
-            <div
-                className={` w-full flex sm:mt-5  items-center justify-end sm:justify-center h-full  gap-3 px-4 ${
-                    zoom >= 2 ? "justify-center " : "justify-end "
-                } `}
-            >
+            
                 {usuario.papel == "ALUNO" && (
-                    <>
-                        <h2
-                            className={`font-semibold text-2xl sm:text-xl text-blue-950 text-shadow dark:text-slate-50`}
+                    <div 
+                    className={` w-full flex sm:mt-5   items-center justify-end sm:justify-center h-full  gap-3 px-4 ${
+                        zoom >= 2 ? "justify-center " : "justify-end "
+                    } `}
+                >
+                        <h2 
+                            className={`font-bold text-2xl sm:text-xl text-blue-950 text-shadow dark:text-slate-50`}
                         >
                             {" "}
                             Seu Ranking:{" "}
                         </h2>
                         <EloCard lessons={usuario.atividadesAluno!} />
-                    </>
+                        </div>
                 )}
-            </div>
+            
         </article>
     );
 }

@@ -24,8 +24,9 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        san: ['var(--font-rubik)'],
-        alt: ['var(--font-teko)'],
+        san: ['var(--font-raleway)'],
+        alt: ['var(--font-openSans)'],
+        words: ['var(--font-rubik)'],
       },
       keyframes: {
         float: {

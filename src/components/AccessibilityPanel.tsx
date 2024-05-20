@@ -76,6 +76,7 @@ import { useSpeech } from "@/app/Context/SpeechReaderContext";
       const auxState = !state;
       await setState(!state);
       if(sound > 0)
+       
       if (auxState ) {
         stateSpeak(`pressionado`,1+(0.24*sound))
       } else {
@@ -128,7 +129,7 @@ import { useSpeech } from "@/app/Context/SpeechReaderContext";
         className={` sm:fixed sm:top-4 sm:h-fit
           ${isVisible ? "sm:right-5": "sm:right-[-100vw]"}
          z-20  self-center justify-self-center flex h-full gap-3 rounded-3xl sm:gap-1 sm:px-4  bg-zinc-300 dark:border dark:border-slate-50  dark:bg-gray-900 px-8 py-[8px] shadow-md ${
-          scrollPosition > 20 && !visibleOnScroll ? "opacity-30" : "opacity-100"
+          scrollPosition > 20 && !visibleOnScroll ? "opacity-10" : "opacity-100 dark:opacity-100"
         }  rounded duration-200 sm:duration-700  ease-in-out  hover:opacity-100 focus:opacity-100 `}
        
         >
@@ -140,7 +141,7 @@ import { useSpeech } from "@/app/Context/SpeechReaderContext";
               data-state={contrast ? 'on' : 'off'}
             >
               <Eye className="h-7 w-7 sm:h-5 sm:w-5" absoluteStrokeWidth={true} tabIndex={-1}/>
-              <span className="  text-[0.7rem] font-semibold leading-none pb-1">
+              <span className="  text-[0.7rem] font-bold leading-none pb-1">
                 Contraste
               </span>
             </Toggle.Root>
@@ -158,11 +159,11 @@ import { useSpeech } from "@/app/Context/SpeechReaderContext";
             data-state={zoom > 0 ?'on' : 'off'}
           >
             <ZoomIn className="h-6 w-6 sm:h-5 sm:w-5" />
-            <span className=" text-[0.7rem] font-semibold leading-none pb-1">
+            <span className=" text-[0.7rem] font-bold leading-none pb-1">
               Zoom
             </span>
             {zoom >= 1&&
-            <span className={`absolute font-semibold top-[-10px] right-[-10px] text-[0.6rem] sm:text-[0.4rem] sm:border
+            <span className={`absolute font-bold font-alt top-[-10px] right-[-10px] text-[0.6rem] sm:text-[0.4rem] sm:border
               p-[0.3rem] bg-cyan-900 dark:bg-yellow-300 border-[2px] border-slate-100 dark:border-slate-900 rounded-full shadow-md `}>
               X {zoom}
             </span>}
@@ -176,11 +177,11 @@ import { useSpeech } from "@/app/Context/SpeechReaderContext";
           data-state={sound >0 ? 'on' : 'off'}
         >
           <Volume2 className="h-6 w-6 sm:h-5 sm:w-5  " />
-          <span className="  text-[0.7rem] font-semibold leading-none pb-1">
+          <span className="  text-[0.7rem] font-bold leading-none pb-1">
             Leitor
           </span>
           {sound >= 1 && 
-          <span className={` absolute font-semibold top-[-10px] right-[-10px] text-[0.6rem] p-[0.3rem]  sm:text-[0.4rem] sm:border
+          <span className={` absolute font-bold font-alt top-[-10px] right-[-10px] text-[0.6rem] p-[0.3rem]  sm:text-[0.4rem] sm:border
            bg-cyan-900 dark:bg-yellow-300 border-[2px] border-slate-100 dark:border-slate-900 rounded-full shadow-md `}>
             X {sound}
           </span>}

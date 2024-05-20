@@ -35,10 +35,10 @@ export function TitleDashBoard({text,size = 5, color= "violet",weight = "medium"
         lineHeight: "2.20rem",
     }]
     const fontWeight = {
-        base: "400",
-        medium: "500",
-        semibold: "600",
-        bold: "700"
+        base: "500",
+        medium: "600",
+        semibold: "700",
+        bold: "800"
     }
     const fontWeightSelected = fontWeight[weight];
     const getHeadingComponent = (size: number) => {

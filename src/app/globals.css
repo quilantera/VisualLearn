@@ -8,6 +8,16 @@ body {
   text-rendering: optimizeLegibility;
   transition: all 200ms;
 }
+.highlight, .dark .highlight{
+ 
+  padding: 8px;
+  transition: all 200ms;
+  font-weight:700 !important;
+  -webkit-box-shadow:inset 0px 0px 0px 0.25rem rgb(46, 62, 211);
+  -moz-box-shadow:inset 0px 0px 0px 0.25rem rgb(46, 62, 211);
+  box-shadow: inset 0px 0px 0px 0.25rem rgb(46, 62, 211); /* ou qualquer outro estilo desejado */
+}
+
 
 :focus:not(:focus-visible) {
   outline: none; /* Remove o contorno padrão */

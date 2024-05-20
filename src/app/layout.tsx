@@ -1,4 +1,4 @@
-import { Rubik, Teko } from "next/font/google";
+import { Montserrat, Noto_Sans, Open_Sans, Poppins, Raleway, Rubik, Teko } from "next/font/google";
 import { ReactNode } from "react";
 
 import "./globals.css";
@@ -9,17 +9,23 @@ import { ScrollToTop } from "@/components/ScrollToTop";
 import ClickableWrapper from "./Context/ClickableWrapperContext";
 import SpeechReaderContext from "./Context/SpeechReaderContext";
 
-const rubik = Rubik({
+const raleway = Raleway({
   subsets: ['latin'],
   weight: ["300","400","500","600",'700',"800","900"],
   style: "normal",
-  variable: "--font-rubik",
+  variable: "--font-raleway",
 });
-const teko = Teko({
+const openSans = Open_Sans({
   subsets: ["latin"],
   weight: ["300","400","500","600","700"],
   style: "normal",
-  variable: "--font-teko",
+  variable: "--font-openSans",
+});
+const rubik = Rubik({
+  subsets: ["latin"],
+  weight: ["300","400","500","600","700"],
+  style: "normal",
+  variable: "--font-rubik",
 });
 
 
@@ -38,7 +44,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html  lang="pt-BR">
       
-      <body className={`${rubik.variable} ${teko.variable} tracking-wider bg-gray-50 dark:bg-gray-600 font-san`}>
+      <body className={`${raleway.variable} ${openSans.variable} ${rubik.variable} tracking-wide font-semibold bg-gray-50 dark:bg-gray-600 font-san`}>
       <NextAuthSessionProvider >
         <AccessibilityProvider >
           <SpeechReaderContext>

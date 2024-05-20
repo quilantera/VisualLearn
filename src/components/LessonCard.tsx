@@ -75,14 +75,14 @@ export function LessonCard({ lesson, subjectName, subjectImage, useColor = false
 
       <div className="flex items-center my-2  sm:my-1 w-full">
         <h3
-          className={`h-[2.2rem] sm:h-fit sm:py-0  w-fit  min-w-[116px] text-base  rounded border-2 px-2 py-1 text-center  font-medium ${getStatusColor()}`}
+          className={`h-[2.2rem] sm:h-fit sm:py-0  w-fit  min-w-[116px] text-base  rounded border-2 px-2 py-1 text-center  font-bold ${getStatusColor()}`}
         >
           {getStatus()}
         </h3>
       </div>
       {getStatus() !== "Entregue"  && 
       <div className="flex items-center justify-center w-full sm:mt-2 mt-4">
-        <h3 className="text-lg w-full text-center font-medium  dark:text-slate-50 " >Prazo: {new Date(lesson.prazo).toLocaleDateString('pt-BR')}</h3>
+        <h3 className="text-lg w-full font-words text-center font-medium  dark:text-slate-50 " >Prazo: {new Date(lesson.prazo).toLocaleDateString('pt-BR')}</h3>
      </div>
           }
         {getStatus() !== "Entregue" ? (

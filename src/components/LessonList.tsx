@@ -30,7 +30,7 @@ export function LessonsList({ subjectName ="undefined", lessons, subjectImage,us
     return (
         <div className="  h-full min-h-[90vh] flex flex-col sm:px-[0px]">
             <div className="flex justify-end pb-2 ">
-                <SortDropdown options={sortOptions} data={lessons} onChange={handleSortChange} />
+                {/* <SortDropdown options={sortOptions} data={lessons} onChange={handleSortChange} /> */}
 
             </div>
          
