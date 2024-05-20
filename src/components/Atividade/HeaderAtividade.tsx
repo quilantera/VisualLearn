@@ -9,7 +9,7 @@ export function HeaderAtividade({
     totalPerguntas,
   }: AtividadeHeaderProps){
     return(
-        <div className="flex w-full items-center justify-between" >
+        <div className="flex w-full font-alt items-center justify-between" >
         <h1 className="text-3xl font-bold" tabIndex={0}  >{nomeAtividade}</h1>
         <div className="flex items-center gap-3 px-2 " tabIndex={0}  aria-label={`Atividade`} >
           <h3 aria-label={`${perguntaAtual + 1}`} 

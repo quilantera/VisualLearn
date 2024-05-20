@@ -48,13 +48,13 @@ export function NavPagesSelect( {navigationLinks, userRole, isVisible}: Navigati
   function selectIcon(iconName: string) {
     // Mapeamento dos nomes dos ícones para os ícones importados do Lucide Icons
     const iconMap: { [key: string]: JSX.Element } = {
-      BookOpen: <BookOpen aria-hidden="true" className={'sm:h-5 sm:w-5'}/>,
-      User: <User aria-hidden="true"className={'sm:h-5 sm:w-5'} />,
-      Monitor: <Monitor aria-hidden="true" className={'sm:h-5 sm:w-5'}/>,
-      Users: <Users aria-hidden="true"className={'sm:h-5 sm:w-5'}/>,
-      CalendarDays: <CalendarDays aria-hidden="true"className={'sm:h-5 sm:w-5'}/>,
-      NotebookPen: <NotebookPen aria-hidden="true"className={'sm:h-5 sm:w-5'}/>,
-      Users2Icon: <Users2Icon aria-hidden="true"className={'sm:h-5 sm:w-5'}/>
+      BookOpen: <BookOpen aria-hidden="true" className={' h-5 w-5 sm:h-5 sm:w-5'}/>,
+      User: <User aria-hidden="true"className={' h-5 w-5 sm:h-5 sm:w-5'} />,
+      Monitor: <Monitor aria-hidden="true" className={' h-5 w-5 sm:h-5 sm:w-5'}/>,
+      Users: <Users aria-hidden="true"className={' h-5 w-5 sm:h-5 sm:w-5'}/>,
+      CalendarDays: <CalendarDays aria-hidden="true"className={' h-5 w-5 sm:h-5 sm:w-5'}/>,
+      NotebookPen: <NotebookPen aria-hidden="true"className={' h-5 w-5 sm:h-5 sm:w-5'}/>,
+      Users2Icon: <Users2Icon aria-hidden="true"className={' h-5 w-5 sm:h-5 sm:w-5'}/>
       // Adicione mais mapeamentos conforme necessário
     };
   
@@ -80,7 +80,7 @@ export function NavPagesSelect( {navigationLinks, userRole, isVisible}: Navigati
             title={`Selecione `+link.name}
             className={`w-full flex items-center
              text-slate-600  dark:tracking-wide text-lg sm:text-sm gap-1  
-              sm:py-4 sm:px-4 sm:items-center py-4 pl-3 pr-5 rounded-lg mt-1 font-medium  duration-100 
+              sm:py-4 sm:px-4 sm:items-center py-4 pl-3 pr-5 rounded-lg mt-1 font-semibold  text-shadow duration-100 
             ${(pathname === link.route) ? '  bg-violet-950 dark:bg-slate-50 dark:font-bold  text-white dark:text-gray-900' : 'hover:bg-violet-800 hover:text-white dark:text-sky-300 dark:hover:text-white'}`}
             style={{ whiteSpace: 'nowrap' }}
             >
@@ -100,10 +100,10 @@ export function NavPagesSelect( {navigationLinks, userRole, isVisible}: Navigati
         tabIndex={0}
         className={`w-full flex items-center text-slate-600  dark:tracking-wide text-lg sm:text-sm gap-1  
         sm:py-4 sm:px-4 sm:items-center py-4 pl-3 pr-5  
-        rounded-lg mt-1 font-medium  duration-10 hover:bg-violet-800 hover:text-white dark:text-sky-300 dark:hover:text-white`}
+        rounded-lg mt-1 font-semibold   text-shadow  duration-10 hover:bg-violet-800 hover:text-white dark:text-sky-300 dark:hover:text-white`}
        
         >
-        <LogOut data-ignore="true"className={'sm:h-5 sm:w-5'} /> Sair
+        <LogOut data-ignore="true"className={'sm:h-10 sm:w-5'} /> Sair
       </button>
     </NavigationMenu.List>
   </NavigationMenu.Root>

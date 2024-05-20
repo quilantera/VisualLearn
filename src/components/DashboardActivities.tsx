@@ -19,15 +19,15 @@ interface DashboardActivitiesProps {
 
 export function DashboardActivities ({ nomeAtividade, perguntas, idAtividade,session}: DashboardActivitiesProps) {
   const perguntaRef = useRef<HTMLDivElement>(null);
-  
   const searchParams = useSearchParams()
  
   const posicaoPergunta = parseInt(searchParams.get('questao')||"0") || 0 
   const perguntaAtual = posicaoPergunta < 0 ? 0 : posicaoPergunta >= perguntas.length ? perguntas.length-1: posicaoPergunta;
   
   const [respostasTemporarias,setRespostasTemporarias] =useState(Array(perguntas.length).fill(null));
-  console.log(respostasTemporarias);  
   const [showModal, setShowModal] = useState<boolean> (false);
+  const [openImage, setOpenImage] = useState<boolean>(false);
+
   const handleRespostaChange = (posicaoResposta: number) => {
     setRespostasTemporarias(prevRespostas => {
       const updatedRespostas = [...prevRespostas]; // Create a new array
@@ -44,22 +44,18 @@ export function DashboardActivities ({ nomeAtividade, perguntas, idAtividade,ses
     }
     return totalAcertos;
   }
+  
+
   useEffect(() => {
-    // Verifica se a referência da pergunta existe antes de tentar focar nela
+    // Foca na pergunta atual quando ela muda
     if (perguntaRef.current) {
       perguntaRef.current.focus();
     }
-  }, [perguntaAtual]); // Executar sempre que perguntaAtual mudar
-  const [openImage, setOpenImage] = useState<boolean>(false);
-  function handleCloseImage(){
-    setOpenImage(false)
-  }
-  function handleOpenImage(){
-    setOpenImage(true)
-  }
-  function handleShowModal(){
-    setShowModal(true);
-  }
+  }, [perguntaAtual]);
+  
+  const handleCloseImage = () => setOpenImage(false);
+  const handleOpenImage = () => setOpenImage(true);
+  const handleShowModal = () => setShowModal(true);
   return (
     <>   
    
@@ -72,7 +68,7 @@ export function DashboardActivities ({ nomeAtividade, perguntas, idAtividade,ses
         />
         <Atividade.Content>
           <Atividade.Questao>
-            <div className="flex gap-[8px] "><div className=" font-semibold text-2xl h-10 w-10 border-[3px] mt-[1px] dark:text-white border-sky-900 dark:border-yellow-500 rounded-full flex items-center justify-center"><span>{perguntaAtual+1}</span></div> <h2  className=" max-w-[92%] mt-[2px] text-2xl dark:text-slate-50" ref={perguntaRef} tabIndex={0}>{perguntas[perguntaAtual].pergunta}</h2></div>
+            <div className="flex gap-[8px] "><div className=" font-medium font-words text-2xl h-10 w-10 border-[3px] mt-[1px] dark:text-white border-sky-900 dark:border-yellow-500 rounded-full flex items-center justify-center"><span>{perguntaAtual+1}</span></div> <h2  className=" max-w-[92%] mt-[2px] text-2xl font-words font-normal text-justify dark:text-slate-50" ref={perguntaRef} tabIndex={0}>{perguntas[perguntaAtual].pergunta}</h2></div>
             {perguntas[perguntaAtual].textoAuxiliar && <AuxTextPanel text={perguntas[perguntaAtual].textoAuxiliar!} reference={perguntas[perguntaAtual].referenciaTexto}/>}
             {perguntas[perguntaAtual].urlVideo && <VideoPlayer urlVideo={perguntas[perguntaAtual].urlVideo!}/>}
             {perguntas[perguntaAtual].urlImage && <ImageBanner imageUrl={perguntas[perguntaAtual].urlImage!} imageDescription={perguntas[perguntaAtual].descricaoImagem!} referenceImage={perguntas[perguntaAtual].referenciaImagem} openZoomImage={handleOpenImage}/> }

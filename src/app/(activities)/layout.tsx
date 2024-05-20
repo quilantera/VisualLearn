@@ -7,6 +7,7 @@ import { redirect } from "next/navigation";
 import { getServerSession } from "next-auth";
 import { nextAuthOptions } from "../api/auth/[...nextauth]/route";
 import "../globals.css";
+import { ScrollToTop } from "@/components/ScrollToTop";
 
 
 export const dynamic = 'force-dynamic'
@@ -21,6 +22,7 @@ export default async function LessonsLayout({ children }: { children: ReactNode 
         <main className="w-full flex-col items-center min-h-screen   bg-background-500 pt-20  dark:bg-gray-800">
           {children}
         </main>
+        <ScrollToTop/>
     </>
   )
 }

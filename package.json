@@ -57,5 +57,10 @@
     "@types/js-cookie": "^3.0.4",
     "@types/jsonwebtoken": "^9.0.3",
     "@types/react-modal-image": "^2.6.3"
+  },
+  "overrides": {
+    "react-lottie": {
+      "react": "^0.14.7 || ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0"
+    }
   }
 }
