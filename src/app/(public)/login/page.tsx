@@ -62,7 +62,7 @@ export default function Login() {
         return;
       } 
                    
-      router.replace('/');
+      router.replace('/tarefas');
       setMessage("Bem vindo!");
       setPopupType('success');
       

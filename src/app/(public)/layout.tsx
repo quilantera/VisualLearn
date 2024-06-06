@@ -8,7 +8,7 @@ export const dynamic = "force-dynamic"
 export default async function PublicLayout({ children }: { children: ReactNode }) {
     const session = await getServerSession(nextAuthOptions);
     if(session){
-      redirect('/');
+      redirect('/tarefas');
     }
   return (
     
