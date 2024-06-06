@@ -90,10 +90,8 @@ export function NavPagesSelect( {navigationLinks, userRole, isVisible}: Navigati
           </NavigationMenu.Item>
           )
       })}
-     
-    </NavigationMenu.List>
-    <NavigationMenu.List className='flex flex-col gap-3 '>
-    <button
+      <NavigationMenu.Item className="flex relative" key={"logout"} >
+     <button
         onClick={logout}
         title="Encerrar sessão"
         aria-label="Encerrar sessão"
@@ -103,9 +101,11 @@ export function NavPagesSelect( {navigationLinks, userRole, isVisible}: Navigati
         rounded-lg mt-1 font-semibold   text-shadow  duration-10 hover:bg-violet-800 hover:text-white dark:text-sky-300 dark:hover:text-white`}
        
         >
-        <LogOut data-ignore="true"className={'sm:h-10 sm:w-5'} /> Sair
+        <LogOut data-ignore="true" className={'sm:h-10 sm:w-5'} /> Sair
       </button>
+      </NavigationMenu.Item>
     </NavigationMenu.List>
+   
   </NavigationMenu.Root>
 
 </>
