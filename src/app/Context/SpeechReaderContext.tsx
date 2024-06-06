@@ -62,7 +62,6 @@ export default function SpeechProvider({ children }: { children: ReactNode }) {
       setSelectedElement(event.currentTarget);
 
       const parent: HTMLElement = event.currentTarget;
-      if(!parent.getElementsByTagName(elementsTags.join(', '))){
       const parentText = parent.textContent;
       const parentAriaLabel = parent.getAttribute('aria-label');
       const children: HTMLElement[] | null = Array.from(parent.querySelectorAll(elementsTags.join(', ')));
@@ -84,7 +83,6 @@ export default function SpeechProvider({ children }: { children: ReactNode }) {
           }
         });
       }
-    }
     };
 
     const elements = document.querySelectorAll('body *');
