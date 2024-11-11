@@ -34,7 +34,7 @@ export default async function MateriaPage({
     <>
       <Dashboard >
         <div  tabIndex={0} className="w-full flex gap-4  sm:gap-2 items-center pb-4 sm:pb-10  ">
-            <img  className=" rounded-full shadow-lg border-2 border-slate-300 h-32 sm:h-20 " src={subject.urlImagem}/>
+            <img  className=" rounded-full shadow-lg border-2 border-slate-300 h-32 sm:h-20 " src={subject.urlImagem} alt={subjsect.nome || "imagem disciplina"}/>
             <div className="w-full flex flex-col gap-2 sm:gap-0 ">
                 <TitleDashBoard text={`${subject.nome} `} size={5} weight="medium" />
                 <TitleDashBoard text={`Professor: ${subject.professor?.nome}`} size={3} color={"slate"} weight="base"/>   
