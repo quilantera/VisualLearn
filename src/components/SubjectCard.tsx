@@ -23,9 +23,8 @@ export function SubjectCard({ materia, nameClass }: MateriasProps) {
 }
 
   return (
-    <article
+    <button
       className=" grid min-h-[10.625rem] w-[17.65rem] pt-5 pb-10 px-3 border hover:text-slate-50 hover:bg-slate-200 border-slate-200   rounded-md bg-white shadow-lg duration-300 ease-in-out hover:scale-105 dark:border-2 dark:border-white dark:bg-gray-900"
-      role={`button`}// Use o nome da matéria no aria-label
       aria-label={`Cartão selecione Matéria`}
       tabIndex={0}
       onClick={handleClick}
@@ -58,11 +57,12 @@ export function SubjectCard({ materia, nameClass }: MateriasProps) {
           <Progress.Indicator
             className=" h-full w-full bg-cyan-800 duration-500 dark:bg-sky-400"
             style={{ transform: `translateX(-${(100 - 100 * (totalResponses(materia.atividades!)/materia.atividades!.length))||100}%)` }}
+            aria-label={`Progresso das atividades: ${(totalResponses(materia.atividades!) || 0)} de ${materia.atividades!.length} concluídas`}
           />
         </Progress.Root>
     }
       </div>
       
-    </article>
+    </button>
   );
 }
