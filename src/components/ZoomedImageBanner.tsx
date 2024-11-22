@@ -21,14 +21,13 @@ export function ZoomedImageBanner({onClose, imageUrl}:ZoomedImageBannerProps){
     return (
     <>
     <section
-      style={{position:"fixed", top:0, left:0}}
-      className="w-screen h-screen overflow-auto bg-gray-900 opacity-60 flex flex-col"
+      className="w-screen fixed top-0 left-0 h-screen overflow-auto bg-gray-900 opacity-60 flex items-center justify-center"
     onClick={()=>onClose()}
       >
         
     
         <div
-          className="absolute w-screen h-screen flex justify-center items-center"
+          className="absolute w-[80vw] h-[90vh] flex justify-center items-center"
           onClick={()=>onClose()}
           onMouseMove={handleMouseMove}
           onMouseEnter={() => setShowMagnifier(true)}
