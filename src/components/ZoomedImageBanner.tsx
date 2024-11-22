@@ -22,11 +22,11 @@ export function ZoomedImageBanner({onClose, imageUrl}:ZoomedImageBannerProps){
     <>
     <section
       style={{position:"fixed", top:0, left:0}}
-      className="w-full h-screen overflow-auto bg-gray-900 opacity-60 flex flex-col"
+      className="w-screen h-screen overflow-auto bg-gray-900 opacity-60 flex flex-col"
     onClick={()=>onClose()}
       >
         
-    </section>
+    
         <div
           className="absolute w-screen h-screen flex justify-center items-center"
           onClick={()=>onClose()}
@@ -56,6 +56,7 @@ export function ZoomedImageBanner({onClose, imageUrl}:ZoomedImageBannerProps){
             </div>
           )}
         </div>
+        </section>
     </>
     )
 }
