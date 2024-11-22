@@ -27,7 +27,7 @@ export function ZoomedImageBanner({onClose, imageUrl}:ZoomedImageBannerProps){
         
     
         <div
-          className="absolute w-[80vw] h-[90vh] flex justify-center items-center"
+          className=" w-[80vw] h-[90vh] flex justify-center items-center"
           onClick={()=>onClose()}
           onMouseMove={handleMouseMove}
           onMouseEnter={() => setShowMagnifier(true)}
