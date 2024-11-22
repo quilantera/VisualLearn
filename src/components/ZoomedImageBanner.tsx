@@ -21,7 +21,7 @@ export function ZoomedImageBanner({onClose, imageUrl}:ZoomedImageBannerProps){
     return (
     <>
     <section
-      className="w-screen fixed top-0 left-0 h-screen overflow-auto bg-gray-900 opacity-60 flex items-center justify-center"
+      className="w-screen fixed top-0 left-0 h-screen overflow-auto bg-gray-900 bg-opacity-60 flex items-center justify-center"
     onClick={()=>onClose()}
       >
         
