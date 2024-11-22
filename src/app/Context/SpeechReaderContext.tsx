@@ -69,6 +69,8 @@ export default function SpeechProvider({ children }: { children: ReactNode }) {
       if (sound > 0) {
         if (parentAriaLabel) {
           speaksText(parentAriaLabel, 0.8 + (0.7 * sound));
+        }else if(parent.classList.contains("reader-text")){
+          console.log("passou");
         } else if (parentText) {
           speaksText(parentText, 0.8 + (0.7 * sound));
         }
