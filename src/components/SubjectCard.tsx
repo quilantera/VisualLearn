@@ -37,13 +37,13 @@ export function SubjectCard({ materia, nameClass }: MateriasProps) {
       </div>
       <div
        className={` flex flex-col justify-center  py-3  hover:text-slate-50`}>
-       <TitleDashBoard text={materia.nome} size={5} weight="medium" />
+       <TitleDashBoard text={materia.nome} size={4} weight="medium" />
         {materia.professor?.nome && 
-         <TitleDashBoard  text={ materia.professor.nome} size={4} ariaLabel={`professor: ${ materia.professor.nome} `} color="gray" weight="base"/>
+         <TitleDashBoard  text={ materia.professor.nome} size={3} ariaLabel={`professor: ${ materia.professor.nome} `} color="gray" weight="base"/>
         }
         {
           nameClass &&
-          <TitleDashBoard text={nameClass} size={4} color={"gray"} weight="base"/>
+          <TitleDashBoard text={nameClass} size={3} color={"gray"} weight="base"/>
         }
       </div>
      
@@ -53,11 +53,12 @@ export function SubjectCard({ materia, nameClass }: MateriasProps) {
           className="relative self-center h-3 dark:h-4 w-10/12 overflow-hidden rounded bg-zinc-300 dark:bg-zinc-900  dark:border-2 dark:border-white"
           style={{ transform: `translateZ(0)` }}
           value={materia.atividades!.length || 100}
+          aria-labelledby="labeldiv"
         >
           <Progress.Indicator
             className=" h-full w-full bg-cyan-800 duration-500 dark:bg-sky-400"
             style={{ transform: `translateX(-${(100 - 100 * (totalResponses(materia.atividades!)/materia.atividades!.length))||100}%)` }}
-            aria-label={`Progresso das atividades: ${(totalResponses(materia.atividades!) || 0)} de ${materia.atividades!.length} concluídas`}
+            aria-label={`Progresso das atividades`}
           />
         </Progress.Root>
     }
