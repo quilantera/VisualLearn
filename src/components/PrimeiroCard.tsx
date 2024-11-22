@@ -35,7 +35,7 @@ export function PrimeiroCard({ usuario, turma }: PrimeiroCardProps) {
     return (
         <article
            tabIndex={0}
-            className={`flex  sm:h-fit  sm:flex-col  sm:px-2 sm:py-4 w-full min-h-[10.2rem] min-w[400px] items-center rounded-md  shadow-md bg-white py-[20px] px-[32px]  dark:bg-gray-900 dark:border-2 dark:border-slate-50
+            className={`reader-text flex  sm:h-fit  sm:flex-col  sm:px-2 sm:py-4 w-full min-h-[10.2rem] min-w[400px] items-center rounded-md  shadow-md bg-white py-[20px] px-[32px]  dark:bg-gray-900 dark:border-2 dark:border-slate-50
             ${zoom >= 2 ? "h-fit  flex-col  px-2 py-4" : ""}`}
         >
             <div
