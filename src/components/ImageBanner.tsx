@@ -22,19 +22,19 @@ export function ImageBanner({imageUrl, imageDescription ="imagem exemplo", refer
  
         <div className="w-full my-10 p-5" style={{boxShadow:"0 0px 3px #aaaaaace " }} role={'button'}  tabIndex={0} onClick={()=> openZoomImage()} aria-label={imageDescription}>
          
-         {/* <img
+          <img
             src={imageUrl}
             alt={referenceImage}
             className="w-full h-full rounded"
-            > */}
+            /> 
 
 
-            <Image 
+            {/* <Image 
             src={imageUrl == "0" ? image1 : image2 }
             alt={imageDescription }
             className="w-full h-full rounded" 
             width={800}
-            height={800}/>
+            height={800}/> */}
 
           {referenceImage && <span className="w-full text-center p-[8px] text-base">{referenceImage}</span>}
       </div>
