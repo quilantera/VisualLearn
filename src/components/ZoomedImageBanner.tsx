@@ -34,15 +34,16 @@ export function ZoomedImageBanner({onClose, imageUrl}:ZoomedImageBannerProps){
           onMouseEnter={() => setShowMagnifier(true)}
           onMouseLeave={() => setShowMagnifier(false)}
         >
-            <img className="w-[90vw] h-auto max-h-[90vh]" src={imageUrl} alt="imagem ampliada" />
+            <img className="w-full h-auto max-h-[90vh]" src={imageUrl} alt="imagem ampliada" />
 
             {showMagnifier && (
               <div
                 style={{
+                  position: "absolute",
                   left: `${cursorPosition.x - 200}px`,
                   top: `${cursorPosition.y - 300}px`,
+                  pointerEvents: "none",
                 }}
-                
               >
               <div
                 className="h-[400px] w-[400px] border-slate-50 border-2 z-[50]"
